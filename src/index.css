@@ -1,0 +1,32 @@
+@font-face {
+  font-family: pixel-medieval;
+  src: url(/src/assets/fonts/pixel-medieval.ttf);
+}
+
+:root {
+  --default-font: 'pixel-medieval';
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  font-family: var(--default-font);
+  font-weight: 200;
+  font-style: normal;
+}
+
+main, #root {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
