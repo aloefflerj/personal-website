@@ -1,9 +1,12 @@
-import { useEffect } from "react";
 import { keyframes, styled } from "styled-components";
 import { Blank, Code, Drawings, Game, Music, Worldbuilding } from "../categories/Categories";
 import { useCategoryContext } from "../hooks/useCategoryContext";
-
-const backgroundImagesPath = '/src/assets/img/environments';
+import blankImg from '../assets/img/environments/blank-environment.png';
+import codeImg from '../assets/img/environments/code-environment.png';
+import drawingsImg from '../assets/img/environments/drawings-environment.png';
+import gameImg from '../assets/img/environments/game-environment.png';
+import musicImg from '../assets/img/environments/music-environment.png';
+import worldbuildingImg from '../assets/img/environments/worldbuilding-environment.png';
 
 const PixelArtMain = styled.main`
     image-rendering: pixelated;
@@ -51,40 +54,36 @@ const Background = styled.img`
 export function PixelArtContent({ children }) {
     const { category } = useCategoryContext();
 
-    const setImageBackground = (category) => {
-        return `${backgroundImagesPath}/${category.img}`;
-    }
-
     const showBackground = () => {
         switch (category.categoryKey) {
             case Blank.categoryKey:
                 return <Background 
-                    src={setImageBackground(Blank)}
+                    src={blankImg}
                     $border={category.mediumColor}
                 />;
             case Code.categoryKey:
                 return <Background 
-                    src={setImageBackground(Code)}
+                    src={codeImg}
                     $border={category.mediumColor}
                 />;
             case Drawings.categoryKey:
                 return <Background 
-                    src={setImageBackground(Drawings)}
+                    src={drawingsImg}
                     $border={category.mediumColor}
                 />;
             case Game.categoryKey:
                 return <Background 
-                    src={setImageBackground(Game)}
+                    src={gameImg}
                     $border={category.mediumColor}
                 />;
             case Music.categoryKey:
                 return <Background 
-                    src={setImageBackground(Music)}
+                    src={musicImg}
                     $border={category.mediumColor}
                 />;
             case Worldbuilding.categoryKey:
                 return <Background 
-                    src={setImageBackground(Worldbuilding)}
+                    src={worldbuildingImg}
                     $border={category.mediumColor}
                 />;
         }
