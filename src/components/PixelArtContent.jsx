@@ -55,33 +55,33 @@ export function PixelArtContent({ children }) {
     const { category } = useCategoryContext();
 
     const showBackground = () => {
-        switch (category.categoryKey) {
-            case Blank.categoryKey:
+        switch (category) {
+            case Blank:
                 return <Background
                     src={blankImg}
                     $border={category.darkerColor}
                 />;
-            case Code.categoryKey:
+            case Code:
                 return <Background
                     src={codeImg}
                     $border={category.darkerColor}
                 />;
-            case Drawings.categoryKey:
+            case Drawings:
                 return <Background
                     src={drawingsImg}
                     $border={category.darkerColor}
                 />;
-            case Game.categoryKey:
+            case Game:
                 return <Background
                     src={gameImg}
                     $border={category.darkerColor}
                 />;
-            case Music.categoryKey:
+            case Music:
                 return <Background
                     src={musicImg}
                     $border={category.darkerColor}
                 />;
-            case Worldbuilding.categoryKey:
+            case Worldbuilding:
                 return <Background
                     src={worldbuildingImg}
                     $border={category.darkerColor}
