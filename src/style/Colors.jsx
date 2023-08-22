@@ -1,35 +1,44 @@
-export const CategoryBGColors = {
+export const CategoryMediumColors = {
     blank: "#262a32",
-    code: "#30243e",
-    drawings: "#133430",
-    game: "#461544",
-    music: "#453f01",
+    code: "#251c39",
+    drawings: "#1d3e28",
+    game: "#5b1c51",
+    music: "#796027;",
     worldbuilding: "#6e2415"
+};
+
+export const CategoryLightColors = {
+    blank: "#444c55",
+    code: "#553d62",
+    drawings: "#3a6243",
+    game: "#79446c",
+    music: "#917359",
+    worldbuilding: "#842"
 };
 
 export const CategoryDarkColors = {
     blank: "#1c1d27",
-    code: "#1f182e",
-    drawings: "#0b2e24",
-    game: "#33103b",
-    music: "#303800",
-    worldbuilding: "#58160e"
+    code: "#100d1f",
+    drawings: "#082819",
+    game: "#290c31",
+    music: "#3f4021",
+    worldbuilding: "#401713"
 };
 
 export const CategoryDarkerColors = {
-    blank: "#121b21",
-    code: "#111022",
-    drawings: "#092425",
-    game: "#22092e",
-    music: "#1e2b00",
-    worldbuilding: "#3f1312"
+    blank: "#070c0f",
+    code: "#080713",
+    drawings: "#030f0d",
+    game: "#13051b",
+    music: "#1a1b08",
+    worldbuilding: "#2d0a09"
 };
 
-export const CategoryMediumColors = {
-    blank: "#444c55",
-    code: "#412f4d",
-    drawings: "#1a443a",
-    game: "#571d52",
-    music: "#5f4b0a",
-    worldbuilding: "#833720"
+export const CategoryBGColors = {
+    blank: CategoryDarkColors.blank,
+    code: "#211c41",
+    drawings: "#082621",
+    game: "#551e57",
+    music: "#4d4113",
+    worldbuilding: "#5b231a"
 };

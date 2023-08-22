@@ -57,34 +57,34 @@ export function PixelArtContent({ children }) {
     const showBackground = () => {
         switch (category.categoryKey) {
             case Blank.categoryKey:
-                return <Background 
+                return <Background
                     src={blankImg}
-                    $border={category.mediumColor}
+                    $border={category.darkerColor}
                 />;
             case Code.categoryKey:
-                return <Background 
+                return <Background
                     src={codeImg}
-                    $border={category.mediumColor}
+                    $border={category.darkerColor}
                 />;
             case Drawings.categoryKey:
-                return <Background 
+                return <Background
                     src={drawingsImg}
-                    $border={category.mediumColor}
+                    $border={category.darkerColor}
                 />;
             case Game.categoryKey:
-                return <Background 
+                return <Background
                     src={gameImg}
-                    $border={category.mediumColor}
+                    $border={category.darkerColor}
                 />;
             case Music.categoryKey:
-                return <Background 
+                return <Background
                     src={musicImg}
-                    $border={category.mediumColor}
+                    $border={category.darkerColor}
                 />;
             case Worldbuilding.categoryKey:
-                return <Background 
+                return <Background
                     src={worldbuildingImg}
-                    $border={category.mediumColor}
+                    $border={category.darkerColor}
                 />;
         }
     }

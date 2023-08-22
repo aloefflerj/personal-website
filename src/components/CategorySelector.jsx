@@ -32,6 +32,7 @@ export function CategorySelector() {
                 <li>
                     <Option $bgColor={category.bgColor}
                         $mediumColor={category.mediumColor}
+                        $lightColor={category.lightColor}
                         $darkColor={category.darkColor}
                         $darkerColor={category.darkerColor}
                         onMouseOver ={() => changeCategory(Code)}
@@ -43,6 +44,7 @@ export function CategorySelector() {
                 <li>
                     <Option  $bgColor={category.bgColor}
                         $mediumColor={category.mediumColor}
+                        $lightColor={category.lightColor}
                         $darkColor={category.darkColor}
                         $darkerColor={category.darkerColor}
                         onMouseEnter={() => changeCategory(Drawings)}
@@ -54,6 +56,7 @@ export function CategorySelector() {
                 <li>
                     <Option $bgColor={category.bgColor}
                         $mediumColor={category.mediumColor}
+                        $lightColor={category.lightColor}
                         $darkColor={category.darkColor}
                         $darkerColor={category.darkerColor}
                         onMouseEnter={() => changeCategory(Game)}
@@ -65,6 +68,7 @@ export function CategorySelector() {
                 <li>
                     <Option $bgColor={category.bgColor}
                         $mediumColor={category.mediumColor}
+                        $lightColor={category.lightColor}
                         $darkColor={category.darkColor}
                         $darkerColor={category.darkerColor}
                         onMouseEnter={() => changeCategory(Music)}
@@ -76,6 +80,7 @@ export function CategorySelector() {
                 <li>
                     <Option $bgColor={category.bgColor}
                         $mediumColor={category.mediumColor}
+                        $lightColor={category.lightColor}
                         $darkColor={category.darkColor}
                         $darkerColor={category.darkerColor}
                         onMouseEnter={() => changeCategory(Worldbuilding)}

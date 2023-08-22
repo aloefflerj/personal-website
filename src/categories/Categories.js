@@ -1,4 +1,4 @@
-import { CategoryBGColors, CategoryDarkColors, CategoryDarkerColors, CategoryMediumColors } from "../style/Colors";
+import { CategoryBGColors, CategoryDarkColors, CategoryDarkerColors, CategoryLightColors, CategoryMediumColors } from "../style/Colors";
 import { CategoriesKeys } from "./CategoriesKeys";
 
 class Category {
@@ -8,6 +8,7 @@ class Category {
         img,
         bgColor,
         mediumColor,
+        lightColor,
         darkColor,
         darkerColor,
     ) {
@@ -16,6 +17,7 @@ class Category {
         this.img = img;
         this.bgColor = bgColor;
         this.mediumColor = mediumColor;
+        this.lightColor = lightColor;
         this.darkColor = darkColor;
         this.darkerColor = darkerColor;
     }
@@ -27,6 +29,7 @@ export const Blank = new Category(
     'blank-environment.png',
     CategoryBGColors.blank,
     CategoryMediumColors.blank,
+    CategoryLightColors.blank,
     CategoryDarkColors.blank,
     CategoryDarkerColors.blank,
 );
@@ -37,6 +40,7 @@ export const Code = new Category(
     'code-environment.png',
     CategoryBGColors.code,
     CategoryMediumColors.code,
+    CategoryLightColors.code,
     CategoryDarkColors.code,
     CategoryDarkerColors.code,
 );
@@ -47,6 +51,7 @@ export const Drawings = new Category(
     'drawings-environment.png',
     CategoryBGColors.drawings,
     CategoryMediumColors.drawings,
+    CategoryLightColors.drawings,
     CategoryDarkColors.drawings,
     CategoryDarkerColors.drawings,
 );
@@ -57,6 +62,7 @@ export const Game = new Category(
     'game-environment.png',
     CategoryBGColors.game,
     CategoryMediumColors.game,
+    CategoryLightColors.game,
     CategoryDarkColors.game,
     CategoryDarkerColors.game,
 );
@@ -67,6 +73,7 @@ export const Music = new Category(
     'music-environment.png',
     CategoryBGColors.music,
     CategoryMediumColors.music,
+    CategoryLightColors.music,
     CategoryDarkColors.music,
     CategoryDarkerColors.music,
 );
@@ -77,6 +84,7 @@ export const Worldbuilding = new Category(
     'worldbuilding-environment.png',
     CategoryBGColors.worldbuilding,
     CategoryMediumColors.worldbuilding,
+    CategoryLightColors.worldbuilding,
     CategoryDarkColors.worldbuilding,
     CategoryDarkerColors.worldbuilding,
 );

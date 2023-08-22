@@ -10,11 +10,11 @@ export function HomePageLayout({ children }) {
       align-items: center;
       width: 100vw;
       height: 100vh;
-      background-color: ${category.bgColor};
+      background-color: ${props => props.$bgColor};
     `;
 
     return (
-        <Page>
+        <Page $bgColor={category.bgColor}>
             {children}
         </Page>
     );

@@ -2,7 +2,7 @@ import { styled } from "styled-components"
 import { Blank } from "../categories/Categories";
 
 export const PixelButton = styled.button`
-    background-color: ${props => props.$bgColor ?? Blank.bgColor};
+    background-color: ${props => props.$mediumColor ?? Blank.mediumColor};
     margin: 6px 0 6px 0;
 
     width: 64px;
@@ -10,7 +10,7 @@ export const PixelButton = styled.button`
     
     border: 0px;
     box-shadow: 
-        inset 3px -3px ${props => props.$mediumColor ?? Blank.mediumColor},
+        inset 3px -3px ${props => props.$lightColor ?? Blank.lightColor},
         inset -3px 3px ${props => props.$darkColor ?? Blank.darkColor},
         3px 0px 0px 0px ${props => props.$darkerColor ?? Blank.darkerColor},
         0px -3px 0px 0px ${props => props.$darkerColor ?? Blank.darkerColor};
@@ -51,10 +51,10 @@ export const PixelButton = styled.button`
     filter: brightness(200%);
     &:hover {
         cursor: pointer;
-        filter: brightness(300%);
+        filter: brightness(250%);
         box-shadow: 
             inset 3px -3px ${props => props.$darkColor ?? Blank.darkColor},
-            inset -3px 3px ${props => props.$mediumColor ?? Blank.mediumColor},
+            inset -3px 3px ${props => props.$lightColor ?? Blank.lightColor},
             3px 0px 0px 0px ${props => props.$darkerColor ?? Blank.darkerColor},
             0px -3px 0px 0px ${props => props.$darkerColor ?? Blank.darkerColor};
     }

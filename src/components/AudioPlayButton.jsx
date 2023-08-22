@@ -17,6 +17,7 @@ export function AudioPlayButton({ togglePlay, playing }) {
     return <PlayButton onClick={() => togglePlay()}
         $bgColor={category.bgColor}
         $mediumColor={category.mediumColor}
+        $lightColor={category.lightColor}
         $darkColor={category.darkColor}
         $darkerColor={category.darkerColor} 
     >
