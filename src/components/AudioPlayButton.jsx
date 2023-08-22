@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
-import { PauseIcon } from "../assets/img/icons/PauseIcon";
-import { PlayIcon } from "../assets/img/icons/PlayIcon";
+import { PauseIcon } from "../../public/assets/img/icons/PauseIcon";
+import { PlayIcon } from "../../public/assets/img/icons/PlayIcon";
 import { useCategoryContext } from "../hooks/useCategoryContext";
 import { PixelButton } from "./PixelButton";
 

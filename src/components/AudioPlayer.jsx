@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 // import celticSong from '../assets/audio/celtic.wav';
 // import spookyNostalgiaSong from '../assets/audio/spooky-nostalgia.m4a';
-import shopSong from '../assets/audio/shop.m4a';
+import shopSong from '../../public/assets/audio/shop.m4a';
 import { AudioPlayButton } from "./AudioPlayButton";
 
 const AudioPlayerContent = styled.div`

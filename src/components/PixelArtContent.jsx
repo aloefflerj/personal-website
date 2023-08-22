@@ -1,12 +1,8 @@
-import { keyframes, styled } from "styled-components";
-import { Blank, Code, Drawings, Game, Music, Worldbuilding } from "../categories/Categories";
+import { styled } from "styled-components";
 import { useCategoryContext } from "../hooks/useCategoryContext";
-import blankImg from '../assets/img/environments/blank-environment.png';
-import codeImg from '../assets/img/environments/code-environment.png';
-import drawingsImg from '../assets/img/environments/drawings-environment.png';
-import gameImg from '../assets/img/environments/game-environment.png';
-import musicImg from '../assets/img/environments/music-environment.png';
-import worldbuildingImg from '../assets/img/environments/worldbuilding-environment.png';
+import { BackgroundLazyLoad } from "./BackgroundLazyLoad";
+
+const imgFolderPath = '/assets/img/environments';
 
 const PixelArtMain = styled.main`
     image-rendering: pixelated;
@@ -33,64 +29,17 @@ const PixelArtMain = styled.main`
     }
 `;
 
-const fadeIn = keyframes`
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 100;
-    }
-`;
-
-const Background = styled.img`
-    object-fit: contain;
-    width: 100%;
-    height: auto;
-    border: 3px solid ${props => props.$border};
-    animation: ${fadeIn} 0.2s linear;
-`;
-
 export function PixelArtContent({ children }) {
     const { category } = useCategoryContext();
 
-    const showBackground = () => {
-        switch (category) {
-            case Blank:
-                return <Background
-                    src={blankImg}
-                    $border={category.darkerColor}
-                />;
-            case Code:
-                return <Background
-                    src={codeImg}
-                    $border={category.darkerColor}
-                />;
-            case Drawings:
-                return <Background
-                    src={drawingsImg}
-                    $border={category.darkerColor}
-                />;
-            case Game:
-                return <Background
-                    src={gameImg}
-                    $border={category.darkerColor}
-                />;
-            case Music:
-                return <Background
-                    src={musicImg}
-                    $border={category.darkerColor}
-                />;
-            case Worldbuilding:
-                return <Background
-                    src={worldbuildingImg}
-                    $border={category.darkerColor}
-                />;
-        }
-    }
-    
-    return <PixelArtMain>
-        {showBackground()}
-        { children }
-    </PixelArtMain>
+    return (
+        <PixelArtMain>
+            <BackgroundLazyLoad
+                src={`${imgFolderPath}/${category.img}`}
+                border={category.darkerColor}
+                loadingComponent={<h1>Loading...</h1>}
+            />
+            { children }
+        </PixelArtMain>
+    );
 }
