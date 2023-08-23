@@ -2,7 +2,7 @@ import { styled } from "styled-components"
 import { Blank } from "../categories/Categories";
 
 export const PixelButton = styled.button`
-    background-color: ${props => props.$mediumColor ?? Blank.mediumColor};
+    background-color: ${props => props.$category.mediumColor ?? Blank.mediumColor};
     margin: 6px 0 6px 0;
 
     width: 64px;
@@ -10,14 +10,14 @@ export const PixelButton = styled.button`
     
     border: 0px;
     box-shadow: 
-        inset 3px -3px ${props => props.$lightColor ?? Blank.lightColor},
-        inset -3px 3px ${props => props.$darkColor ?? Blank.darkColor},
-        3px 0px 0px 0px ${props => props.$darkerColor ?? Blank.darkerColor},
-        0px -3px 0px 0px ${props => props.$darkerColor ?? Blank.darkerColor};
+        inset 3px -3px ${props => props.$category.lightColor ?? Blank.lightColor},
+        inset -3px 3px ${props => props.$category.darkColor ?? Blank.darkColor},
+        3px 0px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor},
+        0px -3px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor};
 
         &::after {
             content: '';
-            background: ${props => props.$darkerColor ?? Blank.darkerColor};
+            background: ${props => props.$category.darkerColor ?? Blank.darkerColor};
             position: absolute;
             left: -3px;
             top: 0;
@@ -28,7 +28,7 @@ export const PixelButton = styled.button`
 
         &::after {
             content: '';
-            background: ${props => props.$darkerColor ?? Blank.darkerColor};
+            background: ${props => props.$category.darkerColor ?? Blank.darkerColor};
             position: absolute;
             right: -3px;
             top: 0;
@@ -39,7 +39,7 @@ export const PixelButton = styled.button`
 
         &::before {
             content: '';
-            background: ${props => props.$darkerColor ?? Blank.darkerColor};
+            background: ${props => props.$category.darkerColor ?? Blank.darkerColor};
             position: absolute;
             left: 0;
             bottom: -3px;
@@ -53,9 +53,9 @@ export const PixelButton = styled.button`
         cursor: pointer;
         filter: brightness(250%);
         box-shadow: 
-            inset 3px -3px ${props => props.$darkColor ?? Blank.darkColor},
-            inset -3px 3px ${props => props.$lightColor ?? Blank.lightColor},
-            3px 0px 0px 0px ${props => props.$darkerColor ?? Blank.darkerColor},
-            0px -3px 0px 0px ${props => props.$darkerColor ?? Blank.darkerColor};
+            inset 3px -3px ${props => props.$category.darkColor ?? Blank.darkColor},
+            inset -3px 3px ${props => props.$category.lightColor ?? Blank.lightColor},
+            3px 0px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor},
+            0px -3px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor};
     }
 `;

@@ -1,7 +1,7 @@
+import { NavLink } from "react-router-dom";
 import { styled } from "styled-components";
-import { Blank, Code, Drawings, Game, Music, Worldbuilding } from "../categories/Categories";
-import { useCategoryContext } from "../hooks/useCategoryContext";
-import { PixelButton } from "./PixelButton";
+import { Code, Drawings, Game, Music, Worldbuilding } from "../categories/Categories";
+import { CategoryOption } from "./CategoryOption";
 
 const Selector = styled.aside`
     position: absolute;
@@ -10,84 +10,45 @@ const Selector = styled.aside`
     margin: 6px 6px 0 0;
 `;
 
-const Option = styled(PixelButton)`
-    width: 160px;
-    height: 80px;
-    font-family: var(--default-font);
-    font-weight: bold;
-    font-size: 18px;
-    color: ${props => props.$darkerColor};
-`;
-
 export function CategorySelector() {
-    const { category, setCategory } = useCategoryContext();
-
-    const changeCategory = (category) => {
-        setCategory(category);
-    };
 
     return (
         <Selector>
             <ul>
                 <li>
-                    <Option $bgColor={category.bgColor}
-                        $mediumColor={category.mediumColor}
-                        $lightColor={category.lightColor}
-                        $darkColor={category.darkColor}
-                        $darkerColor={category.darkerColor}
-                        onMouseOver ={() => changeCategory(Code)}
-                        onMouseLeave={() => changeCategory(Blank)}
-                    >
-                        Code
-                    </Option>
+                    <NavLink to={Code.categoryKey}>
+                        <CategoryOption buttonCategory={Code}>
+                            {Code.title}
+                        </CategoryOption>
+                    </NavLink>
                 </li>
                 <li>
-                    <Option  $bgColor={category.bgColor}
-                        $mediumColor={category.mediumColor}
-                        $lightColor={category.lightColor}
-                        $darkColor={category.darkColor}
-                        $darkerColor={category.darkerColor}
-                        onMouseEnter={() => changeCategory(Drawings)}
-                        onMouseLeave={() => changeCategory(Blank)}
-                    >
-                        Drawing
-                    </Option>
+                    <NavLink to={Drawings.categoryKey}>
+                        <CategoryOption buttonCategory={Drawings}>
+                            {Drawings.title}
+                        </CategoryOption>
+                    </NavLink>
                 </li>
                 <li>
-                    <Option $bgColor={category.bgColor}
-                        $mediumColor={category.mediumColor}
-                        $lightColor={category.lightColor}
-                        $darkColor={category.darkColor}
-                        $darkerColor={category.darkerColor}
-                        onMouseEnter={() => changeCategory(Game)}
-                        onMouseLeave={() => changeCategory(Blank)}
-                    >
-                        Game
-                    </Option>
+                    <NavLink to={Game.categoryKey}>
+                        <CategoryOption buttonCategory={Game}>
+                            {Game.title}
+                        </CategoryOption>
+                    </NavLink>
                 </li>
                 <li>
-                    <Option $bgColor={category.bgColor}
-                        $mediumColor={category.mediumColor}
-                        $lightColor={category.lightColor}
-                        $darkColor={category.darkColor}
-                        $darkerColor={category.darkerColor}
-                        onMouseEnter={() => changeCategory(Music)}
-                        onMouseLeave={() => changeCategory(Blank)}
-                    >
-                        Music
-                    </Option>
+                    <NavLink to={Music.categoryKey}>
+                        <CategoryOption buttonCategory={Music}>
+                            {Music.title}
+                        </CategoryOption>
+                    </NavLink>
                 </li>
                 <li>
-                    <Option $bgColor={category.bgColor}
-                        $mediumColor={category.mediumColor}
-                        $lightColor={category.lightColor}
-                        $darkColor={category.darkColor}
-                        $darkerColor={category.darkerColor}
-                        onMouseEnter={() => changeCategory(Worldbuilding)}
-                        onMouseLeave={() => changeCategory(Blank)}
-                    >
-                        Worldbuilding
-                    </Option>
+                    <NavLink to={Worldbuilding.categoryKey}>
+                        <CategoryOption buttonCategory={Worldbuilding}>
+                            {Worldbuilding.title}
+                        </CategoryOption>
+                    </NavLink>
                 </li>
             </ul>
         </Selector>

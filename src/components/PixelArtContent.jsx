@@ -43,7 +43,6 @@ export function PixelArtContent({ children }) {
                 }
             />
             { children }
-            {/* <Spinner color={category.darkerColor}/> */}
         </PixelArtMain>
     );
 }
