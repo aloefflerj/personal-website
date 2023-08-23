@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
-import { PauseIcon } from "../../public/assets/img/icons/PauseIcon";
-import { PlayIcon } from "../../public/assets/img/icons/PlayIcon";
-import { useCategoryContext } from "../hooks/useCategoryContext";
-import { PixelButton } from "./PixelButton";
+import { PauseIcon } from "../../icons/PauseIcon";
+import { PlayIcon } from "../../icons/PlayIcon";
+import { useCategoryContext } from "../../hooks/useCategoryContext";
+import { PixelButton } from "../../elements/buttons/PixelButton";
 
 const PlayButton = styled(PixelButton)`
     position: absolute;

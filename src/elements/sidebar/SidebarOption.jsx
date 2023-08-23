@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
-import { useCategoryContext } from "../hooks/useCategoryContext";
-import { Option } from "../style/Option";
+import { useCategoryContext } from "../../hooks/useCategoryContext";
+import { Option } from "../../style/Option";
 
 const StyledOption = styled(Option)`
     width: 100%;

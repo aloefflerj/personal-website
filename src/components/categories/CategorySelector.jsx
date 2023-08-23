@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { styled } from "styled-components";
-import { Code, Drawings, Game, Music, Worldbuilding } from "../categories/Categories";
+import { Code, Drawings, Game, Music, Worldbuilding } from "../../categories/Categories";
 import { CategoryOption } from "./CategoryOption";
 
 const Selector = styled.aside`

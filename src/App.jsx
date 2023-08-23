@@ -1,4 +1,4 @@
-import { AudioPlayer } from './components/AudioPlayer'
+import { AudioPlayer } from './components/audioPlayer/AudioPlayer'
 import { Router } from './routes/Router'
 
 function App() {

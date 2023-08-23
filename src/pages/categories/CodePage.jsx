@@ -1,8 +1,8 @@
 import { Blank, Code } from "../../categories/Categories";
 import { CategoryPage } from "../CategoryPage";
-import { CategoryContent } from "../../components/CategoryContent";
-import { Sidebar } from "../../components/Sidebar";
-import { SidebarOption } from "../../components/SidebarOption";
+import { CategoryContent } from "../../components/categories/CategoryContent";
+import { Sidebar } from "../../elements/sidebar/Sidebar";
+import { SidebarOption } from "../../elements/sidebar/SidebarOption";
 import { useCategoryContext } from "../../hooks/useCategoryContext";
 
 export function CodePage() {

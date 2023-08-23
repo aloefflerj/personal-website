@@ -1,4 +1,4 @@
-import { CategorySelector } from "../components/CategorySelector";
+import { CategorySelector } from "../components/categories/CategorySelector";
 import { PixelArtContent } from "../components/PixelArtContent";
 import { HomePageLayout } from "./HomePageLayout";
 

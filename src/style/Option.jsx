@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { PixelButton } from "../components/PixelButton";
+import { PixelButton } from "../elements/buttons/PixelButton";
 
 export const Option = styled(PixelButton)`
     width: 160px;

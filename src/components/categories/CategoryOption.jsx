@@ -1,6 +1,6 @@
-import { Blank } from "../categories/Categories";
-import { useCategoryContext } from "../hooks/useCategoryContext";
-import { Option } from '../style/Option';
+import { Blank } from "../../categories/Categories";
+import { useCategoryContext } from "../../hooks/useCategoryContext";
+import { Option } from '../../style/Option';
 
 export function CategoryOption({ children, buttonCategory }) {
     const { category, setCategory } = useCategoryContext();

@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { Blank } from "../categories/Categories";
+import { Blank } from "../../categories/Categories";
 
 export const PixelButton = styled.button`
     background-color: ${props => props.$category.mediumColor ?? Blank.mediumColor};
