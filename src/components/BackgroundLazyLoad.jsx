@@ -6,7 +6,7 @@ export function BackgroundLazyLoad({ src, loadingComponent, border }) {
 
     useEffect(() => {
         setImage(src);
-    }, [image]);
+    });
 
     return image ?
         <Background src={image} $border={border} /> :
