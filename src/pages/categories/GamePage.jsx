@@ -1,4 +1,4 @@
-import { Blank, Code } from "../../categories/Categories";
+import { Blank, Game } from "../../categories/Categories";
 import { CategoryPage } from "../CategoryPage";
 import { CategoryContent } from "../../components/categories/CategoryContent";
 import { Sidebar } from "../../elements/sidebar/Sidebar";
@@ -6,10 +6,10 @@ import { SidebarOption } from "../../elements/sidebar/SidebarOption";
 import { useCategoryContext } from "../../hooks/useCategoryContext";
 import { PixelCharContent } from "../../components/pixel/PixelCharContent";
 
-import charImg from '/assets/img/guys/code-guy.png'; 
+import charImg from '/assets/img/guys/game-guy.png'; 
 import { PixelCharImage } from "../../components/pixel/PixelCharImage";
 
-export function CodePage() {
+export function GamePage() {
     const {category, setCategory} = useCategoryContext();
 
     if (
@@ -17,31 +17,31 @@ export function CodePage() {
         category === null ||
         category === Blank
     ) {
-        setCategory(Code);
+        setCategory(Game);
     }
 
     return (
-        <CategoryPage title={Code.title}>
+        <CategoryPage title={Game.title}>
             <Sidebar category={category}>
                 <PixelCharContent brightnessPercentage={100}>
                     <PixelCharImage src={charImg}
                         $brightnessPercentage={100}
                     />
                 </PixelCharContent>
-                <SidebarOption category={Code}>
+                <SidebarOption category={Game}>
                     Projects
                 </SidebarOption>
-                <SidebarOption category={Code}>
+                <SidebarOption category={Game}>
                     Roadmap
                 </SidebarOption>
-                <SidebarOption category={Code}>
+                <SidebarOption category={Game}>
                     Blog
                 </SidebarOption>
-                <SidebarOption category={Code}>
+                <SidebarOption category={Game}>
                     App's
                 </SidebarOption>
             </Sidebar>
-        <CategoryContent category={Code}/>
+        <CategoryContent category={Game}/>
         </CategoryPage>
     );
 }

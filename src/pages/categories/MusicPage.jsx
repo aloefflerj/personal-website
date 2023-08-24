@@ -1,4 +1,4 @@
-import { Blank, Code } from "../../categories/Categories";
+import { Blank, Music } from "../../categories/Categories";
 import { CategoryPage } from "../CategoryPage";
 import { CategoryContent } from "../../components/categories/CategoryContent";
 import { Sidebar } from "../../elements/sidebar/Sidebar";
@@ -6,10 +6,10 @@ import { SidebarOption } from "../../elements/sidebar/SidebarOption";
 import { useCategoryContext } from "../../hooks/useCategoryContext";
 import { PixelCharContent } from "../../components/pixel/PixelCharContent";
 
-import charImg from '/assets/img/guys/code-guy.png'; 
+import charImg from '/assets/img/guys/music-guy.png'; 
 import { PixelCharImage } from "../../components/pixel/PixelCharImage";
 
-export function CodePage() {
+export function MusicPage() {
     const {category, setCategory} = useCategoryContext();
 
     if (
@@ -17,31 +17,31 @@ export function CodePage() {
         category === null ||
         category === Blank
     ) {
-        setCategory(Code);
+        setCategory(Music);
     }
 
     return (
-        <CategoryPage title={Code.title}>
+        <CategoryPage title={Music.title}>
             <Sidebar category={category}>
                 <PixelCharContent brightnessPercentage={100}>
                     <PixelCharImage src={charImg}
                         $brightnessPercentage={100}
                     />
                 </PixelCharContent>
-                <SidebarOption category={Code}>
+                <SidebarOption category={Music}>
                     Projects
                 </SidebarOption>
-                <SidebarOption category={Code}>
+                <SidebarOption category={Music}>
                     Roadmap
                 </SidebarOption>
-                <SidebarOption category={Code}>
+                <SidebarOption category={Music}>
                     Blog
                 </SidebarOption>
-                <SidebarOption category={Code}>
+                <SidebarOption category={Music}>
                     App's
                 </SidebarOption>
             </Sidebar>
-        <CategoryContent category={Code}/>
+        <CategoryContent category={Music}/>
         </CategoryPage>
     );
 }

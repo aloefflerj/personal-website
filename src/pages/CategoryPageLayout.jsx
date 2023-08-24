@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { useCategoryContext } from "../hooks/useCategoryContext";
 
 const Page = styled.div`
   display: grid;
@@ -9,11 +10,14 @@ const Page = styled.div`
       'sidebar main';
   width: 100%;
   height: 100%;
+  background-color: ${props => props.$bgColor};
 `;
 
 export function CategoryPageLayout({ children }) {
+    const {category} = useCategoryContext();
+
     return (
-        <Page>
+        <Page $bgColor={category.bgColor}>
             {children}
         </Page>
     );

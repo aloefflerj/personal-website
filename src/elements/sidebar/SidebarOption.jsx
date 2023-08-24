@@ -4,7 +4,6 @@ import { Option } from "../../style/Option";
 
 const StyledOption = styled(Option)`
     width: 100%;
-    margin: 12px;
 `;
 
 export function SidebarOption({ children }) {

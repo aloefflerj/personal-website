@@ -1,5 +1,5 @@
 import { CategorySelector } from "../components/categories/CategorySelector";
-import { PixelArtContent } from "../components/PixelArtContent";
+import { PixelArtContent } from "../components/pixel/PixelArtContent";
 import { HomePageLayout } from "./HomePageLayout";
 
 export function Home() {
@@ -9,5 +9,5 @@ export function Home() {
                 <CategorySelector />
             </PixelArtContent>
         </HomePageLayout>
-    )
+    );
 }

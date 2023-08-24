@@ -3,17 +3,16 @@ import { Blank } from "../../categories/Categories";
 
 export const PixelButton = styled.button`
     background-color: ${props => props.$category.mediumColor ?? Blank.mediumColor};
-    margin: 6px 0 6px 0;
-
-    width: 64px;
-    height: 64px;
-    
+    margin: 6px 0;
+    padding: 6px 6px;
     border: 0px;
     box-shadow: 
-        inset 3px -3px ${props => props.$category.lightColor ?? Blank.lightColor},
-        inset -3px 3px ${props => props.$category.darkColor ?? Blank.darkColor},
-        3px 0px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor},
-        0px -3px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor};
+            inset 3px -3px ${props => props.$category.lightColor ?? Blank.lightColor},
+            inset -3px 3px ${props => props.$category.lightColor ?? Blank.lightColor},
+            3px 0px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor},
+            0px 3px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor},
+            -3px 0px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor},
+            0px -3px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor};
 
         &::after {
             content: '';
@@ -48,14 +47,17 @@ export const PixelButton = styled.button`
             z-index: -1;
         }
     
-    filter: brightness(200%);
     &:hover {
         cursor: pointer;
         filter: brightness(250%);
-        box-shadow: 
+        box-shadow:
             inset 3px -3px ${props => props.$category.darkColor ?? Blank.darkColor},
-            inset -3px 3px ${props => props.$category.lightColor ?? Blank.lightColor},
+            inset -3px 3px ${props => props.$category.darkColor ?? Blank.darkColor},
+            inset -6px 6px ${props => props.$category.lightColor ?? Blank.lightColor},
+            inset 6px -6px ${props => props.$category.lightColor ?? Blank.lightColor},
             3px 0px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor},
+            0px 3px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor},
+            -3px 0px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor},
             0px -3px 0px 0px ${props => props.$category.darkerColor ?? Blank.darkerColor};
     }
 `;

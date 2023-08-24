@@ -1,4 +1,4 @@
-import { Blank, Code } from "../../categories/Categories";
+import { Blank, Worldbuilding } from "../../categories/Categories";
 import { CategoryPage } from "../CategoryPage";
 import { CategoryContent } from "../../components/categories/CategoryContent";
 import { Sidebar } from "../../elements/sidebar/Sidebar";
@@ -6,10 +6,10 @@ import { SidebarOption } from "../../elements/sidebar/SidebarOption";
 import { useCategoryContext } from "../../hooks/useCategoryContext";
 import { PixelCharContent } from "../../components/pixel/PixelCharContent";
 
-import charImg from '/assets/img/guys/code-guy.png'; 
+import charImg from '/assets/img/guys/worldbuilding-guy.png'; 
 import { PixelCharImage } from "../../components/pixel/PixelCharImage";
 
-export function CodePage() {
+export function WorldbuildingPage() {
     const {category, setCategory} = useCategoryContext();
 
     if (
@@ -17,31 +17,31 @@ export function CodePage() {
         category === null ||
         category === Blank
     ) {
-        setCategory(Code);
+        setCategory(Worldbuilding);
     }
 
     return (
-        <CategoryPage title={Code.title}>
+        <CategoryPage title={Worldbuilding.title}>
             <Sidebar category={category}>
                 <PixelCharContent brightnessPercentage={100}>
                     <PixelCharImage src={charImg}
                         $brightnessPercentage={100}
                     />
                 </PixelCharContent>
-                <SidebarOption category={Code}>
+                <SidebarOption category={Worldbuilding}>
                     Projects
                 </SidebarOption>
-                <SidebarOption category={Code}>
+                <SidebarOption category={Worldbuilding}>
                     Roadmap
                 </SidebarOption>
-                <SidebarOption category={Code}>
+                <SidebarOption category={Worldbuilding}>
                     Blog
                 </SidebarOption>
-                <SidebarOption category={Code}>
+                <SidebarOption category={Worldbuilding}>
                     App's
                 </SidebarOption>
             </Sidebar>
-        <CategoryContent category={Code}/>
+        <CategoryContent category={Worldbuilding}/>
         </CategoryPage>
     );
 }

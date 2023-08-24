@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
-import { useCategoryContext } from "../hooks/useCategoryContext";
-import { BackgroundLazyLoad } from "./BackgroundLazyLoad";
-import { Spinner } from "./Spinner";
+import { useCategoryContext } from "../../hooks/useCategoryContext";
+import { BackgroundLazyLoad } from "../BackgroundLazyLoad";
+import { Spinner } from "../Spinner";
 
 const imgFolderPath = '/assets/img/environments';
 

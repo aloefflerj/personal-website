@@ -4,13 +4,13 @@ const Content = styled.main`
     grid-area: main;
     width: 100%;
     height: auto;
-    background-color: lightcoral;
+    background-color: ${props => props.$bgColor};
 `;
 
-export function CategoryContent({ title }) {
+export function CategoryContent({ category }) {
     return (
-        <Content>
-            <h1>{title}</h1>
+        <Content $bgColor={category.bgColor}>
+            <h1>{category.title}</h1>
         </Content>
     );
 }
