@@ -25,7 +25,7 @@ export function DrawingsPage() {
                 <SidebarOption category={Drawings}>Projects</SidebarOption>
                 <SidebarOption category={Drawings}>Roadmap</SidebarOption>
                 <SidebarOption category={Drawings}>Blog</SidebarOption>
-                <SidebarOption category={Drawings}>App's</SidebarOption>
+                <SidebarOption category={Drawings}>App&apos;s</SidebarOption>
             </Sidebar>
             <CategoryContent category={Drawings} />
         </CategoryPage>

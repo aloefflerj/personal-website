@@ -25,7 +25,9 @@ export function WorldbuildingPage() {
                 <SidebarOption category={Worldbuilding}>Projects</SidebarOption>
                 <SidebarOption category={Worldbuilding}>Roadmap</SidebarOption>
                 <SidebarOption category={Worldbuilding}>Blog</SidebarOption>
-                <SidebarOption category={Worldbuilding}>App's</SidebarOption>
+                <SidebarOption category={Worldbuilding}>
+                    App&apos;s
+                </SidebarOption>
             </Sidebar>
             <CategoryContent category={Worldbuilding} />
         </CategoryPage>

@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Content = styled.main`
     grid-area: main;
@@ -14,3 +15,7 @@ export function CategoryContent({ category }) {
         </Content>
     );
 }
+
+CategoryContent.propTypes = {
+    category: PropTypes.object,
+};

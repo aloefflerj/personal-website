@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export function PauseIcon({ fillColor }) {
     return (
         <svg
@@ -16,3 +18,7 @@ export function PauseIcon({ fillColor }) {
         </svg>
     );
 }
+
+PauseIcon.propTypes = {
+    fillColor: PropTypes.string,
+};

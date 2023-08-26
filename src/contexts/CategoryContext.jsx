@@ -1,6 +1,7 @@
 import { createContext } from 'react';
 import { useState } from 'react';
 import { Blank } from '../categories/Categories';
+import PropTypes from 'prop-types';
 
 export const CategoryContext = createContext({});
 
@@ -12,4 +13,8 @@ export const CategoryProvider = ({ children }) => {
             {children}
         </CategoryContext.Provider>
     );
+};
+
+CategoryProvider.propTypes = {
+    children: PropTypes.element,
 };

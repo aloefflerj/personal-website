@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { useCategoryContext } from '../../hooks/useCategoryContext';
+import PropTypes from 'prop-types';
 
 const Content = styled.div`
     background-color: ${(props) => props.$category.bgColor};
@@ -11,30 +12,20 @@ const Content = styled.div`
 
     /* border: 3px solid ${(props) => props.$category.borderColor}; */
     box-shadow:
-        inset 3px -3px ${(props) => props.$category.lightColor ?? Blank.lightColor},
-        inset -3px 3px ${(props) => props.$category.lightColor ?? Blank.lightColor},
-        3px 0px 0px 0px
-            ${(props) => props.$category.darkerColor ?? Blank.darkerColor},
-        0px 3px 0px 0px
-            ${(props) => props.$category.darkerColor ?? Blank.darkerColor},
-        -3px 0px 0px 0px ${(props) => props.$category.darkerColor ?? Blank.darkerColor},
-        0px -3px 0px 0px ${(props) => props.$category.darkerColor ?? Blank.darkerColor};
-    /* inset 3px -3px ${(props) =>
-        props.$category.darkColor ?? Blank.darkColor},
-            inset -3px 3px ${(props) =>
-        props.$category.darkColor ?? Blank.darkColor},
-            inset -6px 6px ${(props) =>
-        props.$category.lightColor ?? Blank.lightColor},
-            inset 6px -6px ${(props) =>
-        props.$category.lightColor ?? Blank.lightColor},
-            3px 0px 0px 0px ${(props) =>
-        props.$category.darkerColor ?? Blank.darkerColor},
-            0px 3px 0px 0px ${(props) =>
-        props.$category.darkerColor ?? Blank.darkerColor},
-            -3px 0px 0px 0px ${(props) =>
-        props.$category.darkerColor ?? Blank.darkerColor},
-            0px -3px 0px 0px ${(props) =>
-        props.$category.darkerColor ?? Blank.darkerColor}; */
+        inset 3px -3px ${(props) => props.$category.lightColor},
+        inset -3px 3px ${(props) => props.$category.lightColor},
+        3px 0px 0px 0px ${(props) => props.$category.darkerColor},
+        0px 3px 0px 0px ${(props) => props.$category.darkerColor},
+        -3px 0px 0px 0px ${(props) => props.$category.darkerColor},
+        0px -3px 0px 0px ${(props) => props.$category.darkerColor};
+    /* inset 3px -3px ${(props) => props.$category.darkColor},
+            inset -3px 3px ${(props) => props.$category.darkColor},
+            inset -6px 6px ${(props) => props.$category.lightColor},
+            inset 6px -6px ${(props) => props.$category.lightColor},
+            3px 0px 0px 0px ${(props) => props.$category.darkerColor},
+            0px 3px 0px 0px ${(props) => props.$category.darkerColor},
+            -3px 0px 0px 0px ${(props) => props.$category.darkerColor},
+            0px -3px 0px 0px ${(props) => props.$category.darkerColor}; */
     filter: brightness(${(props) => props.$brightnessPercentage}%);
 `;
 
@@ -50,3 +41,8 @@ export function PixelCharContent({ children, brightnessPercentage }) {
         </Content>
     );
 }
+
+PixelCharContent.propTypes = {
+    children: PropTypes.element,
+    brightnessPercentage: PropTypes.string,
+};

@@ -25,7 +25,7 @@ export function MusicPage() {
                 <SidebarOption category={Music}>Projects</SidebarOption>
                 <SidebarOption category={Music}>Roadmap</SidebarOption>
                 <SidebarOption category={Music}>Blog</SidebarOption>
-                <SidebarOption category={Music}>App's</SidebarOption>
+                <SidebarOption category={Music}>App&apos;s</SidebarOption>
             </Sidebar>
             <CategoryContent category={Music} />
         </CategoryPage>

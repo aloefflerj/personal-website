@@ -25,7 +25,7 @@ export function GamePage() {
                 <SidebarOption category={Game}>Projects</SidebarOption>
                 <SidebarOption category={Game}>Roadmap</SidebarOption>
                 <SidebarOption category={Game}>Blog</SidebarOption>
-                <SidebarOption category={Game}>App's</SidebarOption>
+                <SidebarOption category={Game}>App&apos;s</SidebarOption>
             </Sidebar>
             <CategoryContent category={Game} />
         </CategoryPage>

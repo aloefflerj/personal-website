@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { useCategoryContext } from '../hooks/useCategoryContext';
+import PropTypes from 'prop-types';
 
 const Page = styled.div`
     display: flex;
@@ -15,3 +16,7 @@ export function HomePageLayout({ children }) {
 
     return <Page $bgColor={category.bgColor}>{children}</Page>;
 }
+
+HomePageLayout.propTypes = {
+    children: PropTypes.element,
+};

@@ -3,6 +3,7 @@ import { PauseIcon } from '../../icons/PauseIcon';
 import { PlayIcon } from '../../icons/PlayIcon';
 import { useCategoryContext } from '../../hooks/useCategoryContext';
 import { PixelButton } from '../../elements/buttons/PixelButton';
+import PropTypes from 'prop-types';
 
 const PlayButton = styled(PixelButton)`
     position: absolute;
@@ -24,3 +25,8 @@ export function AudioPlayButton({ togglePlay, playing }) {
         </PlayButton>
     );
 }
+
+AudioPlayButton.propTypes = {
+    togglePlay: PropTypes.func,
+    playing: PropTypes.bool,
+};

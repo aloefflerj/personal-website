@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { useCategoryContext } from '../../hooks/useCategoryContext';
 import { BackgroundLazyLoad } from '../BackgroundLazyLoad';
 import { Spinner } from '../Spinner';
+import PropTypes from 'prop-types';
 
 const imgFolderPath = '/assets/img/environments';
 
@@ -44,3 +45,7 @@ export function PixelArtContent({ children }) {
         </PixelArtMain>
     );
 }
+
+PixelArtContent.propTypes = {
+    children: PropTypes.element,
+};

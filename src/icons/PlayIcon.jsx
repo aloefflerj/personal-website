@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export function PlayIcon({ fillColor }) {
     return (
         <svg
@@ -16,3 +18,7 @@ export function PlayIcon({ fillColor }) {
         </svg>
     );
 }
+
+PlayIcon.propTypes = {
+    fillColor: PropTypes.string,
+};

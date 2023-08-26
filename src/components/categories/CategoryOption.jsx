@@ -1,6 +1,7 @@
 import { Blank } from '../../categories/Categories';
 import { useCategoryContext } from '../../hooks/useCategoryContext';
 import { Option } from '../../style/Option';
+import PropTypes from 'prop-types';
 
 export function CategoryOption({ children, buttonCategory }) {
     const { category, setCategory } = useCategoryContext();
@@ -19,3 +20,8 @@ export function CategoryOption({ children, buttonCategory }) {
         </Option>
     );
 }
+
+CategoryOption.propTypes = {
+    children: PropTypes.element,
+    buttonCategory: PropTypes.object,
+};

@@ -1,4 +1,5 @@
 import { keyframes, styled } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const rotate = keyframes`
   from {
@@ -27,3 +28,7 @@ const Rotate = styled.div`
 export function Spinner({ color }) {
     return <Rotate $bgColor={color} />;
 }
+
+Spinner.propTypes = {
+    color: PropTypes.string,
+};
