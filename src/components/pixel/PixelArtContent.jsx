@@ -1,7 +1,7 @@
-import { styled } from "styled-components";
-import { useCategoryContext } from "../../hooks/useCategoryContext";
-import { BackgroundLazyLoad } from "../BackgroundLazyLoad";
-import { Spinner } from "../Spinner";
+import { styled } from 'styled-components';
+import { useCategoryContext } from '../../hooks/useCategoryContext';
+import { BackgroundLazyLoad } from '../BackgroundLazyLoad';
+import { Spinner } from '../Spinner';
 
 const imgFolderPath = '/assets/img/environments';
 
@@ -38,11 +38,9 @@ export function PixelArtContent({ children }) {
             <BackgroundLazyLoad
                 src={`${imgFolderPath}/${category.img}`}
                 border={category.darkerColor}
-                loadingComponent={
-                    <Spinner color={category.darkerColor}/>
-                }
+                loadingComponent={<Spinner color={category.darkerColor} />}
             />
-            { children }
+            {children}
         </PixelArtMain>
     );
 }

@@ -1,4 +1,4 @@
-import { keyframes, styled } from "styled-components";
+import { keyframes, styled } from 'styled-components';
 
 const fadeIn = keyframes`
     from {
@@ -14,6 +14,6 @@ export const Background = styled.img`
     object-fit: contain;
     width: 100%;
     height: auto;
-    border: 3px solid ${props => props.$border};
+    border: 3px solid ${(props) => props.$border};
     animation: ${fadeIn} 0.2s linear;
 `;

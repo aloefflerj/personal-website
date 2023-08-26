@@ -1,8 +1,8 @@
-import { styled } from "styled-components";
-import { PauseIcon } from "../../icons/PauseIcon";
-import { PlayIcon } from "../../icons/PlayIcon";
-import { useCategoryContext } from "../../hooks/useCategoryContext";
-import { PixelButton } from "../../elements/buttons/PixelButton";
+import { styled } from 'styled-components';
+import { PauseIcon } from '../../icons/PauseIcon';
+import { PlayIcon } from '../../icons/PlayIcon';
+import { useCategoryContext } from '../../hooks/useCategoryContext';
+import { PixelButton } from '../../elements/buttons/PixelButton';
 
 const PlayButton = styled(PixelButton)`
     position: absolute;
@@ -12,15 +12,15 @@ const PlayButton = styled(PixelButton)`
 `;
 
 export function AudioPlayButton({ togglePlay, playing }) {
-    const {category} = useCategoryContext();
+    const { category } = useCategoryContext();
 
-    return <PlayButton onClick={() => togglePlay()}
-        $category={category}
-    >
-        {   
-            playing ?
-            <PauseIcon fillColor={category.darkerColor} /> :
-            <PlayIcon fillColor={category.darkerColor}/>
-        }
-    </PlayButton>
+    return (
+        <PlayButton onClick={() => togglePlay()} $category={category}>
+            {playing ? (
+                <PauseIcon fillColor={category.darkerColor} />
+            ) : (
+                <PlayIcon fillColor={category.darkerColor} />
+            )}
+        </PlayButton>
+    );
 }

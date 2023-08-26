@@ -1,5 +1,11 @@
-import { CategoryBGColors, CategoryDarkColors, CategoryDarkerColors, CategoryLightColors, CategoryMediumColors } from "../style/Colors";
-import { CategoriesKeys } from "./CategoriesKeys";
+import {
+    CategoryBGColors,
+    CategoryDarkColors,
+    CategoryDarkerColors,
+    CategoryLightColors,
+    CategoryMediumColors,
+} from '../style/Colors';
+import { CategoriesKeys } from './CategoriesKeys';
 
 class Category {
     constructor(
@@ -10,7 +16,7 @@ class Category {
         mediumColor,
         lightColor,
         darkColor,
-        darkerColor,
+        darkerColor
     ) {
         this.categoryKey = categoryKey;
         this.title = title;
@@ -21,7 +27,7 @@ class Category {
         this.darkColor = darkColor;
         this.darkerColor = darkerColor;
     }
-};
+}
 
 export const Blank = new Category(
     CategoriesKeys.blank,
@@ -31,7 +37,7 @@ export const Blank = new Category(
     CategoryMediumColors.blank,
     CategoryLightColors.blank,
     CategoryDarkColors.blank,
-    CategoryDarkerColors.blank,
+    CategoryDarkerColors.blank
 );
 
 export const Code = new Category(
@@ -42,7 +48,7 @@ export const Code = new Category(
     CategoryMediumColors.code,
     CategoryLightColors.code,
     CategoryDarkColors.code,
-    CategoryDarkerColors.code,
+    CategoryDarkerColors.code
 );
 
 export const Drawings = new Category(
@@ -53,7 +59,7 @@ export const Drawings = new Category(
     CategoryMediumColors.drawings,
     CategoryLightColors.drawings,
     CategoryDarkColors.drawings,
-    CategoryDarkerColors.drawings,
+    CategoryDarkerColors.drawings
 );
 
 export const Game = new Category(
@@ -64,7 +70,7 @@ export const Game = new Category(
     CategoryMediumColors.game,
     CategoryLightColors.game,
     CategoryDarkColors.game,
-    CategoryDarkerColors.game,
+    CategoryDarkerColors.game
 );
 
 export const Music = new Category(
@@ -75,7 +81,7 @@ export const Music = new Category(
     CategoryMediumColors.music,
     CategoryLightColors.music,
     CategoryDarkColors.music,
-    CategoryDarkerColors.music,
+    CategoryDarkerColors.music
 );
 
 export const Worldbuilding = new Category(
@@ -86,5 +92,5 @@ export const Worldbuilding = new Category(
     CategoryMediumColors.worldbuilding,
     CategoryLightColors.worldbuilding,
     CategoryDarkColors.worldbuilding,
-    CategoryDarkerColors.worldbuilding,
+    CategoryDarkerColors.worldbuilding
 );

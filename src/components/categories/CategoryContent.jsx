@@ -1,10 +1,10 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 const Content = styled.main`
     grid-area: main;
     width: 100%;
     height: auto;
-    background-color: ${props => props.$bgColor};
+    background-color: ${(props) => props.$bgColor};
 `;
 
 export function CategoryContent({ category }) {

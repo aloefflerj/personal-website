@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Background } from "../style/Background";
+import { useEffect, useState } from 'react';
+import { Background } from '../style/Background';
 
 export function BackgroundLazyLoad({ src, loadingComponent, border }) {
     const [image, setImage] = useState();
@@ -8,7 +8,9 @@ export function BackgroundLazyLoad({ src, loadingComponent, border }) {
         setImage(src);
     });
 
-    return image ?
-        <Background src={image} $border={border} /> :
-        loadingComponent;
+    return image ? (
+        <Background src={image} $border={border} />
+    ) : (
+        loadingComponent
+    );
 }

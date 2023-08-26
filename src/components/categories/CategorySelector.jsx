@@ -1,7 +1,13 @@
-import { NavLink } from "react-router-dom";
-import { styled } from "styled-components";
-import { Code, Drawings, Game, Music, Worldbuilding } from "../../categories/Categories";
-import { CategoryOption } from "./CategoryOption";
+import { NavLink } from 'react-router-dom';
+import { styled } from 'styled-components';
+import {
+    Code,
+    Drawings,
+    Game,
+    Music,
+    Worldbuilding,
+} from '../../categories/Categories';
+import { CategoryOption } from './CategoryOption';
 
 const Selector = styled.aside`
     position: absolute;
@@ -11,7 +17,6 @@ const Selector = styled.aside`
 `;
 
 export function CategorySelector() {
-
     return (
         <Selector>
             <ul>

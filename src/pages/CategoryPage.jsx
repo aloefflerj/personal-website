@@ -1,9 +1,5 @@
-import { CategoryPageLayout } from "./CategoryPageLayout";
+import { CategoryPageLayout } from './CategoryPageLayout';
 
 export function CategoryPage({ children }) {
-    return (
-        <CategoryPageLayout>
-            {children}
-        </CategoryPageLayout>
-    );
+    return <CategoryPageLayout>{children}</CategoryPageLayout>;
 }

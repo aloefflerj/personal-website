@@ -1,4 +1,4 @@
-import { keyframes, styled } from "styled-components";
+import { keyframes, styled } from 'styled-components';
 
 const rotate = keyframes`
   from {
@@ -11,17 +11,17 @@ const rotate = keyframes`
 `;
 
 const Rotate = styled.div`
-  animation: ${rotate} 2s linear infinite;
-  width: 64px;
-  height: 64px;
-  font-size: 1.2rem;
-  background-color: ${props => props.$bgColor};
-  z-index: 20000;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-top: -32px;
-  margin-left: -32px;
+    animation: ${rotate} 2s linear infinite;
+    width: 64px;
+    height: 64px;
+    font-size: 1.2rem;
+    background-color: ${(props) => props.$bgColor};
+    z-index: 20000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -32px;
+    margin-left: -32px;
 `;
 
 export function Spinner({ color }) {
