@@ -18,7 +18,7 @@ export function CodePage() {
     }
 
     return (
-        <CategoryPage title={Code.title}>
+        <CategoryPage>
             <Sidebar category={category}>
                 <PixelCharContent brightnessPercentage={100}>
                     <PixelCharImage src={charImg} $brightnessPercentage={100} />

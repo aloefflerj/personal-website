@@ -6,22 +6,35 @@ import { NavLink } from 'react-router-dom';
 const FolderWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    aling-items: center;
+    align-items: center;
     justify-content: center;
+    max-width: 120px;
+    text-align: center;
 `;
 
-export function Folder({ to, title }) {
+const FolderLink = styled(NavLink)`
+    &:hover {
+        filter: brightness(200%);
+    }
+`;
+
+const Title = styled.p`
+    color: ${(props) => props.$fontColor};
+`;
+
+export function Folder({ to, title, category }) {
     return (
-        <NavLink to={to}>
+        <FolderLink to={to}>
             <FolderWrapper>
-                <FolderIcon />
-                <p>{title}</p>
+                <FolderIcon fill={category.lightColor} />
+                <Title $fontColor={category.lightColor}>{title}</Title>
             </FolderWrapper>
-        </NavLink>
+        </FolderLink>
     );
 }
 
 Folder.propTypes = {
     to: PropTypes.string,
     title: PropTypes.string,
+    category: PropTypes.object,
 };

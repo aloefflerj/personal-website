@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 const BreadcrumbWrapper = styled.div`
     display: flex;
+    padding: 16px;
     align-items: center;
     margin-left: 18px;
     gap: 6px;
@@ -23,7 +24,7 @@ export function Breadcrumbs({ category }) {
             <NavLink key={match.pathname} to={match.pathname}>
                 {breadcrumb.props.children === 'Home' ? (
                     <>
-                        <HomeIcon fill={category.darkerColor} />
+                        <HomeIcon fill={category.lightColor} />
                     </>
                 ) : (
                     <>&nbsp;{breadcrumb}&nbsp;/</>

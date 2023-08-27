@@ -9,10 +9,27 @@ const Content = styled.main`
     background-color: ${(props) => props.$bgColor};
 `;
 
+const TitleWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${(props) => props.$category.mediumColor};
+    border: 3px solid ${(props) => props.$category.lightColor};
+    filter: brightness(200%);
+`;
+
+const Title = styled.h1`
+    color: ${(props) => props.$fontColor};
+    margin: 0;
+    padding: 16px 32px;
+`;
+
 export function CategoryContent({ category, children }) {
     return (
         <Content $bgColor={category.bgColor}>
-            <h1>{category.title}</h1>
+            <TitleWrapper $category={category}>
+                <Title $fontColor={category.lightColor}>{category.title}</Title>
+            </TitleWrapper>
             <Breadcrumbs category={category} />
             {children}
         </Content>
@@ -21,4 +38,5 @@ export function CategoryContent({ category, children }) {
 
 CategoryContent.propTypes = {
     category: PropTypes.object,
+    children: PropTypes.element,
 };

@@ -5,7 +5,18 @@ import { Folder } from '../../components/folder/Folder';
 import { useEffect, useState } from 'react';
 
 const FoldersList = styled.div`
+    padding: 32px;
     display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(7, 0.25fr);
+    grid-gap: 32px;
+    background-color: ${(props) => props.$bgColor};
+`;
+
+const Title = styled.h2`
+    background-color: ${(props) => props.$bgColor};
+    margin: 0;
+    padding: 4px 0 4px 32px;
 `;
 
 export function ProjectsPage({ category }) {
@@ -25,16 +36,19 @@ export function ProjectsPage({ category }) {
                     to={link}
                     title={title}
                     key={`folder-${category.categoryKey}-${id}`}
+                    category={category}
                 />
             );
         });
     };
 
     return (
-        <FoldersList>
-            <h1>Projects</h1>
-            {listProjects()}
-        </FoldersList>
+        <>
+            <Title $bgColor={category.lightColor}>Projects</Title>
+            <FoldersList $bgColor={category.darkColor}>
+                {listProjects()}
+            </FoldersList>
+        </>
     );
 }
 
