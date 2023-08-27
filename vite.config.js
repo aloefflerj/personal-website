@@ -2,7 +2,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
-const root = path.resolve(path.__dirname, 'src');
+// eslint-disable-next-line no-undef
+const root = path.resolve(__dirname, 'src');
 const assetsDir = path.resolve(root, 'assets');
 
 // https://vitejs.dev/config/
