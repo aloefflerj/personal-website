@@ -6,5 +6,5 @@ export function CategoryPage({ children }) {
 }
 
 CategoryPage.propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.array,
 };

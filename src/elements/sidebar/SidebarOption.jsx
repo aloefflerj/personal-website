@@ -14,5 +14,5 @@ export function SidebarOption({ children }) {
 }
 
 SidebarOption.propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.string,
 };

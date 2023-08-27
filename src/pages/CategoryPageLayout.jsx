@@ -21,5 +21,5 @@ export function CategoryPageLayout({ children }) {
 }
 
 CategoryPageLayout.propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.array,
 };

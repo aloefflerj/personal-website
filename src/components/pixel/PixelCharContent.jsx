@@ -44,5 +44,5 @@ export function PixelCharContent({ children, brightnessPercentage }) {
 
 PixelCharContent.propTypes = {
     children: PropTypes.element,
-    brightnessPercentage: PropTypes.string,
+    brightnessPercentage: PropTypes.number,
 };

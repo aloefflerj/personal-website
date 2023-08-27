@@ -22,6 +22,6 @@ export function CategoryOption({ children, buttonCategory }) {
 }
 
 CategoryOption.propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.string,
     buttonCategory: PropTypes.object,
 };
