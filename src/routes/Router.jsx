@@ -7,6 +7,7 @@ import { WorldbuildingPage } from '../pages/categories/WorldbuildingPage';
 import { Home } from '../pages/Home';
 import { ProjectsPage } from '../pages/projects/ProjectsPage';
 import { Code } from '../categories/Categories';
+import { ProjectPage } from '../pages/projects/ProjectPage';
 
 export function Router() {
     return (
@@ -17,7 +18,12 @@ export function Router() {
                     <Route
                         path="projects"
                         element={<ProjectsPage category={Code} />}
-                    />
+                    >
+                        <Route
+                            path=":projectId"
+                            element={<ProjectPage category={Code} />}
+                        />
+                    </Route>
                 </Route>
                 <Route path="drawings" element={<DrawingsPage />} />
                 <Route path="game" element={<GamePage />} />

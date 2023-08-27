@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useCategoryDB } from '../../hooks/useCategoryDB.jsx';
 import { Folder } from '../../components/folder/Folder';
 import { useEffect, useState } from 'react';
+import { useOutlet, useParams } from 'react-router-dom';
 
 const FoldersList = styled.div`
     padding: 32px;
@@ -10,6 +11,11 @@ const FoldersList = styled.div`
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(7, 0.25fr);
     grid-gap: 32px;
+    background-color: ${(props) => props.$bgColor};
+`;
+
+const ProjectContent = styled.div`
+    display: flex;
     background-color: ${(props) => props.$bgColor};
 `;
 
@@ -22,6 +28,8 @@ const Title = styled.h2`
 export function ProjectsPage({ category }) {
     const { fetchData } = useCategoryDB(category, 'projects');
     const [projects, setProjects] = useState([]);
+    const outlet = useOutlet();
+    const outletParam = useParams();
 
     useEffect(() => {
         fetchData().then((projects) => {
@@ -42,7 +50,16 @@ export function ProjectsPage({ category }) {
         });
     };
 
-    return (
+    return outlet ? (
+        <>
+            <Title $bgColor={category.lightColor}>
+                {outletParam.projectId}
+            </Title>
+            <ProjectContent $bgColor={category.darkColor}>
+                {outlet}
+            </ProjectContent>
+        </>
+    ) : (
         <>
             <Title $bgColor={category.lightColor}>Projects</Title>
             <FoldersList $bgColor={category.darkColor}>
