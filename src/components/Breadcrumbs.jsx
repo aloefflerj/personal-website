@@ -26,7 +26,7 @@ export function Breadcrumbs({ category }) {
                         <HomeIcon fill={category.darkerColor} />
                     </>
                 ) : (
-                    <>&nbsp;{breadcrumb}/&nbsp;</>
+                    <>&nbsp;{breadcrumb}&nbsp;/</>
                 )}
             </NavLink>
         ));
