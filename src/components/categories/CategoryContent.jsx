@@ -9,11 +9,12 @@ const Content = styled.main`
     background-color: ${(props) => props.$bgColor};
 `;
 
-export function CategoryContent({ category }) {
+export function CategoryContent({ category, children }) {
     return (
         <Content $bgColor={category.bgColor}>
             <h1>{category.title}</h1>
             <Breadcrumbs category={category} />
+            {children}
         </Content>
     );
 }

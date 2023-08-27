@@ -5,13 +5,16 @@ import { GamePage } from '../pages/categories/GamePage';
 import { MusicPage } from '../pages/categories/MusicPage';
 import { WorldbuildingPage } from '../pages/categories/WorldbuildingPage';
 import { Home } from '../pages/Home';
+import { ProjectsPage } from '../pages/ProjectsPage';
 
 export function Router() {
     return (
         <Routes>
             <Route path="/">
                 <Route path="" element={<Home />} />
-                <Route path="code" element={<CodePage />} />
+                <Route path="code" element={<CodePage />}>
+                    <Route path="projects" element={<ProjectsPage />} />
+                </Route>
                 <Route path="drawings" element={<DrawingsPage />} />
                 <Route path="game" element={<GamePage />} />
                 <Route path="music" element={<MusicPage />} />
