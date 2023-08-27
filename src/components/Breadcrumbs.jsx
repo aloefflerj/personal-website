@@ -7,25 +7,34 @@ import styled from 'styled-components';
 const BreadcrumbWrapper = styled.div`
     display: flex;
     align-items: center;
+    margin-left: 18px;
     gap: 6px;
+
+    a.active {
+        color: ${(props) => props.$activeColor};
+    }
 `;
 
 export function Breadcrumbs({ category }) {
     const breadcrumbs = useBreadcrumbs();
 
+    const renderBreadcrumbs = () => {
+        return breadcrumbs.map(({ match, breadcrumb }) => (
+            <NavLink key={match.pathname} to={match.pathname}>
+                {breadcrumb.props.children === 'Home' ? (
+                    <>
+                        <HomeIcon fill={category.darkerColor} />
+                    </>
+                ) : (
+                    <>&nbsp;{breadcrumb}/&nbsp;</>
+                )}
+            </NavLink>
+        ));
+    };
+
     return (
-        <BreadcrumbWrapper>
-            {breadcrumbs.map(({ match, breadcrumb }) => (
-                <NavLink key={match.pathname} to={match.pathname}>
-                    {breadcrumb.props.children === 'Home' ? (
-                        <>
-                            <HomeIcon fill={category.darkerColor} />
-                        </>
-                    ) : (
-                        <>&nbsp;{breadcrumb}/&nbsp;</>
-                    )}
-                </NavLink>
-            ))}
+        <BreadcrumbWrapper $activeColor={category.lightColor}>
+            {renderBreadcrumbs()}
         </BreadcrumbWrapper>
     );
 }
