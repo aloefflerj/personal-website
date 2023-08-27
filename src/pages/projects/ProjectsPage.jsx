@@ -27,7 +27,7 @@ export function ProjectsPage({ category }) {
         fetchData().then((projects) => {
             setProjects(projects);
         });
-    }, [fetchData]);
+    }, []);
 
     const listProjects = () => {
         return projects.map(({ id, title, link }) => {
