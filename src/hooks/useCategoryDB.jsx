@@ -1,7 +1,7 @@
-export const useCategoryDB = (category, table) => {
+export const useCategoryDB = (category) => {
     return {
-        fetchData: async () => {
-            const folderPath = `/db/${category.categoryKey}/${table}.json`;
+        fetchProjects: async () => {
+            const folderPath = `/db/${category.categoryKey}/projects/projects.json`;
             const response = await fetch(folderPath, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -9,7 +9,26 @@ export const useCategoryDB = (category, table) => {
                 },
             });
 
-            return response.json();
+            return await response.json();
+        },
+        fetchProjectByLink: async (link) => {
+            const folderPath = `/db/${category.categoryKey}/projects/projects.json`;
+            const response = await fetch(folderPath, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            });
+
+            const jsonProjects = await response.json();
+            let foundProject = null;
+            jsonProjects.forEach((project) => {
+                if (project.link === link) {
+                    foundProject = project;
+                }
+            });
+
+            return foundProject;
         },
     };
 };

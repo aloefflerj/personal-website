@@ -20,7 +20,7 @@ export function Router() {
                         element={<ProjectsPage category={Code} />}
                     >
                         <Route
-                            path=":projectId"
+                            path=":projectLink"
                             element={<ProjectPage category={Code} />}
                         />
                     </Route>

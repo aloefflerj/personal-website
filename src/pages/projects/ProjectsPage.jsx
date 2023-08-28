@@ -26,15 +26,16 @@ const Title = styled.h2`
 `;
 
 export function ProjectsPage({ category }) {
-    const { fetchData } = useCategoryDB(category, 'projects');
+    const { fetchProjects } = useCategoryDB(category);
     const [projects, setProjects] = useState([]);
     const outlet = useOutlet();
     const outletParam = useParams();
 
     useEffect(() => {
-        fetchData().then((projects) => {
+        fetchProjects().then((projects) => {
             setProjects(projects);
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const listProjects = () => {
@@ -53,7 +54,7 @@ export function ProjectsPage({ category }) {
     return outlet ? (
         <>
             <Title $bgColor={category.lightColor}>
-                {outletParam.projectId}
+                {outletParam.projectLink}
             </Title>
             <ProjectContent $bgColor={category.darkColor}>
                 {outlet}

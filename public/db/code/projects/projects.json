@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Astro Focus Kit",
+        "link": "astro-focus-kit",
+        "readmeUrl": "https://api.github.com/repos/aloefflerj/astro-focus-kit/contents/README.md"
+    },
+    {
+        "id": 2,
+        "title": "Yet Another PHP Controller",
+        "link": "yet-another-php-controller",
+        "readmeUrl": "https://api.github.com/repos/aloefflerj/yet-another-controller/contents/README.md"
+    },
+    {
+        "id": 3,
+        "title": "Rube Goldberg Hello World",
+        "link": "rube-goldberg-hello-world",
+        "readmeUrl": "https://api.github.com/repos/aloefflerj/rube-goldberg-hello-world/contents/README.md"
+    }
+]
