@@ -18,9 +18,6 @@ const ProjectContent = styled.div`
         border-radius: 3px;
         font-family: var(--default-font);
     }*/
-    code {
-        font-family: var(--default-font);
-    }
 `;
 
 const MarkdownSection = styled(ReactMarkdown)`
@@ -54,6 +51,26 @@ const MarkdownSection = styled(ReactMarkdown)`
     ul {
         margin-left: 36px;
         list-style-type: square;
+    }
+
+    hr {
+        height: 3px;
+        background-color: ${(props) => props.$category.lightColor};
+        border: none;
+    }
+
+    code {
+        font-family: var(--default-font);
+    }
+
+    blockquote {
+        filter: brightness(120%);
+        color: ${(props) => props.$category.mediumColor};
+        margin: 0 0 0 12px;
+        padding: 0;
+        p {
+            margin: 0;
+        }
     }
 `;
 

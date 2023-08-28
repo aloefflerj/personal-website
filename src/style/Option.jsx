@@ -5,7 +5,6 @@ export const Option = styled(PixelButton)`
     padding: 18px 6px;
     width: 100%;
     font-family: var(--default-font);
-    font-weight: bold;
-    font-size: 18px;
+    font-size: 36px;
     color: ${(props) => props.$category.darkerColor};
 `;

@@ -3,16 +3,22 @@
   src: url(/assets/fonts/pixel-medieval.ttf);
 }
 
+@font-face {
+  font-family: pixel;
+  src: url(/assets/fonts/handjet.ttf);
+}
+
 :root {
-  --default-font: 'pixel-medieval';
+  --default-font: 'pixel';
   --default-dark-color: '#070c0f';
 }
 
-body {
+body, html {
   height: 100vh;
   margin: 0;
   font-family: var(--default-font);
-  font-weight: 200;
+  font-weight: 300;
+  font-size: 30px;
   font-style: normal;
   color: var(--default-dark-color);
 }
