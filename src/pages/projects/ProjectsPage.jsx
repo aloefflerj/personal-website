@@ -23,6 +23,7 @@ const Title = styled.h2`
     background-color: ${(props) => props.$bgColor};
     margin: 0;
     padding: 4px 0 4px 32px;
+    color: ${(props) => props.$fontColor};
 `;
 
 export function ProjectsPage({ category }) {
@@ -53,7 +54,10 @@ export function ProjectsPage({ category }) {
 
     return outlet ? (
         <>
-            <Title $bgColor={category.lightColor}>
+            <Title
+                $bgColor={category.lightColor}
+                $fontColor={category.darkerColor}
+            >
                 {outletParam.projectLink}
             </Title>
             <ProjectContent $bgColor={category.darkColor}>
@@ -62,7 +66,12 @@ export function ProjectsPage({ category }) {
         </>
     ) : (
         <>
-            <Title $bgColor={category.lightColor}>Projects</Title>
+            <Title
+                $bgColor={category.lightColor}
+                $fontColor={category.darkerColor}
+            >
+                Projects
+            </Title>
             <FoldersList $bgColor={category.darkColor}>
                 {listProjects()}
             </FoldersList>
