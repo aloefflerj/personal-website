@@ -112,6 +112,7 @@ export function ProjectPage({ category }) {
                 remarkPlugins={[emojiPlugin]}
                 $category={category}
                 components={{ code: CodeBlock }}
+                linkTarget={'_blank'}
             >
                 {handleReadmeContent()}
             </MarkdownSection>

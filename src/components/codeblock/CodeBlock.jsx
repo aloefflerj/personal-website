@@ -4,14 +4,13 @@ import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { CategoryCodeBlockStyle } from './CategoryCodeBlockStyle';
 import { useCategoryContext } from '../../hooks/useCategoryContext';
 
-export default function CodeBlock({ language = null, children }) {
+export default function CodeBlock({ language = null, children, inline }) {
     const { category } = useCategoryContext();
 
     return (
         <SyntaxHighlighter
             language={language ?? 'php'}
-            style={CategoryCodeBlockStyle(category)}
-            // style={CategoryCodeBlockStyle(category)}
+            style={CategoryCodeBlockStyle(category, inline)}
         >
             {children}
         </SyntaxHighlighter>
@@ -21,4 +20,5 @@ export default function CodeBlock({ language = null, children }) {
 CodeBlock.propTypes = {
     children: PropTypes.array.isRequired,
     language: PropTypes.string,
+    inline: PropTypes.bool,
 };
