@@ -30,5 +30,16 @@ export const useCategoryDB = (category) => {
 
             return foundProject;
         },
+        fetchRoadmaps: async () => {
+            const folderPath = `/db/${category.categoryKey}/roadmaps/roadmaps.json`;
+            const response = await fetch(folderPath, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            });
+
+            return await response.json();
+        },
     };
 };

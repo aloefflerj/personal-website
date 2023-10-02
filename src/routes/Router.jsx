@@ -5,7 +5,7 @@ import { GamePage } from '../pages/categories/GamePage';
 import { MusicPage } from '../pages/categories/MusicPage';
 import { WorldbuildingPage } from '../pages/categories/WorldbuildingPage';
 import { Home } from '../pages/Home';
-import { ProjectsPage } from '../pages/projects/ProjectsPage';
+import { FoldersPage } from '../pages/folders/FoldersPage';
 import { Code } from '../categories/Categories';
 import { ProjectPage } from '../pages/projects/ProjectPage';
 
@@ -17,12 +17,22 @@ export function Router() {
                 <Route path="code" element={<CodePage />}>
                     <Route
                         path="projects"
-                        element={<ProjectsPage category={Code} />}
+                        element={
+                            <FoldersPage category={Code} page="projects" />
+                        }
                     >
                         <Route
-                            path=":projectLink"
+                            path=":link"
                             element={<ProjectPage category={Code} />}
                         />
+                    </Route>
+                    <Route
+                        path="roadmaps"
+                        element={
+                            <FoldersPage category={Code} page="roadmaps" />
+                        }
+                    >
+                        <Route path=":link" element={<h1>Roadmap</h1>} />
                     </Route>
                 </Route>
                 <Route path="drawings" element={<DrawingsPage />} />

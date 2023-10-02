@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useCategoryDB } from '../../hooks/useCategoryDB.jsx';
-import { Folder } from '../../components/folder/Folder';
+import { Folder } from '../../components/folder/Folder.jsx';
 import { useEffect, useState } from 'react';
 import { useOutlet, useParams } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ const FoldersList = styled.div`
     background-color: ${(props) => props.$bgColor};
 `;
 
-const ProjectContent = styled.div`
+const FolderContent = styled.div`
     display: flex;
     background-color: ${(props) => props.$bgColor};
 `;
@@ -26,21 +26,31 @@ const Title = styled.h2`
     color: ${(props) => props.$fontColor};
 `;
 
-export function ProjectsPage({ category }) {
-    const { fetchProjects } = useCategoryDB(category);
-    const [projects, setProjects] = useState([]);
+export function FoldersPage({ category, page }) {
+    const { fetchProjects, fetchRoadmaps } = useCategoryDB(category);
+    const [folders, setFolders] = useState([]);
     const outlet = useOutlet();
     const outletParam = useParams();
 
     useEffect(() => {
-        fetchProjects().then((projects) => {
-            setProjects(projects);
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        switch (page) {
+            case 'projects':
+                fetchProjects().then((folders) => {
+                    setFolders(folders);
+                });
+                break;
+            case 'roadmaps':
+                fetchRoadmaps().then((folders) => {
+                    setFolders(folders);
+                });
+                break;
+        }
 
-    const listProjects = () => {
-        return projects.map(({ id, title, link }) => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [outletParam]);
+
+    const listFolders = () => {
+        return folders.map(({ id, title, link }) => {
             return (
                 <Folder
                     to={link}
@@ -52,33 +62,30 @@ export function ProjectsPage({ category }) {
         });
     };
 
-    return outlet ? (
-        <>
-            <Title
-                $bgColor={category.lightColor}
-                $fontColor={category.darkerColor}
-            >
-                {outletParam.projectLink}
-            </Title>
-            <ProjectContent $bgColor={category.darkColor}>
-                {outlet}
-            </ProjectContent>
-        </>
+    const title = outlet ? outletParam.link : page;
+    const formattedTitle = title.charAt(0).toUpperCase() + title.slice(1);
+
+    const content = outlet ? outlet : listFolders();
+    const wrappedContent = outlet ? (
+        <FolderContent $bgColor={category.darkColor}>{content}</FolderContent>
     ) : (
+        <FoldersList $bgColor={category.darkColor}>{content}</FoldersList>
+    );
+
+    return (
         <>
             <Title
                 $bgColor={category.lightColor}
                 $fontColor={category.darkerColor}
             >
-                Projects
+                {formattedTitle}
             </Title>
-            <FoldersList $bgColor={category.darkColor}>
-                {listProjects()}
-            </FoldersList>
+            {wrappedContent}
         </>
     );
 }
 
-ProjectsPage.propTypes = {
+FoldersPage.propTypes = {
     category: PropTypes.object,
+    page: PropTypes.string,
 };

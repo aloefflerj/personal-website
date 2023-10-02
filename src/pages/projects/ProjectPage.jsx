@@ -75,14 +75,14 @@ const MarkdownSection = styled(ReactMarkdown)`
 `;
 
 export function ProjectPage({ category }) {
-    const { projectLink } = useParams();
+    const { link } = useParams();
     const { fetchProjectByLink } = useCategoryDB(category);
     const { fetchUrl } = useRequest();
     const [projectReadme, setProjectReadme] = useState({});
 
     useEffect(() => {
-        if (projectLink !== undefined || projectLink !== null) {
-            fetchProjectByLink(projectLink).then((projectData) => {
+        if (link !== undefined || link !== null) {
+            fetchProjectByLink(link).then((projectData) => {
                 if (
                     projectData !== null ||
                     projectData !== undefined ||
