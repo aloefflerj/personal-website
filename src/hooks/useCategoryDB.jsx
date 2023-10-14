@@ -41,5 +41,24 @@ export const useCategoryDB = (category) => {
 
             return await response.json();
         },
+        fetchRoadmapByLink: async (link) => {
+            const folderPath = `/db/${category.categoryKey}/roadmaps/roadmaps.json`;
+            const response = await fetch(folderPath, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            });
+
+            const jsonRoadmaps = await response.json();
+            let foundRoadmap = null;
+            jsonRoadmaps.forEach((roadmap) => {
+                if (roadmap.link === link) {
+                    foundRoadmap = roadmap;
+                }
+            });
+
+            return foundRoadmap;
+        },
     };
 };

@@ -8,6 +8,7 @@ import { Home } from '../pages/Home';
 import { FoldersPage } from '../pages/folders/FoldersPage';
 import { Code } from '../categories/Categories';
 import { ProjectPage } from '../pages/projects/ProjectPage';
+import { RoadmapPage } from '../pages/roadmaps/RoadmapPage';
 
 export function Router() {
     return (
@@ -32,7 +33,10 @@ export function Router() {
                             <FoldersPage category={Code} page="roadmaps" />
                         }
                     >
-                        <Route path=":link" element={<h1>Roadmap</h1>} />
+                        <Route
+                            path=":link"
+                            element={<RoadmapPage category={Code} />}
+                        />
                     </Route>
                 </Route>
                 <Route path="drawings" element={<DrawingsPage />} />
