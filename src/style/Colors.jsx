@@ -4,7 +4,7 @@ export const CategoryMediumColors = {
     drawings: '#1d3e28',
     game: '#5b1c51',
     music: '#796027;',
-    worldbuilding: '#6e2415',
+    worldbuilding: '#da7649',
 };
 
 export const CategoryLightColors = {
@@ -13,7 +13,7 @@ export const CategoryLightColors = {
     drawings: '#3a6243',
     game: '#79446c',
     music: '#917359',
-    worldbuilding: '#842',
+    worldbuilding: '#e6a271',
 };
 
 export const CategoryLighterColors = {
@@ -22,7 +22,7 @@ export const CategoryLighterColors = {
     drawings: '#699470',
     game: '#ac7da4',
     music: '#af9a87',
-    worldbuilding: '#a8775f',
+    worldbuilding: '#efd7c3',
 };
 
 export const CategoryDarkColors = {
@@ -31,7 +31,7 @@ export const CategoryDarkColors = {
     drawings: '#082819',
     game: '#290c31',
     music: '#3f4021',
-    worldbuilding: '#401713',
+    worldbuilding: '#6f2d1b',
 };
 
 export const CategoryDarkerColors = {
@@ -40,7 +40,7 @@ export const CategoryDarkerColors = {
     drawings: '#030f0d',
     game: '#13051b',
     music: '#1a1b08',
-    worldbuilding: '#2d0a09',
+    worldbuilding: '#3b1612',
 };
 
 export const CategoryBGColors = {
@@ -49,5 +49,5 @@ export const CategoryBGColors = {
     drawings: '#082621',
     game: '#551e57',
     music: '#4d4113',
-    worldbuilding: '#5b231a',
+    worldbuilding: '#6f2d1b',
 };
