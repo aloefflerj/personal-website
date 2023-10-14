@@ -6,9 +6,8 @@ const Bar = styled.aside`
     padding: 0 24px;
     display: flex;
     flex-direction: column;
-    margin: 0 0 0 9px;
+    margin: 3px 0 0 3px;
     position: fixed;
-    /* width: 100%; */
     height: calc(100vh - 6px);
     background-color: ${(props) => props.$category.darkColor};
     box-shadow:

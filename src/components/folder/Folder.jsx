@@ -14,7 +14,7 @@ const FolderWrapper = styled.div`
 
 const FolderLink = styled(NavLink)`
     &:hover {
-        filter: brightness(200%);
+        filter: brightness(150%);
     }
 `;
 

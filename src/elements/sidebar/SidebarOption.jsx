@@ -13,14 +13,10 @@ const SidebarLink = styled(NavLink)`
 
     &.active {
         color: ${(props) => props.$category.lightColor};
-        filter: brightness(200%);
         button {
-            color: ${(props) => props.$category.lightColor};
+            color: ${(props) => props.$category.lighterColor};
         }
-        &:hover {
-            filter: brightness(100%);
-        }
-    }
+    }    
 `;
 
 export function SidebarOption({ children, to }) {

@@ -11,13 +11,6 @@ import CodeBlock from '../../components/codeblock/CodeBlock';
 
 const ProjectContent = styled.div`
     color: ${(props) => props.$category.lightColor};
-    /*code {
-        background-color: ${(props) => props.$category.lightColor};
-        color: ${(props) => props.$category.darkerColor};
-        padding: 6px 3px;
-        border-radius: 3px;
-        font-family: var(--default-font);
-    }*/
 `;
 
 const MarkdownSection = styled(ReactMarkdown)`
@@ -107,7 +100,6 @@ export function ProjectPage({ category }) {
 
     return (
         <ProjectContent $category={category}>
-            {/* <ProjectReadme content={handleReadmeContent()} /> */}
             <MarkdownSection
                 remarkPlugins={[emojiPlugin]}
                 $category={category}

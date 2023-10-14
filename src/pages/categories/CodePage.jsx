@@ -20,8 +20,8 @@ export function CodePage() {
     return (
         <CategoryPage>
             <Sidebar category={category}>
-                <PixelCharContent brightnessPercentage={100}>
-                    <PixelCharImage src={charImg} $brightnessPercentage={100} />
+                <PixelCharContent>
+                    <PixelCharImage src={charImg} />
                 </PixelCharContent>
                 <SidebarOption to="projects" category={Code}>
                     Projects

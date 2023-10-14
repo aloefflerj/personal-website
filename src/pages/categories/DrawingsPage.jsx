@@ -19,8 +19,8 @@ export function DrawingsPage() {
     return (
         <CategoryPage title={Drawings.title}>
             <Sidebar category={category}>
-                <PixelCharContent brightnessPercentage={100}>
-                    <PixelCharImage src={charImg} $brightnessPercentage={100} />
+                <PixelCharContent >
+                    <PixelCharImage src={charImg} />
                 </PixelCharContent>
                 <SidebarOption category={Drawings}>Projects</SidebarOption>
                 <SidebarOption category={Drawings}>Roadmap</SidebarOption>

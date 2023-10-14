@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 const PixelartImg = styled.img`
     width: 256px;
-    heigth: 256px;
+    height: 256px;
     image-rendering: pixelated;
     background-color: ${(props) => props.$category.darkColor};;
 `;

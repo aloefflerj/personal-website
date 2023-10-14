@@ -19,8 +19,8 @@ export function WorldbuildingPage() {
     return (
         <CategoryPage title={Worldbuilding.title}>
             <Sidebar category={category}>
-                <PixelCharContent brightnessPercentage={100}>
-                    <PixelCharImage src={charImg} $brightnessPercentage={100} />
+                <PixelCharContent >
+                    <PixelCharImage src={charImg} />
                 </PixelCharContent>
                 <SidebarOption category={Worldbuilding}>Projects</SidebarOption>
                 <SidebarOption category={Worldbuilding}>Roadmap</SidebarOption>

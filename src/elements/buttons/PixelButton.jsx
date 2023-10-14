@@ -55,7 +55,7 @@ export const PixelButton = styled.button`
 
     &:hover {
         cursor: pointer;
-        filter: brightness(250%);
+        filter: brightness(150%);
         box-shadow:
             inset 3px -3px ${(props) => props.$category.darkColor ?? Blank.darkColor},
             inset -3px 3px ${(props) => props.$category.darkColor ?? Blank.darkColor},

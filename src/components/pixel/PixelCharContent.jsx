@@ -7,10 +7,9 @@ const Content = styled.div`
     display: flex;
     align-items: baseline;
     justify-content: center;
-    padding: 12px;
+    padding: 6px;
     margin: 12px 0;
 
-    /* border: 3px solid ${(props) => props.$category.borderColor}; */
     box-shadow:
         inset 3px -3px ${(props) => props.$category.lightColor},
         inset -3px 3px ${(props) => props.$category.lightColor},
@@ -18,24 +17,14 @@ const Content = styled.div`
         0px 3px 0px 0px ${(props) => props.$category.darkerColor},
         -3px 0px 0px 0px ${(props) => props.$category.darkerColor},
         0px -3px 0px 0px ${(props) => props.$category.darkerColor};
-    /* inset 3px -3px ${(props) => props.$category.darkColor},
-            inset -3px 3px ${(props) => props.$category.darkColor},
-            inset -6px 6px ${(props) => props.$category.lightColor},
-            inset 6px -6px ${(props) => props.$category.lightColor},
-            3px 0px 0px 0px ${(props) => props.$category.darkerColor},
-            0px 3px 0px 0px ${(props) => props.$category.darkerColor},
-            -3px 0px 0px 0px ${(props) => props.$category.darkerColor},
-            0px -3px 0px 0px ${(props) => props.$category.darkerColor}; */
-    filter: brightness(${(props) => props.$brightnessPercentage}%);
 `;
 
-export function PixelCharContent({ children, brightnessPercentage }) {
+export function PixelCharContent({ children }) {
     const { category } = useCategoryContext();
 
     return (
         <Content
             $category={category}
-            $brightnessPercentage={brightnessPercentage}
         >
             {children}
         </Content>
@@ -44,5 +33,4 @@ export function PixelCharContent({ children, brightnessPercentage }) {
 
 PixelCharContent.propTypes = {
     children: PropTypes.element,
-    brightnessPercentage: PropTypes.number,
 };

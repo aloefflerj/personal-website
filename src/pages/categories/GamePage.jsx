@@ -19,8 +19,8 @@ export function GamePage() {
     return (
         <CategoryPage title={Game.title}>
             <Sidebar category={category}>
-                <PixelCharContent brightnessPercentage={100}>
-                    <PixelCharImage src={charImg} $brightnessPercentage={100} />
+                <PixelCharContent >
+                    <PixelCharImage src={charImg} />
                 </PixelCharContent>
                 <SidebarOption category={Game}>Projects</SidebarOption>
                 <SidebarOption category={Game}>Roadmap</SidebarOption>

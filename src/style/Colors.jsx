@@ -16,6 +16,15 @@ export const CategoryLightColors = {
     worldbuilding: '#842',
 };
 
+export const CategoryLighterColors = {
+    blank: '#7b858f',
+    code: '#9ca7c7',
+    drawings: '#699470',
+    game: '#ac7da4',
+    music: '#af9a87',
+    worldbuilding: '#a8775f',
+};
+
 export const CategoryDarkColors = {
     blank: '#1c1d27',
     code: '#251f42',
@@ -27,7 +36,7 @@ export const CategoryDarkColors = {
 
 export const CategoryDarkerColors = {
     blank: '#070c0f',
-    code: '#211e3d',
+    code: '#110f27',
     drawings: '#030f0d',
     game: '#13051b',
     music: '#1a1b08',

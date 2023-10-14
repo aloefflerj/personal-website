@@ -3,6 +3,7 @@ import {
     CategoryDarkColors,
     CategoryDarkerColors,
     CategoryLightColors,
+    CategoryLighterColors,
     CategoryMediumColors,
 } from '../style/Colors';
 import { CategoriesKeys } from './CategoriesKeys';
@@ -15,6 +16,7 @@ class Category {
         bgColor,
         mediumColor,
         lightColor,
+        lighterColor,
         darkColor,
         darkerColor
     ) {
@@ -24,6 +26,7 @@ class Category {
         this.bgColor = bgColor;
         this.mediumColor = mediumColor;
         this.lightColor = lightColor;
+        this.lighterColor = lighterColor;
         this.darkColor = darkColor;
         this.darkerColor = darkerColor;
     }
@@ -36,6 +39,7 @@ export const Blank = new Category(
     CategoryBGColors.blank,
     CategoryMediumColors.blank,
     CategoryLightColors.blank,
+    CategoryLighterColors.blank,
     CategoryDarkColors.blank,
     CategoryDarkerColors.blank
 );
@@ -47,6 +51,7 @@ export const Code = new Category(
     CategoryBGColors.code,
     CategoryMediumColors.code,
     CategoryLightColors.code,
+    CategoryLighterColors.code,
     CategoryDarkColors.code,
     CategoryDarkerColors.code
 );
@@ -58,6 +63,7 @@ export const Drawings = new Category(
     CategoryBGColors.drawings,
     CategoryMediumColors.drawings,
     CategoryLightColors.drawings,
+    CategoryLighterColors.drawings,
     CategoryDarkColors.drawings,
     CategoryDarkerColors.drawings
 );
@@ -69,6 +75,7 @@ export const Game = new Category(
     CategoryBGColors.game,
     CategoryMediumColors.game,
     CategoryLightColors.game,
+    CategoryLighterColors.game,
     CategoryDarkColors.game,
     CategoryDarkerColors.game
 );
@@ -80,6 +87,7 @@ export const Music = new Category(
     CategoryBGColors.music,
     CategoryMediumColors.music,
     CategoryLightColors.music,
+    CategoryLighterColors.music,
     CategoryDarkColors.music,
     CategoryDarkerColors.music
 );
@@ -91,6 +99,7 @@ export const Worldbuilding = new Category(
     CategoryBGColors.worldbuilding,
     CategoryMediumColors.worldbuilding,
     CategoryLightColors.worldbuilding,
+    CategoryLighterColors.worldbuilding,
     CategoryDarkColors.worldbuilding,
     CategoryDarkerColors.worldbuilding
 );
