@@ -1,6 +1,6 @@
 export const CategoryMediumColors = {
     blank: '#262a32',
-    code: '#1E1C39',
+    code: '#46467c',
     drawings: '#1d3e28',
     game: '#5b1c51',
     music: '#796027;',
@@ -9,7 +9,7 @@ export const CategoryMediumColors = {
 
 export const CategoryLightColors = {
     blank: '#444c55',
-    code: '#413E63',
+    code: '#7180b6',
     drawings: '#3a6243',
     game: '#79446c',
     music: '#917359',
@@ -18,7 +18,7 @@ export const CategoryLightColors = {
 
 export const CategoryDarkColors = {
     blank: '#1c1d27',
-    code: '#0D0D1F',
+    code: '#251f42',
     drawings: '#082819',
     game: '#290c31',
     music: '#3f4021',
@@ -27,7 +27,7 @@ export const CategoryDarkColors = {
 
 export const CategoryDarkerColors = {
     blank: '#070c0f',
-    code: '#070713',
+    code: '#211e3d',
     drawings: '#030f0d',
     game: '#13051b',
     music: '#1a1b08',
@@ -36,7 +36,7 @@ export const CategoryDarkerColors = {
 
 export const CategoryBGColors = {
     blank: CategoryDarkColors.blank,
-    code: '#1E1C41',
+    code: '#34305f',
     drawings: '#082621',
     game: '#551e57',
     music: '#4d4113',
