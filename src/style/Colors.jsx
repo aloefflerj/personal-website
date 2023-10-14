@@ -31,7 +31,7 @@ export const CategoryDarkColors = {
     drawings: '#082819',
     game: '#290c31',
     music: '#3f4021',
-    worldbuilding: '#6f2d1b',
+    worldbuilding: '#723625',
 };
 
 export const CategoryDarkerColors = {
@@ -40,7 +40,7 @@ export const CategoryDarkerColors = {
     drawings: '#030f0d',
     game: '#13051b',
     music: '#1a1b08',
-    worldbuilding: '#3b1612',
+    worldbuilding: '#3f1813',
 };
 
 export const CategoryBGColors = {
@@ -49,5 +49,5 @@ export const CategoryBGColors = {
     drawings: '#082621',
     game: '#551e57',
     music: '#4d4113',
-    worldbuilding: '#6f2d1b',
+    worldbuilding: '#6d3222',
 };
