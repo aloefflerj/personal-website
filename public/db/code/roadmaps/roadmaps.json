@@ -6,21 +6,23 @@
         "timeline":[
             {
                 "id": 1,
-                "title": "Hello World",
+                "title": "Network",
+                "link": "network",
                 "content": [
                     {
                         "type": "text",
-                        "content": "How to do a hello world"
+                        "content": "A network is a group of devices connected to each other"
                     },
                     {
-                        "type": "img",
-                        "src": "test.gif"
+                        "type": "pixel-img",
+                        "src": "network.gif"
                     }
                 ]
             },
             {
                 "id": 2,
                 "title": "Binary Search",
+                "link": "binary",
                 "content": [
                     {
                         "type": "text",
@@ -28,6 +30,10 @@
                     },
                     {
                         "type": "img",
+                        "style": {
+                            "width": "400%",
+                            "height": "400%"
+                        },
                         "src": "test.gif"
                     }
                 ]

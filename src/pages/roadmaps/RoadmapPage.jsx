@@ -6,7 +6,14 @@ import { useCategoryDB } from '../../hooks/useCategoryDB';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import { useState } from 'react';
+import styled from 'styled-components';
+
+const PixelartImg = styled.img`
+    width: 256px;
+    heigth: 256px;
+    image-rendering: pixelated;
+    background-color: ${(props) => props.$category.darkColor};;
+`;
 
 export function RoadmapPage({ category }) {
     const { fetchRoadmapByLink } = useCategoryDB(category);
@@ -20,8 +27,8 @@ export function RoadmapPage({ category }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const getImagePathFromCategoryRoadmap = (imgName) => {
-        return `/assets/img/categories/${category.categoryKey}/roadmap/${imgName}`;
+    const getImagePathFromCategoryRoadmap = (timelineItemLink, imgName) => {
+        return `/assets/img/categories/${category.categoryKey}/roadmap/${timelineItemLink}/${imgName}`;
     };
 
     return (
@@ -49,6 +56,18 @@ export function RoadmapPage({ category }) {
                                             <img
                                                 key={`img-${timelineItemContent.id}`}
                                                 src={getImagePathFromCategoryRoadmap(
+                                                    timelineItem.link,
+                                                    timelineItemContent.src
+                                                )}
+                                            />
+                                        );
+                                    case 'pixel-img':
+                                        return (
+                                            <PixelartImg
+                                                $category={category}
+                                                key={`img-${timelineItemContent.id}`}
+                                                src={getImagePathFromCategoryRoadmap(
+                                                    timelineItem.link,
                                                     timelineItemContent.src
                                                 )}
                                             />
