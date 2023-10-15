@@ -3,7 +3,7 @@ export const CategoryMediumColors = {
     code: '#46467c',
     drawings: '#63a063',
     game: '#aa5a95',
-    music: '#cca055;',
+    music: '#cca055',
     worldbuilding: '#da7649',
 };
 
