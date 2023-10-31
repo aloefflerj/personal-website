@@ -3,40 +3,20 @@
         "id": 1,
         "title": "Backend Roadmap",
         "link": "backend",
-        "timeline":[
+        "timeline": [
             {
                 "id": 1,
-                "title": "Network",
-                "link": "network",
-                "content": [
-                    {
-                        "type": "text",
-                        "content": "A network is a group of devices connected to each other"
-                    },
-                    {
-                        "type": "pixel-img",
-                        "src": "network.gif"
-                    }
-                ]
+                "title": "How does the internet work?",
+                "icon": "WifiIcon.jsx",
+                "link": "how-does-the-internet-work.md",
+                "url-key": "how-does-the-internet-work"
             },
             {
                 "id": 2,
-                "title": "Binary Search",
-                "link": "binary",
-                "content": [
-                    {
-                        "type": "text",
-                        "content": "How to do a binary search"
-                    },
-                    {
-                        "type": "img",
-                        "style": {
-                            "width": "400%",
-                            "height": "400%"
-                        },
-                        "src": "test.gif"
-                    }
-                ]
+                "title": "What is HTTP?",
+                "icon": "HttpIcon.jsx",
+                "link": "what-is-http.md",
+                "url-key": "what-is-http"
             }
         ]
     }

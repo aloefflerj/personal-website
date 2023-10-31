@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export function CustomTimeline({ category, children }) {
     return (
         <VerticalTimeline
-            lineColor={category.lightColor}
+            lineColor={category.bgColor}
             layout="1-column-left"
         >
             {children}

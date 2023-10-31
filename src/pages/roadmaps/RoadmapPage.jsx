@@ -7,18 +7,24 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { If } from '../../components/If';
+import { CustomTimelineElementContent } from '../../components/timeline/CustomTimelineElementContent';
+import { DynamicIcon } from '../../icons/DynamicIcon';
 
-const PixelartImg = styled.img`
-    width: 256px;
-    height: 256px;
-    image-rendering: pixelated;
-    background-color: ${(props) => props.$category.darkColor};;
+const CustomTimelineElementContentWrapper = styled.span`
+    h2 {
+        color: ${(props) => props.$category.darkerColor};
+        text-decoration: underline;
+        margin: 0;
+    }
 `;
 
 export function RoadmapPage({ category }) {
     const { fetchRoadmapByLink } = useCategoryDB(category);
     const [timeline, setTimeline] = useState([]);
     const { link } = useParams();
+    const githubApiLink = `https://raw.githubusercontent.com/aloefflerj/roadmaps/main/${link}/steps`;
+    const [visibleTimelineElement, setVisibleTimelineElement] = useState(null);
 
     useEffect(() => {
         fetchRoadmapByLink(link).then((roadmap) => {
@@ -27,9 +33,13 @@ export function RoadmapPage({ category }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const getImagePathFromCategoryRoadmap = (timelineItemLink, imgName) => {
-        return `/assets/img/categories/${category.categoryKey}/roadmap/${timelineItemLink}/${imgName}`;
-    };
+    const hideTimelineElementById = () => {
+        setVisibleTimelineElement(null);
+    }
+
+    const showTimelineElementById = (id) => {
+        setVisibleTimelineElement(id);
+    }
 
     return (
         <CustomTimeline category={category}>
@@ -38,43 +48,19 @@ export function RoadmapPage({ category }) {
                     <CustomTimelineElement
                         category={category}
                         key={timelineItem.id}
+                        icon={
+                            <DynamicIcon iconFile={timelineItem.icon} fillColor={category.lightColor}/>
+                        }
+                        onTimelineElementClick={() => showTimelineElementById(timelineItem.id)}
                     >
-                        <span>
-                            <h1>{timelineItem.title}</h1>
-                            {timelineItem.content.map((timelineItemContent) => {
-                                switch (timelineItemContent.type) {
-                                    case 'text':
-                                        return (
-                                            <p
-                                                key={`text-${timelineItemContent.id}`}
-                                            >
-                                                {timelineItemContent.content}
-                                            </p>
-                                        );
-                                    case 'img':
-                                        return (
-                                            <img
-                                                key={`img-${timelineItemContent.id}`}
-                                                src={getImagePathFromCategoryRoadmap(
-                                                    timelineItem.link,
-                                                    timelineItemContent.src
-                                                )}
-                                            />
-                                        );
-                                    case 'pixel-img':
-                                        return (
-                                            <PixelartImg
-                                                $category={category}
-                                                key={`img-${timelineItemContent.id}`}
-                                                src={getImagePathFromCategoryRoadmap(
-                                                    timelineItem.link,
-                                                    timelineItemContent.src
-                                                )}
-                                            />
-                                        );
-                                }
-                            })}
-                        </span>
+                        <CustomTimelineElementContentWrapper $category={category}>
+                            <If is={visibleTimelineElement !== timelineItem.id}>
+                                <h2>{timelineItem.title}</h2>
+                            </If>
+                            <If is={visibleTimelineElement === timelineItem.id}>
+                                <CustomTimelineElementContent link={`${githubApiLink}/${timelineItem.link}`}/>
+                            </If>
+                        </CustomTimelineElementContentWrapper>
                     </CustomTimelineElement>
                 );
             })}
