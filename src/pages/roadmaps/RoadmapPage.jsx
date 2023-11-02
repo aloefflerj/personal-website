@@ -33,10 +33,6 @@ export function RoadmapPage({ category }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const hideTimelineElementById = () => {
-        setVisibleTimelineElement(null);
-    }
-
     const showTimelineElementById = (id) => {
         setVisibleTimelineElement(id);
     }

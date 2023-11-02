@@ -16,12 +16,6 @@ export function CustomTimelineElementContent({ link }) {
         })
     }, []);
 
-    const handleReadmeContent = () => {
-        if (!_.isEmpty(content)) {
-            return atob(content);
-        }
-    };
-
     return <div>
         <ReactMarkdown linkTarget={'_blank'} >
             {content}
