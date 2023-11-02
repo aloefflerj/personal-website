@@ -27,13 +27,18 @@ const Title = styled.h2`
 `;
 
 export function FoldersPage({ category, page }) {
-    const { fetchProjects, fetchRoadmaps } = useCategoryDB(category);
+    const { fetchGames, fetchProjects, fetchRoadmaps } = useCategoryDB(category);
     const [folders, setFolders] = useState([]);
     const outlet = useOutlet();
     const outletParam = useParams();
 
     useEffect(() => {
         switch (page) {
+            case 'games':
+                fetchGames().then((folders) => {
+                    setFolders(folders);
+                });
+                break;
             case 'projects':
                 fetchProjects().then((folders) => {
                     setFolders(folders);

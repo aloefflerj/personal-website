@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from "react-markdown";
 import { If } from "../../components/If";
 import { Spinner } from "../../components/Spinner";
+import rehypeRaw from "rehype-raw";
 
 const MarkdownSection = styled(ReactMarkdown)`
     padding: 30px 60px;
@@ -131,6 +132,7 @@ export function MarkdownDynamicContent({
         <If is={!loading}>
             <MarkdownSection
                 remarkPlugins={[emojiPlugin]}
+                rehypePlugins={[rehypeRaw]}
                 $category={category}
                 components={{ code: CodeBlock }}
                 linkTarget={'_blank'}

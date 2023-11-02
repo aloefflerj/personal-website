@@ -9,6 +9,7 @@ import { FoldersPage } from '../pages/folders/FoldersPage';
 import { Code, Game, Worldbuilding } from '../categories/Categories';
 import { ProjectPage } from '../pages/projects/ProjectPage';
 import { RoadmapPage } from '../pages/roadmaps/RoadmapPage';
+import { GamesPage } from '../pages/games/GamesPage';
 import { MarkdownPathType } from '../common/MarkdownPathType';
 
 export function Router() {
@@ -51,6 +52,17 @@ export function Router() {
                         <Route
                             path=":link"
                             element={<ProjectPage category={Game} markdownPathType={MarkdownPathType.internal}/>}
+                        />
+                    </Route>
+                    <Route
+                        path="games"
+                        element={
+                            <FoldersPage category={Game} page="games" />
+                        }
+                    >
+                        <Route
+                            path=":link"
+                            element={<GamesPage category={Game} markdownPathType={MarkdownPathType.internal}/>}
                         />
                     </Route>
                 </Route>
