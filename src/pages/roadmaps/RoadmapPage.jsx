@@ -51,6 +51,9 @@ export function RoadmapPage({ category, markdownPathType }) {
     }
 
     const showTimelineElementById = (id) => {
+        if (id === visibleTimelineElement)
+            return;
+        
         setVisibleTimelineElement(id);
         setLoadingTimelineElement(id);
     }
