@@ -3,8 +3,6 @@ import { useRequest } from '../../hooks/useRequest';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import _ from 'lodash';
-
 
 export function CustomTimelineElementContent({ link, hideTimelineSpinnerOnFinishLoading }) {
     const { fetchUrl } = useRequest();
