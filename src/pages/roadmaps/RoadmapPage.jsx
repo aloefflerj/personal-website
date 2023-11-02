@@ -8,11 +8,12 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { If } from '../../components/If';
-import { CustomTimelineElementContent } from '../../components/timeline/CustomTimelineElementContent';
+import { TimelineMarkdownElementContent } from '../../components/timeline/TimelineMarkdownElementContent';
 import { DynamicIcon } from '../../icons/DynamicIcon';
 import { Spinner } from '../../components/Spinner';
+import { useMarkdownPath } from '../../hooks/useMarkdownPaths';
 
-const CustomTimelineElementContentWrapper = styled.span`
+const TimelineMarkdownElementContentWrapper = styled.span`
     h2 {
         color: ${(props) => props.$category.darkerColor};
         text-decoration: underline;
@@ -20,13 +21,13 @@ const CustomTimelineElementContentWrapper = styled.span`
     }
 `;
 
-export function RoadmapPage({ category }) {
+export function RoadmapPage({ category, markdownPathType }) {
     const { fetchRoadmapByLink } = useCategoryDB(category);
     const [timeline, setTimeline] = useState([]);
     const { link } = useParams();
-    const githubApiLink = `https://raw.githubusercontent.com/aloefflerj/roadmaps/main/${link}/steps`;
     const [visibleTimelineElement, setVisibleTimelineElement] = useState(null);
     const [loadingTimelineElement, setLoadingTimelineElement] = useState(null);
+    const { getExternalGithubPath, getInternalPath } = useMarkdownPath();
 
     useEffect(() => {
         fetchRoadmapByLink(link).then((roadmap) => {
@@ -34,6 +35,20 @@ export function RoadmapPage({ category }) {
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const getMarkdownContentPath = (subcategoryItemContentLink) => {
+        const subcategory = 'roadmaps';
+        const subcategoryItem = link;
+        
+        switch (markdownPathType) {
+            case 'internal':
+                return getInternalPath(category.categoryKey, subcategory, subcategoryItem, subcategoryItemContentLink);
+            case 'github':
+                return getExternalGithubPath(subcategory, subcategoryItem, subcategoryItemContentLink);
+            default:
+                return getInternalPath(category.categoryKey, subcategory, subcategoryItem, subcategoryItemContentLink);
+        }
+    }
 
     const showTimelineElementById = (id) => {
         setVisibleTimelineElement(id);
@@ -56,7 +71,7 @@ export function RoadmapPage({ category }) {
                         }
                         onTimelineElementClick={() => showTimelineElementById(timelineItem.id)}
                     >
-                        <CustomTimelineElementContentWrapper $category={category}>
+                        <TimelineMarkdownElementContentWrapper $category={category}>
                             <If is={visibleTimelineElement !== timelineItem.id}>
                                 <h2>{timelineItem.title}</h2>
                             </If>
@@ -64,13 +79,13 @@ export function RoadmapPage({ category }) {
                                 <Spinner color={category.darkerColor} local={true} />
                             </If>
                             <If is={visibleTimelineElement === timelineItem.id}>
-                                <CustomTimelineElementContent
+                                <TimelineMarkdownElementContent
                                     timelineItemId={timelineItem.id}
-                                    link={`${githubApiLink}/${timelineItem.link}`}
+                                    link={getMarkdownContentPath(timelineItem.link)}
                                     hideTimelineSpinnerOnFinishLoading={hideTimelineSpinnerOnFinishLoading}
                                 />
                             </If>
-                        </CustomTimelineElementContentWrapper>
+                        </TimelineMarkdownElementContentWrapper>
                     </CustomTimelineElement>
                 );
             })}
@@ -80,4 +95,5 @@ export function RoadmapPage({ category }) {
 
 RoadmapPage.propTypes = {
     category: PropTypes.object,
+    markdownPath: PropTypes.string,
 };

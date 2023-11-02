@@ -6,11 +6,17 @@ import { MusicPage } from '../pages/categories/MusicPage';
 import { WorldbuildingPage } from '../pages/categories/WorldbuildingPage';
 import { Home } from '../pages/Home';
 import { FoldersPage } from '../pages/folders/FoldersPage';
-import { Code } from '../categories/Categories';
+import { Code, Worldbuilding } from '../categories/Categories';
 import { ProjectPage } from '../pages/projects/ProjectPage';
 import { RoadmapPage } from '../pages/roadmaps/RoadmapPage';
 
 export function Router() {
+    
+    const markDownPathTypes = {
+        internal: 'internal',
+        github: 'github'
+    };
+    
     return (
         <Routes>
             <Route path="/">
@@ -35,14 +41,26 @@ export function Router() {
                     >
                         <Route
                             path=":link"
-                            element={<RoadmapPage category={Code} />}
+                            element={<RoadmapPage category={Code} markdownPathType={markDownPathTypes.github}/>}
                         />
                     </Route>
                 </Route>
                 <Route path="drawings" element={<DrawingsPage />} />
                 <Route path="game" element={<GamePage />} />
                 <Route path="music" element={<MusicPage />} />
-                <Route path="worldbuilding" element={<WorldbuildingPage />} />
+                <Route path="worldbuilding" element={<WorldbuildingPage />} >
+                    <Route
+                        path="roadmaps"
+                        element={
+                            <FoldersPage category={Worldbuilding} page="roadmaps" />
+                        }
+                    >
+                        <Route
+                            path=":link"
+                            element={<RoadmapPage category={Worldbuilding} markdownPathType={markDownPathTypes.internal}/>}
+                        />
+                    </Route>
+                </Route>
                 <Route path="*" element={<h1>not found</h1>} />
             </Route>
         </Routes>

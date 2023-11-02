@@ -8,6 +8,7 @@ import { PixelCharContent } from '../../components/pixel/PixelCharContent';
 
 import charImg from '/assets/img/guys/worldbuilding-guy.png';
 import { PixelCharImage } from '../../components/pixel/PixelCharImage';
+import { Outlet } from 'react-router-dom';
 
 export function WorldbuildingPage() {
     const { category, setCategory } = useCategoryContext();
@@ -22,14 +23,16 @@ export function WorldbuildingPage() {
                 <PixelCharContent >
                     <PixelCharImage src={charImg} />
                 </PixelCharContent>
-                <SidebarOption category={Worldbuilding}>Projects</SidebarOption>
-                <SidebarOption category={Worldbuilding}>Roadmap</SidebarOption>
-                <SidebarOption category={Worldbuilding}>Blog</SidebarOption>
-                <SidebarOption category={Worldbuilding}>
-                    App&apos;s
+                <SidebarOption to="projects" category={Worldbuilding}>
+                    Projects
+                </SidebarOption>
+                <SidebarOption to="roadmaps" category={Worldbuilding}>
+                    Roadmap
                 </SidebarOption>
             </Sidebar>
-            <CategoryContent category={Worldbuilding} />
+            <CategoryContent category={Worldbuilding}>
+                <Outlet />
+            </CategoryContent>
         </CategoryPage>
     );
 }

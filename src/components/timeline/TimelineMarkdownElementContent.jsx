@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-export function CustomTimelineElementContent({ link, hideTimelineSpinnerOnFinishLoading }) {
+export function TimelineMarkdownElementContent({ link, hideTimelineSpinnerOnFinishLoading }) {
     const { fetchUrl } = useRequest();
     const [content, setContent] = useState();
 
@@ -23,7 +23,7 @@ export function CustomTimelineElementContent({ link, hideTimelineSpinnerOnFinish
     </div>
 }
 
-CustomTimelineElementContent.prototype = {
+TimelineMarkdownElementContent.prototype = {
     link: PropTypes.string,
     hideTimelineSpinnerOnFinishLoading: PropTypes.func
 }
