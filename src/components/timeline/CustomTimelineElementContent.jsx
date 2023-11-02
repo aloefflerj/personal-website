@@ -6,13 +6,15 @@ import ReactMarkdown from 'react-markdown';
 import _ from 'lodash';
 
 
-export function CustomTimelineElementContent({ link }) {
+export function CustomTimelineElementContent({ link, hideTimelineSpinnerOnFinishLoading }) {
     const { fetchUrl } = useRequest();
     const [content, setContent] = useState();
 
     useEffect(() => {
         fetchUrl(link, {}, 'text').then((timelineRequestContent) => {
-            setContent(timelineRequestContent)
+            setContent(timelineRequestContent);
+        }).finally(() => {
+            hideTimelineSpinnerOnFinishLoading();
         })
     }, []);
 
@@ -24,5 +26,6 @@ export function CustomTimelineElementContent({ link }) {
 }
 
 CustomTimelineElementContent.prototype = {
-    timelineItem: PropTypes.object
+    link: PropTypes.string,
+    hideTimelineSpinnerOnFinishLoading: PropTypes.func
 }

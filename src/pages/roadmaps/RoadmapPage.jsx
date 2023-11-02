@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import { If } from '../../components/If';
 import { CustomTimelineElementContent } from '../../components/timeline/CustomTimelineElementContent';
 import { DynamicIcon } from '../../icons/DynamicIcon';
+import { Spinner } from '../../components/Spinner';
 
 const CustomTimelineElementContentWrapper = styled.span`
     h2 {
@@ -25,6 +26,7 @@ export function RoadmapPage({ category }) {
     const { link } = useParams();
     const githubApiLink = `https://raw.githubusercontent.com/aloefflerj/roadmaps/main/${link}/steps`;
     const [visibleTimelineElement, setVisibleTimelineElement] = useState(null);
+    const [loadingTimelineElement, setLoadingTimelineElement] = useState(null);
 
     useEffect(() => {
         fetchRoadmapByLink(link).then((roadmap) => {
@@ -35,6 +37,11 @@ export function RoadmapPage({ category }) {
 
     const showTimelineElementById = (id) => {
         setVisibleTimelineElement(id);
+        setLoadingTimelineElement(id);
+    }
+
+    const hideTimelineSpinnerOnFinishLoading = () => {
+        setLoadingTimelineElement(null);
     }
 
     return (
@@ -53,8 +60,15 @@ export function RoadmapPage({ category }) {
                             <If is={visibleTimelineElement !== timelineItem.id}>
                                 <h2>{timelineItem.title}</h2>
                             </If>
+                            <If is={loadingTimelineElement === timelineItem.id}>
+                                <Spinner color={category.darkerColor} local={true} />
+                            </If>
                             <If is={visibleTimelineElement === timelineItem.id}>
-                                <CustomTimelineElementContent link={`${githubApiLink}/${timelineItem.link}`}/>
+                                <CustomTimelineElementContent
+                                    timelineItemId={timelineItem.id}
+                                    link={`${githubApiLink}/${timelineItem.link}`}
+                                    hideTimelineSpinnerOnFinishLoading={hideTimelineSpinnerOnFinishLoading}
+                                />
                             </If>
                         </CustomTimelineElementContentWrapper>
                     </CustomTimelineElement>
