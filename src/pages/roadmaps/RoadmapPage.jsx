@@ -11,7 +11,8 @@ import { If } from '../../components/If';
 import { TimelineMarkdownElementContent } from '../../components/timeline/TimelineMarkdownElementContent';
 import { DynamicIcon } from '../../icons/DynamicIcon';
 import { Spinner } from '../../components/Spinner';
-import { useMarkdownPath } from '../../hooks/useMarkdownPaths';
+import { useMarkdownPath } from '../../hooks/useMarkdownPath';
+import { MarkdownPathType } from '../../common/MarkdownPathType';
 
 const TimelineMarkdownElementContentWrapper = styled.span`
     h2 {
@@ -41,9 +42,9 @@ export function RoadmapPage({ category, markdownPathType }) {
         const subcategoryItem = link;
         
         switch (markdownPathType) {
-            case 'internal':
+            case MarkdownPathType.internal:
                 return getInternalPath(category.categoryKey, subcategory, subcategoryItem, subcategoryItemContentLink);
-            case 'github':
+            case MarkdownPathType.githubRaw:
                 return getExternalGithubPath(subcategory, subcategoryItem, subcategoryItemContentLink);
             default:
                 return getInternalPath(category.categoryKey, subcategory, subcategoryItem, subcategoryItemContentLink);
@@ -53,7 +54,7 @@ export function RoadmapPage({ category, markdownPathType }) {
     const showTimelineElementById = (id) => {
         if (id === visibleTimelineElement)
             return;
-        
+
         setVisibleTimelineElement(id);
         setLoadingTimelineElement(id);
     }

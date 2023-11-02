@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export const useRequest = () => {
     return {
         fetchUrl: async (url, config = {}, returnType = 'json') => {
@@ -7,5 +9,13 @@ export const useRequest = () => {
             
             return await response.json();
         },
+        fetchGithubEncryptedMarkdown: async (url, config) => {
+            const response = await fetch(url, config);
+            const stringResponse = await response.json();
+
+            if (!_.isEmpty(stringResponse)) {
+                return atob(stringResponse.content);
+            }
+        }
     };
 };

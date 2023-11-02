@@ -8,6 +8,7 @@ import { PixelCharContent } from '../../components/pixel/PixelCharContent';
 
 import charImg from '/assets/img/guys/game-guy.png';
 import { PixelCharImage } from '../../components/pixel/PixelCharImage';
+import { Outlet } from 'react-router-dom';
 
 export function GamePage() {
     const { category, setCategory } = useCategoryContext();
@@ -22,12 +23,13 @@ export function GamePage() {
                 <PixelCharContent >
                     <PixelCharImage src={charImg} />
                 </PixelCharContent>
-                <SidebarOption category={Game}>Projects</SidebarOption>
-                <SidebarOption category={Game}>Roadmap</SidebarOption>
-                <SidebarOption category={Game}>Blog</SidebarOption>
-                <SidebarOption category={Game}>App&apos;s</SidebarOption>
+                <SidebarOption to="projects" category={Game}>
+                    Projects
+                </SidebarOption>
             </Sidebar>
-            <CategoryContent category={Game} />
+            <CategoryContent category={Game}>
+                <Outlet />
+            </CategoryContent>
         </CategoryPage>
     );
 }

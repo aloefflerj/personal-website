@@ -3,111 +3,40 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useCategoryDB } from '../../hooks/useCategoryDB';
 import { useEffect, useState } from 'react';
-import { useRequest } from '../../hooks/useRequest';
-import ReactMarkdown from 'react-markdown';
-import emojiPlugin from 'remark-emoji';
 import _ from 'lodash';
-import CodeBlock from '../../components/codeblock/CodeBlock';
+import { MarkdownDynamicContent } from '../../components/markdown/MarkdownDynamicContent';
 
 const ProjectContent = styled.div`
     color: ${(props) => props.$category.lightColor};
 `;
 
-const MarkdownSection = styled(ReactMarkdown)`
-    padding: 30px 60px;
-
-    h1 {
-        color: ${(props) => props.$category.darkerColor};
-        background-color: ${(props) => props.$category.lightColor};
-        display: inline-flex;
-        gap: 18px;
-        justify-content: center;
-        align-items: center;
-        padding: 6px;
-    }
-
-    h2 {
-        text-decoration: underline;
-    }
-
-    a {
-        filter: brightness(150%);
-        color: ${(props) => props.$category.lightColor};
-        text-decoration: underline;
-    }
-
-    img {
-        border: 3px solid ${(props) => props.$category.lightColor};
-        padding: 6px;
-    }
-
-    ul {
-        margin-left: 36px;
-        list-style-type: square;
-    }
-
-    hr {
-        height: 3px;
-        background-color: ${(props) => props.$category.lightColor};
-        border: none;
-    }
-
-    code {
-        font-family: var(--default-font);
-    }
-
-    blockquote {
-        filter: brightness(120%);
-        color: ${(props) => props.$category.mediumColor};
-        margin: 0 0 0 12px;
-        padding: 0;
-        p {
-            margin: 0;
-        }
-    }
-`;
-
-export function ProjectPage({ category }) {
+export function ProjectPage({ category, markdownPathType }) {
     const { link } = useParams();
     const { fetchProjectByLink } = useCategoryDB(category);
-    const { fetchUrl } = useRequest();
-    const [projectReadme, setProjectReadme] = useState({});
+    const [projectJsonData, setProjectJsonData] = useState({});
 
     useEffect(() => {
-        if (link !== undefined || link !== null) {
-            fetchProjectByLink(link).then((projectData) => {
-                if (
-                    projectData !== null ||
-                    projectData !== undefined ||
-                    !_.isEmpty(projectData)
-                ) {
-                    fetchUrl(projectData.readmeUrl).then(
-                        (projectReadmeData) => {
-                            setProjectReadme(projectReadmeData);
-                        }
-                    );
-                }
-            });
-        }
+        fetchProject();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleReadmeContent = () => {
-        if (!_.isEmpty(projectReadme)) {
-            return atob(projectReadme.content);
+    const fetchProject = () => {
+        if (link !== undefined || link !== null) {
+            return fetchProjectByLink(link).then(
+                (projectData) => setProjectJsonData(projectData)
+            );
         }
-    };
+    }
 
     return (
         <ProjectContent $category={category}>
-            <MarkdownSection
-                remarkPlugins={[emojiPlugin]}
-                $category={category}
-                components={{ code: CodeBlock }}
-                linkTarget={'_blank'}
-            >
-                {handleReadmeContent()}
-            </MarkdownSection>
+            <MarkdownDynamicContent
+                dbJsonData={projectJsonData}
+                subcategory={'projects'}
+                category={category}
+                link={link}
+                markdownPathType={markdownPathType}
+            />
         </ProjectContent>
     );
 }
