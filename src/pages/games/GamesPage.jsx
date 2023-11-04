@@ -5,6 +5,7 @@ import { useCategoryDB } from '../../hooks/useCategoryDB';
 import { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { MarkdownDynamicContent } from '../../components/markdown/MarkdownDynamicContent';
+import { SubcategoryType } from '../../common/SubcategoryType';
 
 const GameContent = styled.div`
     color: ${(props) => props.$category.lightColor};
@@ -12,7 +13,7 @@ const GameContent = styled.div`
 
 export function GamesPage({ category, markdownPathType }) {
     const { link } = useParams();
-    const { fetchGameByLink } = useCategoryDB(category);
+    const { fetchSubcategoryItemByLink } = useCategoryDB(category);
     const [gameJsonData, setGameJsonData] = useState({});
 
     useEffect(() => {
@@ -22,7 +23,7 @@ export function GamesPage({ category, markdownPathType }) {
 
     const fetchProject = () => {
         if (link !== undefined || link !== null) {
-            return fetchGameByLink(link).then(
+            return fetchSubcategoryItemByLink(SubcategoryType.games, link).then(
                 (gameData) => setGameJsonData(gameData)
             );
         }

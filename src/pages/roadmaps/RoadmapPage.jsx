@@ -13,6 +13,7 @@ import { DynamicIcon } from '../../icons/DynamicIcon';
 import { Spinner } from '../../components/Spinner';
 import { useMarkdownPath } from '../../hooks/useMarkdownPath';
 import { MarkdownPathType } from '../../common/MarkdownPathType';
+import { SubcategoryType } from '../../common/SubcategoryType';
 
 const TimelineMarkdownElementContentWrapper = styled.span`
     h2 {
@@ -23,7 +24,7 @@ const TimelineMarkdownElementContentWrapper = styled.span`
 `;
 
 export function RoadmapPage({ category, markdownPathType }) {
-    const { fetchRoadmapByLink } = useCategoryDB(category);
+    const { fetchSubcategoryItemByLink } = useCategoryDB(category);
     const [timeline, setTimeline] = useState([]);
     const { link } = useParams();
     const [visibleTimelineElement, setVisibleTimelineElement] = useState(null);
@@ -31,7 +32,7 @@ export function RoadmapPage({ category, markdownPathType }) {
     const { getExternalGithubPath, getInternalPath } = useMarkdownPath();
 
     useEffect(() => {
-        fetchRoadmapByLink(link).then((roadmap) => {
+        fetchSubcategoryItemByLink(SubcategoryType.roadmaps, link).then((roadmap) => {
             setTimeline(roadmap.timeline);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps

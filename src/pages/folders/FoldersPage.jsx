@@ -4,6 +4,7 @@ import { useCategoryDB } from '../../hooks/useCategoryDB.jsx';
 import { Folder } from '../../components/folder/Folder.jsx';
 import { useEffect, useState } from 'react';
 import { useOutlet, useParams } from 'react-router-dom';
+import { SubcategoryType } from '../../common/SubcategoryType.js';
 
 const FoldersList = styled.div`
     padding: 32px;
@@ -27,29 +28,15 @@ const Title = styled.h2`
 `;
 
 export function FoldersPage({ category, page }) {
-    const { fetchGames, fetchProjects, fetchRoadmaps } = useCategoryDB(category);
+    const { fetchSubcategory } = useCategoryDB(category);
     const [folders, setFolders] = useState([]);
     const outlet = useOutlet();
     const outletParam = useParams();
 
     useEffect(() => {
-        switch (page) {
-            case 'games':
-                fetchGames().then((folders) => {
-                    setFolders(folders);
-                });
-                break;
-            case 'projects':
-                fetchProjects().then((folders) => {
-                    setFolders(folders);
-                });
-                break;
-            case 'roadmaps':
-                fetchRoadmaps().then((folders) => {
-                    setFolders(folders);
-                });
-                break;
-        }
+        fetchSubcategory(SubcategoryType[page]).then((folders) => {
+            setFolders(folders);
+        });
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [outletParam]);
