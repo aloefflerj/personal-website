@@ -5,8 +5,8 @@ import { GamePage } from '../pages/categories/GamePage';
 import { MusicPage } from '../pages/categories/MusicPage';
 import { WorldbuildingPage } from '../pages/categories/WorldbuildingPage';
 import { Home } from '../pages/Home';
-import { FoldersPage } from '../pages/folders/FoldersPage';
-import { Code, Game, Worldbuilding } from '../categories/Categories';
+import { SubcategoriesPage } from '../pages/subcategories/SubcategoriesPage';
+import { Code, Game, Music, Worldbuilding } from '../categories/Categories';
 import { ProjectPage } from '../pages/projects/ProjectPage';
 import { RoadmapPage } from '../pages/roadmaps/RoadmapPage';
 import { GamesPage } from '../pages/games/GamesPage';
@@ -21,7 +21,7 @@ export function Router() {
                     <Route
                         path="projects"
                         element={
-                            <FoldersPage category={Code} page="projects" />
+                            <SubcategoriesPage category={Code} page="projects" />
                         }
                     >
                         <Route
@@ -32,7 +32,7 @@ export function Router() {
                     <Route
                         path="roadmaps"
                         element={
-                            <FoldersPage category={Code} page="roadmaps" />
+                            <SubcategoriesPage category={Code} page="roadmaps" />
                         }
                     >
                         <Route
@@ -46,7 +46,7 @@ export function Router() {
                     <Route
                         path="projects"
                         element={
-                            <FoldersPage category={Game} page="projects" />
+                            <SubcategoriesPage category={Game} page="projects" />
                         }
                     >
                         <Route
@@ -57,7 +57,7 @@ export function Router() {
                     <Route
                         path="games"
                         element={
-                            <FoldersPage category={Game} page="games" />
+                            <SubcategoriesPage category={Game} page="games" />
                         }
                     >
                         <Route
@@ -66,12 +66,35 @@ export function Router() {
                         />
                     </Route>
                 </Route>
-                <Route path="music" element={<MusicPage />} />
+                <Route path="music" element={<MusicPage />}>
+                <Route
+                        path="projects"
+                        element={
+                            <SubcategoriesPage category={Music} page="projects" />
+                        }
+                >
+                    <Route
+                        path=":link"
+                        element={<ProjectPage category={Music} markdownPathType={MarkdownPathType.internal}/>}
+                    />
+                </Route>
+                <Route
+                        path="songs"
+                        element={
+                            <SubcategoriesPage category={Music} page="songs" />
+                        }
+                >
+                    <Route
+                        path=":link"
+                        element={<ProjectPage category={Music} markdownPathType={MarkdownPathType.internal}/>}
+                    />
+                </Route>
+                </Route>
                 <Route path="worldbuilding" element={<WorldbuildingPage />} >
                     <Route
                         path="roadmaps"
                         element={
-                            <FoldersPage category={Worldbuilding} page="roadmaps" />
+                            <SubcategoriesPage category={Worldbuilding} page="roadmaps" />
                         }
                     >
                         <Route
