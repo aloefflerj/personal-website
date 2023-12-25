@@ -27,13 +27,7 @@ export function CodePage() {
                     Projects
                 </SidebarOption>
                 <SidebarOption to="roadmaps" category={Code}>
-                    Roadmap
-                </SidebarOption>
-                <SidebarOption to="blog" category={Code}>
-                    Blog
-                </SidebarOption>
-                <SidebarOption to="app" category={Code}>
-                    App&apos;s
+                    Roadmaps
                 </SidebarOption>
             </Sidebar>
             <CategoryContent category={Code}>

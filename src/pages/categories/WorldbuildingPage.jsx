@@ -18,7 +18,7 @@ export function WorldbuildingPage() {
     }
 
     return (
-        <CategoryPage title={Worldbuilding.title}>
+        <CategoryPage>
             <Sidebar category={category}>
                 <PixelCharContent >
                     <PixelCharImage src={charImg} />
@@ -27,7 +27,7 @@ export function WorldbuildingPage() {
                     Projects
                 </SidebarOption>
                 <SidebarOption to="roadmaps" category={Worldbuilding}>
-                    Roadmap
+                    Roadmaps
                 </SidebarOption>
             </Sidebar>
             <CategoryContent category={Worldbuilding}>

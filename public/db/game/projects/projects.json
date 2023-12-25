@@ -3,6 +3,7 @@
         "id": 1,
         "title": "Flower Flag Fragments",
         "link": "flower-flag-fragments",
-        "contentPath": "flower-flag-fragments.md"
+        "contentPath": "flower-flag-fragments.md",
+        "contentType": "folder"
     }
 ]

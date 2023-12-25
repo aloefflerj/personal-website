@@ -3,6 +3,7 @@
         "id": 1,
         "title": "Wind",
         "link": "wind",
+        "contentType": "folder",
         "timeline": [
             {
                 "id": 1,

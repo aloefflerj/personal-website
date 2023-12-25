@@ -3,12 +3,14 @@
         "id": 1,
         "title": "Fart Buster",
         "link": "fart-buster",
-        "contentPath": "fart-buster.md"
+        "contentPath": "fart-buster.md",
+        "contentType": "folder"
     },
     {
         "id": 2,
         "title": "Bunny Crash Delivery",
         "link": "bunny-crash-delivery",
-        "contentPath": "bunny-crash-delivery.md"
+        "contentPath": "bunny-crash-delivery.md",
+        "contentType": "folder"
     }
 ]

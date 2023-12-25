@@ -3,6 +3,7 @@
         "id": 1,
         "title": "Backend Roadmap",
         "link": "backend",
+        "contentType": "folder",
         "timeline": [
             {
                 "id": 1,
