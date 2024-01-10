@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "Shop Song",
+        "link": "shop-song",
+        "subtitle": {
+            "artist": "Anderson",
+            "album": "Album 1"
+        },
+        "songPath": "shop.m4a",
+        "contentPath": "shop-song.md",
+        "contentType": "song"
+    },
+    {
+        "id": 2,
+        "title": "Celtic Vibe",
+        "link": "celtic-vibe",
+        "subtitle": {
+            "artist": "Anderson",
+            "album": "Album 1"
+        },
+        "songPath": "celtic.wav",
+        "contentPath": "celtic-vibe.md",
+        "contentType": "song"
+    }
+]

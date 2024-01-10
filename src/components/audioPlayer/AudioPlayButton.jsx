@@ -5,24 +5,37 @@ import { useCategoryContext } from '../../hooks/useCategoryContext';
 import { PixelButton } from '../../elements/buttons/PixelButton';
 import PropTypes from 'prop-types';
 
-const PlayButton = styled(PixelButton)`
+const GlobalPlayButton = styled(PixelButton)`
     position: absolute;
     top: 20px;
     right: 20px;
     z-index: 1000;
 `;
 
-export function AudioPlayButton({ togglePlay, playing }) {
+const LocalPlayButton = styled(PixelButton)`
+    position: relative;
+    z-index: 1000;
+`
+
+export function AudioPlayButton({ togglePlay, playing, global = false, miniplayer = true, songId = null }) {
     const { category } = useCategoryContext();
 
-    return (
-        <PlayButton onClick={() => togglePlay()} $category={category}>
-            {playing ? (
-                <PauseIcon fillColor={category.darkerColor} />
-            ) : (
-                <PlayIcon fillColor={category.darkerColor} />
-            )}
-        </PlayButton>
+    const mini = miniplayer ? '12' : '24';
+    
+    const icon = playing ? (
+        <PauseIcon fillColor={category.darkerColor} width={mini} height={mini} />
+    ) : (
+        <PlayIcon fillColor={category.darkerColor} width={mini} height={mini} />
+    );
+
+    return global ? (
+        <GlobalPlayButton onClick={() => togglePlay()} $category={category}>
+            {icon}
+        </GlobalPlayButton>
+    ) : (
+        <LocalPlayButton onClick={() => togglePlay(songId)} $category={category}>
+            {icon}
+        </LocalPlayButton>
     );
 }
 

@@ -8,6 +8,7 @@ import { PixelCharContent } from '../../components/pixel/PixelCharContent';
 
 import charImg from '/assets/img/guys/music-guy.png';
 import { PixelCharImage } from '../../components/pixel/PixelCharImage';
+import { Outlet } from 'react-router-dom';
 
 export function MusicPage() {
     const { category, setCategory } = useCategoryContext();
@@ -17,17 +18,30 @@ export function MusicPage() {
     }
 
     return (
-        <CategoryPage title={Music.title}>
+        <CategoryPage>
             <Sidebar category={category}>
                 <PixelCharContent >
                     <PixelCharImage src={charImg} />
                 </PixelCharContent>
-                <SidebarOption category={Music}>Projects</SidebarOption>
-                <SidebarOption category={Music}>Roadmap</SidebarOption>
-                <SidebarOption category={Music}>Blog</SidebarOption>
-                <SidebarOption category={Music}>App&apos;s</SidebarOption>
+                <SidebarOption to="projects" category={Music}>
+                    Projects
+                </SidebarOption>
+                <SidebarOption to="songs" category={Music}>
+                    Songs
+                </SidebarOption>
+                <SidebarOption to="roadmaps" category={Music}>
+                    Roadmaps
+                </SidebarOption>
+                <SidebarOption to="clips" category={Music}>
+                    Clips
+                </SidebarOption>
+                <SidebarOption to="fave-albums" category={Music}>
+                    Fave Albums
+                </SidebarOption>
             </Sidebar>
-            <CategoryContent category={Music} />
+            <CategoryContent category={Music}>
+                <Outlet />
+            </CategoryContent>
         </CategoryPage>
     );
 }

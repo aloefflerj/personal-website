@@ -1,10 +1,11 @@
-import { AudioPlayer } from './components/audioPlayer/AudioPlayer';
+import { GlobalAudioPlayer } from './components/audioPlayer/GlobalAudioPlayer';
 import { Router } from './routes/Router';
 
 function App() {
     return (
         <>
-            <AudioPlayer />
+            {/* <AudioPlayer global={true} miniplayer={false} /> */}
+            <GlobalAudioPlayer />
             <Router />
         </>
     );

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useCategoryDB } from '../../hooks/useCategoryDB.jsx';
-import { Folder } from '../../components/folder/Folder.jsx';
 import { useEffect, useState } from 'react';
 import { useOutlet, useParams } from 'react-router-dom';
 import { SubcategoryType } from '../../common/SubcategoryType.js';
 import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem.jsx';
-import { AudioPlayer } from '../../components/audioPlayer/AudioPlayer.jsx';
 import { If } from '../../components/If.jsx';
+import { Track } from '../../model/Track.js';
+import { SingleTrackPlayer } from '../../components/audioPlayer/SingleTrackPlayer.jsx';
 
 const SubcategoriesList = styled.div`
     padding: 32px;
@@ -46,27 +46,38 @@ export function SubcategoriesPage({ category, page }) {
         fetchSubcategory(SubcategoryType[page]).then((subcategoriesItems) => {
             setSubcategoriesItems(subcategoriesItems);
         });
-
     }, [outletParam]);
 
     const listFolders = () => {
-        return subcategoriesItems.map(({ id, title, subtitle, link, songPath = null, contentType }) => {
-            return (
-                <SubcategoriesItemWrapper>
-                    <SubcategoryItem
-                        to={link}
-                        title={title}
-                        subtitle={subtitle}
-                        key={`folder-${category.categoryKey}-${id}`}
-                        category={category}
-                        contentType={contentType}
-                    />
-                    <If is={songPath !== null && songPath !== undefined}>
-                        <AudioPlayer song={`/assets/audio/${songPath}`}/>
-                    </If>
-                </SubcategoriesItemWrapper>
-            );
-        });
+        return subcategoriesItems.map(
+            ({ id, title, subtitle, link, songPath = null, contentType }) => {
+                return (
+                    <SubcategoriesItemWrapper key={id}>
+                        <SubcategoryItem
+                            to={link}
+                            title={title}
+                            subtitle={subtitle}
+                            key={`folder-${category.categoryKey}-${id}`}
+                            category={category}
+                            contentType={contentType}
+                        />
+                        <If is={songPath !== null && songPath !== undefined}>
+                            <SingleTrackPlayer
+                                track={
+                                    new Track(
+                                        id,
+                                        `/assets/audio/${songPath}`,
+                                        title,
+                                        subtitle?.artist,
+                                        subtitle?.album
+                                    )
+                                }
+                            />
+                        </If>
+                    </SubcategoriesItemWrapper>
+                );
+            }
+        );
     };
 
     const title = outlet ? outletParam.link : page;
@@ -74,9 +85,13 @@ export function SubcategoriesPage({ category, page }) {
 
     const content = outlet ? outlet : listFolders();
     const wrappedContent = outlet ? (
-        <SubcategoriesContent $bgColor={category.darkColor}>{content}</SubcategoriesContent>
+        <SubcategoriesContent $bgColor={category.darkColor}>
+            {content}
+        </SubcategoriesContent>
     ) : (
-        <SubcategoriesList $bgColor={category.darkColor}>{content}</SubcategoriesList>
+        <SubcategoriesList $bgColor={category.darkColor}>
+            {content}
+        </SubcategoriesList>
     );
 
     return (
