@@ -18,7 +18,7 @@ export function AudioPlayer({ tracks }) {
     const progressBarRef = useRef();
 
     useEffect(() => {
-        setCurrentTrack(tracks[trackIndex] ?? null);
+        setCurrentTrack(tracks[trackIndex] ?? tracks[0] ?? null);
     }, []);
 
     const loading = () => tracks.length === 0 || currentTrack === null;

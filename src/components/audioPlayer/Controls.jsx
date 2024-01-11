@@ -2,6 +2,13 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Track } from '../../model/Track';
 import { If } from '../If';
+import { useCategoryContext } from '../../hooks/useCategoryContext';
+import { AudioPlayButton } from './AudioPlayButton';
+import styled from 'styled-components';
+
+const PlayerController = styled.div`
+
+`;
 
 export function Controls({
     audioRef,
@@ -16,6 +23,7 @@ export function Controls({
 }) {
     const [isPlaying, setIsPlaying] = useState(false);
     const playAnimationRef = useRef();
+    const { category } = useCategoryContext();
 
     const togglePlayPause = () => {
         setIsPlaying((prev) => !prev);
@@ -35,6 +43,14 @@ export function Controls({
     }, [audioRef, duration, progressBarRef, setTimeProgress]);
 
     useEffect(() => {
+        progressBarRef.current.style.setProperty(
+            'background-color',
+            'red'
+        );
+        progressBarRef.current.style.setProperty(
+            'color',
+            'red'
+        );
         if (isPlaying) {
             audioRef.current.play();
         } else {
@@ -74,21 +90,22 @@ export function Controls({
 
     return (
         <div className="controls-wrapper">
-            <div className="controls">
+            <PlayerController $category={category}>
                 <If is={isGlobal}>
                     <button onClick={handlePrevious}>PlaySkipBackSharp</button>
                     <button onClick={skipBackward}>PlayBackSharp</button>
                 </If>
 
-                <button onClick={togglePlayPause}>
-                    {isPlaying ? 'PauseSharp' : 'PlaySharp'}
-                </button>
+                <AudioPlayButton
+                    togglePlayPause={togglePlayPause}
+                    playing={isPlaying}
+                />
 
                 <If is={isGlobal}>
                     <button onClick={skipForward}>PlayForwardSharp</button>
                     <button onClick={handleNext}>PlaySkipForwardSharp</button>
                 </If>
-            </div>
+            </PlayerController>
         </div>
     );
 }

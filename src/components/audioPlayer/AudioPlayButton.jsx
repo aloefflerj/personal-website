@@ -15,25 +15,38 @@ const GlobalPlayButton = styled(PixelButton)`
 const LocalPlayButton = styled(PixelButton)`
     position: relative;
     z-index: 1000;
-`
+`;
 
-export function AudioPlayButton({ togglePlay, playing, global = false, miniplayer = true, songId = null }) {
+export function AudioPlayButton({
+    togglePlayPause,
+    playing,
+    global = false,
+    miniplayer = true,
+    songId = null,
+}) {
     const { category } = useCategoryContext();
 
     const mini = miniplayer ? '12' : '24';
-    
+
     const icon = playing ? (
-        <PauseIcon fillColor={category.darkerColor} width={mini} height={mini} />
+        <PauseIcon
+            fillColor={category.darkerColor}
+            width={mini}
+            height={mini}
+        />
     ) : (
         <PlayIcon fillColor={category.darkerColor} width={mini} height={mini} />
     );
 
     return global ? (
-        <GlobalPlayButton onClick={() => togglePlay()} $category={category}>
+        <GlobalPlayButton onClick={() => togglePlayPause()} $category={category}>
             {icon}
         </GlobalPlayButton>
     ) : (
-        <LocalPlayButton onClick={() => togglePlay(songId)} $category={category}>
+        <LocalPlayButton
+            onClick={() => togglePlayPause()}
+            $category={category}
+        >
             {icon}
         </LocalPlayButton>
     );

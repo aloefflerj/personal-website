@@ -4,6 +4,13 @@ import { DisplayTrack } from './DisplayTrack';
 import { useRef, useState } from 'react';
 import { ProgressBar } from './ProgressBar';
 import { Controls } from './Controls';
+import styled from 'styled-components';
+
+const PlayerContent = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
 
 export function SingleTrackPlayer({ track }) {
 
@@ -16,7 +23,7 @@ export function SingleTrackPlayer({ track }) {
 
     return (
         <div>
-            <div>
+            <PlayerContent>
                 <DisplayTrack
                     currentTrack={track}
                     audioRef={audioRef}
@@ -39,7 +46,7 @@ export function SingleTrackPlayer({ track }) {
                     timeProgress={timeProgress}
                     duration={duration}
                 />
-            </div>
+            </PlayerContent>
         </div>
     );
 }

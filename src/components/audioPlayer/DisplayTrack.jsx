@@ -20,7 +20,7 @@ export function DisplayTrack({
                 ref={audioRef}
                 onLoadedMetadata={onLoadedMetadata}
             />
-            <div className="audio-info">
+            {/* <div className="audio-info">
                 <div className="audio-img">
                     {currentTrack.thumbnail ? (
                         <img src={currentTrack.thumbnail} alt="audio avatar" />
@@ -34,7 +34,7 @@ export function DisplayTrack({
                     <p className="title">{currentTrack.title}</p>
                     <p>{currentTrack.author}</p>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
