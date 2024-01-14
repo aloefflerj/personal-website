@@ -11,6 +11,7 @@ import { ProjectPage } from '../pages/projects/ProjectPage';
 import { RoadmapPage } from '../pages/roadmaps/RoadmapPage';
 import { GamesPage } from '../pages/games/GamesPage';
 import { MarkdownPathType } from '../common/MarkdownPathType';
+import { SongPage } from '../pages/songs/SongPage';
 
 export function Router() {
     return (
@@ -67,28 +68,28 @@ export function Router() {
                     </Route>
                 </Route>
                 <Route path="music" element={<MusicPage />}>
-                <Route
-                        path="projects"
-                        element={
-                            <SubcategoriesPage category={Music} page="projects" />
-                        }
-                >
                     <Route
-                        path=":link"
-                        element={<ProjectPage category={Music} markdownPathType={MarkdownPathType.internal}/>}
-                    />
-                </Route>
-                <Route
-                        path="songs"
-                        element={
-                            <SubcategoriesPage category={Music} page="songs" />
-                        }
-                >
+                            path="projects"
+                            element={
+                                <SubcategoriesPage category={Music} page="projects" />
+                            }
+                    >
+                        <Route
+                            path=":link"
+                            element={<ProjectPage category={Music} markdownPathType={MarkdownPathType.internal}/>}
+                        />
+                    </Route>
                     <Route
-                        path=":link"
-                        element={<ProjectPage category={Music} markdownPathType={MarkdownPathType.internal}/>}
-                    />
-                </Route>
+                            path="songs"
+                            element={
+                                <SubcategoriesPage category={Music} page="songs" />
+                            }
+                    >
+                        <Route
+                            path=":link"
+                            element={<SongPage category={Music} markdownPathType={MarkdownPathType.internal}/>}
+                        />
+                    </Route>
                 </Route>
                 <Route path="worldbuilding" element={<WorldbuildingPage />} >
                     <Route

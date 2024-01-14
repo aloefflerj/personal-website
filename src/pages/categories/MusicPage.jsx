@@ -32,12 +32,12 @@ export function MusicPage() {
                 <SidebarOption to="roadmaps" category={Music}>
                     Roadmaps
                 </SidebarOption>
-                <SidebarOption to="clips" category={Music}>
+                {/* <SidebarOption to="clips" category={Music}>
                     Clips
-                </SidebarOption>
-                <SidebarOption to="fave-albums" category={Music}>
+                </SidebarOption> */}
+                {/* <SidebarOption to="fave-albums" category={Music}>
                     Fave Albums
-                </SidebarOption>
+                </SidebarOption> */}
             </Sidebar>
             <CategoryContent category={Music}>
                 <Outlet />

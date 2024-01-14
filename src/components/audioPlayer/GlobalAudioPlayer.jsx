@@ -10,7 +10,6 @@ export function GlobalAudioPlayer() {
 
     useEffect(() => {
         fetchSubcategory('songs').then((foundTracks) => {
-            console.log(tracks);
             setTracks(foundTracks);
         });
     }, []);

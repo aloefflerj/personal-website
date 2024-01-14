@@ -42,7 +42,7 @@ const Subtitle = styled.p`
 `;
 
 
-export function SubcategoryItem({ to, title, subtitle, category, songPath = null, contentType }) {
+export function SubcategoryItem({ to, title, subtitle, category, contentType }) {
     const FolderItem = (
         <SubcategoryLink to={to}>
             <SubcategoryFolderWrapper>

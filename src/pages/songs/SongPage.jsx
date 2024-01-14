@@ -7,14 +7,14 @@ import _ from 'lodash';
 import { MarkdownDynamicContent } from '../../components/markdown/MarkdownDynamicContent';
 import { SubcategoryType } from '../../common/SubcategoryType';
 
-const ProjectContent = styled.div`
+const SongContent = styled.div`
     color: ${(props) => props.$category.lightColor};
 `;
 
-export function ProjectPage({ category, markdownPathType }) {
+export function SongPage({ category, markdownPathType }) {
     const { link } = useParams();
     const { fetchSubcategoryItemByLink } = useCategoryDB(category);
-    const [projectJsonData, setProjectJsonData] = useState({});
+    const [songJsonData, setSongJsonData] = useState({});
 
     useEffect(() => {
         fetchProject();
@@ -22,25 +22,25 @@ export function ProjectPage({ category, markdownPathType }) {
 
     const fetchProject = () => {
         if (link !== undefined || link !== null) {
-            return fetchSubcategoryItemByLink(SubcategoryType.projects, link).then(
-                (projectData) => setProjectJsonData(projectData)
+            return fetchSubcategoryItemByLink(SubcategoryType.songs, link).then(
+                (songData) => setSongJsonData(songData)
             );
         }
     }
 
     return (
-        <ProjectContent $category={category}>
+        <SongContent $category={category}>
             <MarkdownDynamicContent
-                dbJsonData={projectJsonData}
-                subcategory={'projects'}
+                dbJsonData={songJsonData}
+                subcategory={'songs'}
                 category={category}
                 link={link}
                 markdownPathType={markdownPathType}
             />
-        </ProjectContent>
+        </SongContent>
     );
 }
 
-ProjectPage.propTypes = {
+SongPage.propTypes = {
     category: PropTypes.object,
 };

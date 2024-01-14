@@ -11,6 +11,7 @@ import ReactMarkdown from "react-markdown";
 import { If } from "../../components/If";
 import { Spinner } from "../../components/Spinner";
 import rehypeRaw from "rehype-raw";
+import _ from "lodash";
 
 const MarkdownSection = styled(ReactMarkdown)`
     padding: 30px 60px;
@@ -83,7 +84,9 @@ export function MarkdownDynamicContent({
     
     const fetchMarkdownContent = async () => {
         setLoading(true);
-        if (validDbJsonData(dbJsonData)) {
+        if (!validDbJsonData(dbJsonData)) {
+            setMarkdownContent("### :ghost: Nothing to see here");
+        } else {
             const contentPath = getMarkdownContentPath(dbJsonData.contentPath);
             const markdownContent = await fetchByMethod(contentPath);
 
@@ -123,8 +126,8 @@ export function MarkdownDynamicContent({
     }
 
     const validDbJsonData = (dbJsonData) => {
-        return dbJsonData !== null ||
-        dbJsonData !== undefined ||
+        return dbJsonData !== null &&
+        dbJsonData !== undefined &&
         !_.isEmpty(dbJsonData);
     }
 
