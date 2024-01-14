@@ -78,11 +78,12 @@ export function BackgroundSwiper({ imageFolderPath }) {
 
     return (
         <Swiper
+            loop
+            onRealIndexChange={({ realIndex }) =>
+                updateCategoryContext(reindexedCategoriesKeys[realIndex])
+            }
             spaceBetween={0}
             slidesPerView={1}
-            onSlideChange={({ activeIndex }) =>
-                updateCategoryContext(reindexedCategoriesKeys[activeIndex])
-            }
         >
             {listCategoriesImages}
         </Swiper>
