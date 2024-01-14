@@ -18,7 +18,7 @@ export function GamePage() {
     }
 
     return (
-        <CategoryPage title={Game.title}>
+        <CategoryPage>
             <Sidebar category={category}>
                 <PixelCharContent >
                     <PixelCharImage src={charImg} />

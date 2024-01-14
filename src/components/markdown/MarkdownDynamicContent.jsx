@@ -12,6 +12,7 @@ import { If } from "../../components/If";
 import { Spinner } from "../../components/Spinner";
 import rehypeRaw from "rehype-raw";
 import _ from "lodash";
+import { MarkdownImage } from "../markdownimage/MarkdownImage";
 
 const MarkdownSection = styled(ReactMarkdown)`
     padding: 30px 60px;
@@ -137,7 +138,7 @@ export function MarkdownDynamicContent({
                 remarkPlugins={[emojiPlugin]}
                 rehypePlugins={[rehypeRaw]}
                 $category={category}
-                components={{ code: CodeBlock }}
+                components={{ code: CodeBlock, img: MarkdownImage }}
                 linkTarget={'_blank'}
             >
                 {markdownContent}

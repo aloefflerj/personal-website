@@ -6,12 +6,14 @@ import { MusicPage } from '../pages/categories/MusicPage';
 import { WorldbuildingPage } from '../pages/categories/WorldbuildingPage';
 import { Home } from '../pages/Home';
 import { SubcategoriesPage } from '../pages/subcategories/SubcategoriesPage';
-import { Code, Game, Music, Worldbuilding } from '../categories/Categories';
+import { Code, Drawings, Game, Music, Worldbuilding } from '../categories/Categories';
 import { ProjectPage } from '../pages/projects/ProjectPage';
 import { RoadmapPage } from '../pages/roadmaps/RoadmapPage';
 import { GamesPage } from '../pages/games/GamesPage';
 import { MarkdownPathType } from '../common/MarkdownPathType';
 import { SongPage } from '../pages/songs/SongPage';
+import { DigitalPaintingPage } from '../pages/digital-painting/DigitalPaintingPage';
+import { PixelArtPage } from '../pages/pixel-art/PixelArtPage';
 
 export function Router() {
     return (
@@ -42,7 +44,30 @@ export function Router() {
                         />
                     </Route>
                 </Route>
-                <Route path="drawings" element={<DrawingsPage />} />
+                <Route path="drawings" element={<DrawingsPage />}>
+                    <Route
+                        path="digital"
+                        element={
+                            <SubcategoriesPage category={Drawings} page="digital" />
+                        }
+                    >
+                        <Route
+                            path=":link"
+                            element={<DigitalPaintingPage category={Drawings} markdownPathType={MarkdownPathType.internal} />}
+                        />
+                    </Route>
+                    <Route
+                        path="pixel"
+                        element={
+                            <SubcategoriesPage category={Drawings} page="pixel" />
+                        }
+                    >
+                        <Route
+                            path=":link"
+                            element={<PixelArtPage category={Drawings} markdownPathType={MarkdownPathType.internal} />}
+                        />
+                    </Route>
+                </Route>
                 <Route path="game" element={<GamePage />}>
                     <Route
                         path="projects"

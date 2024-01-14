@@ -3,4 +3,6 @@ export const SubcategoryType = {
     roadmaps: 'roadmaps',
     games: 'games',
     songs: 'songs',
+    digital: 'digital-painting',
+    pixel: 'pixel-art',
 };

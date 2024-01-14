@@ -8,6 +8,7 @@ import { PixelCharContent } from '../../components/pixel/PixelCharContent';
 
 import charImg from '/assets/img/guys/drawings-guy.png';
 import { PixelCharImage } from '../../components/pixel/PixelCharImage';
+import { Outlet } from 'react-router-dom';
 
 export function DrawingsPage() {
     const { category, setCategory } = useCategoryContext();
@@ -17,17 +18,21 @@ export function DrawingsPage() {
     }
 
     return (
-        <CategoryPage title={Drawings.title}>
+        <CategoryPage>
             <Sidebar category={category}>
                 <PixelCharContent >
                     <PixelCharImage src={charImg} />
                 </PixelCharContent>
-                <SidebarOption category={Drawings}>Projects</SidebarOption>
-                <SidebarOption category={Drawings}>Roadmap</SidebarOption>
-                <SidebarOption category={Drawings}>Blog</SidebarOption>
-                <SidebarOption category={Drawings}>App&apos;s</SidebarOption>
+                <SidebarOption to="digital" category={Drawings}>
+                    Digital
+                </SidebarOption>
+                <SidebarOption to="pixel" category={Drawings}>
+                    Pixel Art
+                </SidebarOption>
             </Sidebar>
-            <CategoryContent category={Drawings} />
+            <CategoryContent category={Drawings}>
+                <Outlet />
+            </CategoryContent>
         </CategoryPage>
     );
 }
