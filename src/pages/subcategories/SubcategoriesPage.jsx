@@ -8,6 +8,7 @@ import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem.
 import { If } from '../../components/If.jsx';
 import { Track } from '../../model/Track.js';
 import { SingleTrackPlayer } from '../../components/audioPlayer/SingleTrackPlayer.jsx';
+import { useStringHelper } from '../../hooks/useStringHelper.jsx';
 
 const SubcategoriesList = styled.div`
     padding: 32px;
@@ -41,6 +42,7 @@ export function SubcategoriesPage({ category, page }) {
     const [subcategoriesItems, setSubcategoriesItems] = useState([]);
     const outlet = useOutlet();
     const outletParam = useParams();
+    const { capitalizeFirstLetter } = useStringHelper();
 
     useEffect(() => {
         fetchSubcategory(SubcategoryType[page]).then((subcategoriesItems) => {
@@ -81,7 +83,7 @@ export function SubcategoriesPage({ category, page }) {
     };
 
     const title = outlet ? outletParam.link : page;
-    const formattedTitle = title.charAt(0).toUpperCase() + title.slice(1);
+    const formattedTitle = capitalizeFirstLetter(title);
 
     const content = outlet ? outlet : listFolders();
     const wrappedContent = outlet ? (
