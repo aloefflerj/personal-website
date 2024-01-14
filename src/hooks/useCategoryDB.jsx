@@ -6,7 +6,7 @@ export const useCategoryDB = (category) => {
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
-                }
+                },
             }
         ) => {
             const folderPath = `/db/${category.categoryKey}/${subcategory}/${subcategory}.json`;
@@ -21,7 +21,7 @@ export const useCategoryDB = (category) => {
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
-                }
+                },
             }
         ) => {
             const folderPath = `/db/${category.categoryKey}/${subcategory}/${subcategory}.json`;

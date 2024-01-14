@@ -28,12 +28,12 @@ export function CustomTimelineElement({
                 boxShadow: 'none',
                 border: `3px solid ${category.lightColor}`,
                 padding: '12px',
-                cursor: 'pointer'
+                cursor: 'pointer',
             }}
             contentArrowStyle={{
                 borderRight: `10px solid ${category.lightColor}`,
             }}
-            dateClassName='timeline-date'
+            dateClassName="timeline-date"
             iconStyle={{
                 background: category.bgColor,
                 color: category.lightColor,
@@ -44,7 +44,7 @@ export function CustomTimelineElement({
             style={{
                 display: 'flex',
                 justifyContent: 'flex-start',
-                alignItems: 'flex-start'
+                alignItems: 'flex-start',
             }}
             onTimelineElementClick={onTimelineElementClick}
         >

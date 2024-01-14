@@ -7,10 +7,13 @@ import styled from 'styled-components';
 
 const Link = styled(NavLink)`
     text-decoration: none;
+    a:visited {
+        ${(props) => props.$category.darkerColor}
+    }
 `;
 export function CategoryNavLinkItem({ category, button = null }) {
     return (
-        <Link to={category.categoryKey}>
+        <Link to={category.categoryKey} $category={category}>
             <If is={button === null}>
                 <CategoryOption buttonCategory={category}>
                     {category.title}

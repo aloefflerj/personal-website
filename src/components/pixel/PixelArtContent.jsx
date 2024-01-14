@@ -68,9 +68,7 @@ export function PixelArtContent({ children }) {
                 {children}
             </PixelArtMain>
             <PixelArtPhone>
-                <BackgroundSwiper
-                    imageFolderPath={phoneImgFolderPath}
-                />
+                <BackgroundSwiper imageFolderPath={phoneImgFolderPath} />
             </PixelArtPhone>
         </>
     );
