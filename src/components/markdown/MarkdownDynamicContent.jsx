@@ -150,7 +150,7 @@ export function MarkdownDynamicContent({
     </>);
 }
 
-MarkdownDynamicContent.prototype = {
+MarkdownDynamicContent.propTypes = {
     dbJsonData: PropTypes.object,
     subcategory: PropTypes.string,
     category: PropTypes.object,

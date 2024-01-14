@@ -29,7 +29,7 @@ export function TimelineMarkdownElementContent({ link, hideTimelineSpinnerOnFini
     </div>
 }
 
-TimelineMarkdownElementContent.prototype = {
+TimelineMarkdownElementContent.propTypes = {
     link: PropTypes.string,
     hideTimelineSpinnerOnFinishLoading: PropTypes.func
 }

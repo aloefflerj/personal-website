@@ -8,7 +8,7 @@ import {
 } from '../style/Colors';
 import { CategoriesKeys } from './CategoriesKeys';
 
-class Category {
+export class Category {
     constructor(
         categoryKey,
         title,

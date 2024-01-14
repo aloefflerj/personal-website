@@ -68,15 +68,9 @@ export function PixelArtContent({ children }) {
                 {children}
             </PixelArtMain>
             <PixelArtPhone>
-                {/* <BackgroundLazyLoad
-                    src={`${phoneImgFolderPath}/${category.img}`}
-                    border={category.darkerColor}
-                    loadingComponent={<Spinner color={category.darkerColor} />}
-                /> */}
                 <BackgroundSwiper
                     imageFolderPath={phoneImgFolderPath}
                 />
-                {children}
             </PixelArtPhone>
         </>
     );

@@ -9,6 +9,7 @@ import { PixelButton } from '../../elements/buttons/PixelButton';
 import { If } from '../If';
 import { useStringHelper } from '../../hooks/useStringHelper';
 import { SwipeIcon } from '../../icons/SwipeIcon';
+import { CategoryNavLinkItem } from '../categories/CategoryNavlinkItem';
 
 const Slide = styled(SwiperSlide)`
     position: relative;
@@ -67,9 +68,14 @@ export function BackgroundSwiper({ imageFolderPath }) {
                 alt={`vertical-${key}-environment`}
             />
             <If is={category.categoryKey !== CategoriesKeys.blank}>
-                <SlideButton $category={category}>
-                    {capitalizeFirstLetter(category.categoryKey)}
-                </SlideButton>
+                <CategoryNavLinkItem
+                    category={category}
+                    button={
+                        <SlideButton $category={category}>
+                            {capitalizeFirstLetter(category.categoryKey)}
+                        </SlideButton>
+                    }
+                />
             </If>
         </Slide>
     ));

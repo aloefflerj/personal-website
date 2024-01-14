@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import {
     Code,
     Drawings,
@@ -6,45 +5,25 @@ import {
     Music,
     Worldbuilding,
 } from '../../categories/Categories';
-import { CategoryOption } from './CategoryOption';
+import { CategoryNavLinkItem } from './CategoryNavlinkItem';
 
 export function CategoryNavLinks() {
     return (
         <ul>
             <li>
-                <NavLink to={Code.categoryKey}>
-                    <CategoryOption buttonCategory={Code}>
-                        {Code.title}
-                    </CategoryOption>
-                </NavLink>
+                <CategoryNavLinkItem category={Code} />
             </li>
             <li>
-                <NavLink to={Drawings.categoryKey}>
-                    <CategoryOption buttonCategory={Drawings}>
-                        {Drawings.title}
-                    </CategoryOption>
-                </NavLink>
+                <CategoryNavLinkItem category={Drawings} />
             </li>
             <li>
-                <NavLink to={Game.categoryKey}>
-                    <CategoryOption buttonCategory={Game}>
-                        {Game.title}
-                    </CategoryOption>
-                </NavLink>
+                <CategoryNavLinkItem category={Game} />
             </li>
             <li>
-                <NavLink to={Music.categoryKey}>
-                    <CategoryOption buttonCategory={Music}>
-                        {Music.title}
-                    </CategoryOption>
-                </NavLink>
+                <CategoryNavLinkItem category={Music} />
             </li>
             <li>
-                <NavLink to={Worldbuilding.categoryKey}>
-                    <CategoryOption buttonCategory={Worldbuilding}>
-                        {Worldbuilding.title}
-                    </CategoryOption>
-                </NavLink>
+                <CategoryNavLinkItem category={Worldbuilding} />
             </li>
         </ul>
     );
