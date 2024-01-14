@@ -42,6 +42,7 @@ const SlideButton = styled(PixelButton)`
     z-index: 10000;
     font-family: var(--default-font);
     font-size: 24px;
+    color: ${(props) => props.$category.darkerColor};
 `;
 
 export function BackgroundSwiper({ imageFolderPath }) {
