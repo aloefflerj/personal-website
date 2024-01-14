@@ -1,6 +1,6 @@
 ## Bunny Crash Delivery
 
-Fart Buster was a game developed for the ludum dare 53.
+Bunny Crash Delivery was a game developed for the ludum dare 53.
 
 [Link to the Game Page](https://aloeffler.itch.io/bunny-crash-delivery)
 
