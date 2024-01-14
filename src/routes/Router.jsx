@@ -126,6 +126,17 @@ export function Router() {
                             element={<SongPage category={Music} markdownPathType={MarkdownPathType.internal}/>}
                         />
                     </Route>
+                    <Route
+                        path="roadmaps"
+                        element={
+                            <SubcategoriesPage category={Music} page="roadmaps" />
+                        }
+                    >
+                        <Route
+                            path=":link"
+                            element={<RoadmapPage category={Music} markdownPathType={MarkdownPathType.internal} />}
+                        />
+                    </Route>
                 </Route>
                 <Route path="worldbuilding" element={<WorldbuildingPage />} >
                     <Route

@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "title": "Music Theory",
+        "link": "theory",
+        "contentType": "folder",
+        "timeline": [
+            {
+                "id": 1,
+                "title": "Concert Pitch",
+                "icon": "Home Icon.jsx",
+                "link": "concert-pitch.md",
+                "url-key": "concert-pitch"
+            }
+        ]
+    }
+]
