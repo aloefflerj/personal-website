@@ -3,6 +3,8 @@ import { useRequest } from '../../hooks/useRequest';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import emojiPlugin from 'remark-emoji';
+import { MarkdownImage } from '../markdownimage/MarkdownImage';
 
 export function TimelineMarkdownElementContent({ link, hideTimelineSpinnerOnFinishLoading }) {
     const { fetchUrl } = useRequest();
@@ -17,7 +19,11 @@ export function TimelineMarkdownElementContent({ link, hideTimelineSpinnerOnFini
     }, []);
 
     return <div>
-        <ReactMarkdown linkTarget={'_blank'} >
+        <ReactMarkdown
+            remarkPlugins={[emojiPlugin]}
+            linkTarget={'_blank'}
+            components={{ img: MarkdownImage }}
+        >
             {content}
         </ReactMarkdown>
     </div>

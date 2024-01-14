@@ -23,7 +23,7 @@ const TimelineMarkdownElementContentWrapper = styled.span`
     }
 `;
 
-export function RoadmapPage({ category, markdownPathType }) {
+export function RoadmapPage({ category, markdownPathType, journalStyle = false }) {
     const { fetchSubcategoryItemByLink } = useCategoryDB(category);
     const [timeline, setTimeline] = useState([]);
     const { link } = useParams();
@@ -32,14 +32,15 @@ export function RoadmapPage({ category, markdownPathType }) {
     const { getExternalGithubPath, getInternalPath } = useMarkdownPath();
 
     useEffect(() => {
-        fetchSubcategoryItemByLink(SubcategoryType.roadmaps, link).then((roadmap) => {
+        // TODO: refactor subcategory link
+        fetchSubcategoryItemByLink(journalStyle ? SubcategoryType.journal : SubcategoryType.roadmaps, link).then((roadmap) => {
             setTimeline(roadmap.timeline);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const getMarkdownContentPath = (subcategoryItemContentLink) => {
-        const subcategory = 'roadmaps';
+        const subcategory = journalStyle ? SubcategoryType.journal : SubcategoryType.roadmaps;
         const subcategoryItem = link;
         
         switch (markdownPathType) {

@@ -5,4 +5,5 @@ export const SubcategoryType = {
     songs: 'songs',
     digital: 'digital-painting',
     pixel: 'pixel-art',
+    journal: 'journal',
 };

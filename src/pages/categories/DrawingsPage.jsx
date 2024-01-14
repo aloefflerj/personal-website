@@ -29,6 +29,9 @@ export function DrawingsPage() {
                 <SidebarOption to="pixel" category={Drawings}>
                     Pixel Art
                 </SidebarOption>
+                <SidebarOption to="journal" category={Drawings}>
+                    Journal
+                </SidebarOption>
             </Sidebar>
             <CategoryContent category={Drawings}>
                 <Outlet />

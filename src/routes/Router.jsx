@@ -67,6 +67,17 @@ export function Router() {
                             element={<PixelArtPage category={Drawings} markdownPathType={MarkdownPathType.internal} />}
                         />
                     </Route>
+                    <Route
+                        path="journal"
+                        element={
+                            <SubcategoriesPage category={Drawings} page="journal" />
+                        }
+                    >
+                        <Route
+                            path=":link"
+                            element={<RoadmapPage category={Drawings} markdownPathType={MarkdownPathType.internal} journalStyle={true} />}
+                        />
+                    </Route>
                 </Route>
                 <Route path="game" element={<GamePage />}>
                     <Route
