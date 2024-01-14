@@ -13,12 +13,14 @@ import { CategoryNavLinkItem } from '../categories/CategoryNavLinkItem';
 
 const SlideTip = styled.span`
     position: absolute;
+    padding: 8px 0;
     top: 40px;
     left: calc(50% - 64px);
     width: 128px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: ${(props) => props.$category.lightColor}80;
 
     p {
         margin: 0;
@@ -33,7 +35,7 @@ const SlideImage = styled.img`
 
 const SlideButton = styled(PixelButton)`
     position: absolute;
-    bottom: 40px;
+    bottom: 120px;
     left: calc(50% - 64px);
     width: 128px;
     height: 64px;
