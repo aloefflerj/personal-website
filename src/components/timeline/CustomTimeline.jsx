@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 
 export function CustomTimeline({ category, children }) {
     return (
-        <VerticalTimeline
-            lineColor={category.bgColor}
-            layout="1-column-left"
-        >
+        <VerticalTimeline lineColor={category.bgColor} layout="1-column-left">
             {children}
         </VerticalTimeline>
     );

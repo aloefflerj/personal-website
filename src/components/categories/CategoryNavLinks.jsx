@@ -5,7 +5,7 @@ import {
     Music,
     Worldbuilding,
 } from '../../categories/Categories';
-import { CategoryNavLinkItem } from './CategoryNavlinkItem';
+import { CategoryNavLinkItem } from './CategoryNavLinkItem';
 
 export function CategoryNavLinks() {
     return (

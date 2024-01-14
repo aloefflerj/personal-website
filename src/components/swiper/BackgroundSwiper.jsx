@@ -9,11 +9,7 @@ import { PixelButton } from '../../elements/buttons/PixelButton';
 import { If } from '../If';
 import { useStringHelper } from '../../hooks/useStringHelper';
 import { SwipeIcon } from '../../icons/SwipeIcon';
-import { CategoryNavLinkItem } from '../categories/CategoryNavlinkItem';
-
-const Slide = styled(SwiperSlide)`
-    position: relative;
-`;
+import { CategoryNavLinkItem } from '../categories/CategoryNavLinkItem';
 
 const SlideTip = styled.span`
     position: absolute;
@@ -58,7 +54,7 @@ export function BackgroundSwiper({ imageFolderPath }) {
     };
 
     const listCategoriesImages = reindexedCategoriesKeys.map((key, index) => (
-        <Slide key={index}>
+        <SwiperSlide key={index}>
             <SlideTip $category={category}>
                 <p>Swipe</p>
                 <SwipeIcon fillColor={category.darkerColor} />
@@ -77,7 +73,7 @@ export function BackgroundSwiper({ imageFolderPath }) {
                     }
                 />
             </If>
-        </Slide>
+        </SwiperSlide>
     ));
 
     return (

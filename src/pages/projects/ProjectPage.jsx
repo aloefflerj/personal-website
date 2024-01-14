@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useCategoryDB } from '../../hooks/useCategoryDB';
 import { useEffect, useState } from 'react';
-import _ from 'lodash';
 import { MarkdownDynamicContent } from '../../components/markdown/MarkdownDynamicContent';
 import { SubcategoryType } from '../../common/SubcategoryType';
 
@@ -22,11 +21,12 @@ export function ProjectPage({ category, markdownPathType }) {
 
     const fetchProject = () => {
         if (link !== undefined || link !== null) {
-            return fetchSubcategoryItemByLink(SubcategoryType.projects, link).then(
-                (projectData) => setProjectJsonData(projectData)
-            );
+            return fetchSubcategoryItemByLink(
+                SubcategoryType.projects,
+                link
+            ).then((projectData) => setProjectJsonData(projectData));
         }
-    }
+    };
 
     return (
         <ProjectContent $category={category}>
@@ -43,4 +43,5 @@ export function ProjectPage({ category, markdownPathType }) {
 
 ProjectPage.propTypes = {
     category: PropTypes.object,
+    markdownPathType: PropTypes.string,
 };
