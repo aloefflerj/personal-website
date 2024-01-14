@@ -5,7 +5,6 @@ import { Category } from '../../categories/Categories';
 import { If } from '../If';
 
 export function CategoryNavLinkItem({ category, button = null }) {
-    console.log(button)
     return (
         <NavLink to={category.categoryKey}>
             <If is={button === null}>
