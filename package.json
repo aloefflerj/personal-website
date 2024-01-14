@@ -25,6 +25,7 @@
         "rehype-raw": "^7.0.0",
         "remark-emoji": "^4.0.0",
         "styled-components": "^6.0.7",
+        "swiper": "^11.0.5",
         "use-react-router-breadcrumbs": "^4.0.1",
         "vite-plugin-mdx": "^3.6.0"
     },
