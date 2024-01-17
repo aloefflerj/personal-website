@@ -87,6 +87,7 @@ export function BackgroundSwiper({ imageFolderPath }) {
             }
             spaceBetween={0}
             slidesPerView={1}
+            initialSlide={reindexedCategoriesKeys.indexOf(category.categoryKey)}
         >
             {listCategoriesImages}
         </Swiper>
