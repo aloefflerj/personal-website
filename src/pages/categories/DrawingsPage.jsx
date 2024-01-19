@@ -20,7 +20,7 @@ export function DrawingsPage() {
     return (
         <CategoryPage>
             <Sidebar category={category}>
-                <PixelCharContent >
+                <PixelCharContent>
                     <PixelCharImage src={charImg} />
                 </PixelCharContent>
                 <SidebarOption to="digital" category={Drawings}>

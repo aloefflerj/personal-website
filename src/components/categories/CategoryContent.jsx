@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Breadcrumbs } from '../Breadcrumbs';
+import { RetractButton } from '../../elements/sidebar/RectractButton';
 
 const Content = styled.main`
     grid-area: main;
@@ -9,10 +10,25 @@ const Content = styled.main`
     background-color: ${(props) => props.$bgColor};
 `;
 
+const Header = styled.header`
+    display: flex;
+    padding: 12px 0 0 12px;
+
+    @media screen and (max-width: 640px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: 'main';
+        gap: 0px;
+    }
+`;
+
 export function CategoryContent({ category, children }) {
     return (
         <Content $bgColor={category.bgColor}>
-            <Breadcrumbs category={category} />
+            <Header>
+                <RetractButton />
+                <Breadcrumbs category={category} />
+            </Header>
             {children}
         </Content>
     );

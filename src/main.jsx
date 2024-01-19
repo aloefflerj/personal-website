@@ -4,13 +4,16 @@ import App from './App.jsx';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { CategoryProvider } from './contexts/CategoryContext.jsx';
+import { SidebarProvider } from './contexts/SidebarContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <CategoryProvider>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
+            <SidebarProvider>
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            </SidebarProvider>
         </CategoryProvider>
     </React.StrictMode>
 );

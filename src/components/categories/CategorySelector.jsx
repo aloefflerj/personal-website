@@ -12,12 +12,6 @@ const Selector = styled.aside`
     }
 `;
 
-const CarouselSelector = styled.aside`
-    @media screen and (max-width: 640px) {
-        display: block;
-    }
-`;
-
 export function CategorySelector() {
     return (
         <Selector>
