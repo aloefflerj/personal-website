@@ -6,10 +6,10 @@ import { Option } from '../../style/Option';
 
 const Button = styled(Option)`
     display: block;
-    max-width: 32px ;
-    max-height: 32px;
+    max-width: 40px ;
+    max-height: 40px;
     font-size: 0px;
-    padding: 6px;
+    padding: 2px;
 `;
 
 const HiddenButton = styled(Option)`

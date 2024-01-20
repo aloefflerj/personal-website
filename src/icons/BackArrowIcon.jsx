@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export function HamburgerIcon({ fillColor, width = 32, height = 32 }) {
+export function BackArrowIcon({ fillColor, width = 32, height = 32 }) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -12,13 +12,13 @@ export function HamburgerIcon({ fillColor, width = 32, height = 32 }) {
         >
             <path
                 stroke={fillColor}
-                d="M1 2h10M1 3h10M1 5h10M1 6h10M1 8h10M1 9h10"
+                d="M6 1h4M6 2h4M4 3h2M4 4h2M2 5h2M2 6h2M4 7h2M4 8h2M6 9h4M6 10h4"
             />
         </svg>
     );
 }
 
-HamburgerIcon.propTypes = {
+BackArrowIcon.propTypes = {
     fill: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,

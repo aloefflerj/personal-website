@@ -2,6 +2,9 @@ import { styled } from 'styled-components';
 import PropTypes from 'prop-types';
 import { useSidebarContext } from '../../hooks/useSidebarContext';
 import { If } from '../../components/If';
+import { Option } from '../../style/Option';
+import { HamburgerIcon } from '../../icons/HamburgerIcon';
+import { BackArrowIcon } from '../../icons/BackArrowIcon';
 
 const Bar = styled.aside`
     grid-area: sidebar;
@@ -47,12 +50,23 @@ const RetractedBar = styled.aside`
     display: none;
 `;
 
+const ReatractSidebarButton = styled(Option)`
+    max-height: 32px;
+    font-size: 0px;
+    margin-top: 12px;
+    padding: 4px 0;
+    display: flex;
+    justify-content: center;
+`;
+
 export function Sidebar({ children, category }) {
     const { retracted, setRetracted } = useSidebarContext();
 
     const barContent = (
         <>
-            <button onClick={() => setRetracted(!retracted)}>click</button>
+            <ReatractSidebarButton onClick={() => setRetracted(!retracted)} $category={category}>
+                <BackArrowIcon fillColor={category.lightColor} width={24} height={24}/>
+            </ReatractSidebarButton>
             {children}
         </>
     );

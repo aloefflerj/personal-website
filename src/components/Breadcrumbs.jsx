@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const BreadcrumbWrapper = styled.div`
     display: flex;
-    padding: 16px;
+    padding: 16px 16px 16px 0;
     align-items: center;
     margin-left: 18px;
     gap: 6px;
