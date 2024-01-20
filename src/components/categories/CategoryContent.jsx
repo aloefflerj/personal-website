@@ -13,6 +13,7 @@ const Content = styled.main`
 const Header = styled.header`
     display: flex;
     padding: 12px 0 0 12px;
+    align-items: center;
 
     @media screen and (max-width: 640px) {
         grid-template-columns: 1fr;

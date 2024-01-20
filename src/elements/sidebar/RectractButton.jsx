@@ -1,24 +1,36 @@
 import { styled } from 'styled-components';
 import { useSidebarContext } from '../../hooks/useSidebarContext';
+import { useCategoryContext } from '../../hooks/useCategoryContext';
+import { HamburgerIcon } from '../../icons/HamburgerIcon';
+import { Option } from '../../style/Option';
 
-const Button = styled.button`
+const Button = styled(Option)`
     display: block;
+    max-width: 32px ;
+    max-height: 32px;
+    font-size: 0px;
+    padding: 6px;
 `;
 
-const HiddenButton = styled.button`
+const HiddenButton = styled(Option)`
     display: none;
 `;
 
 export function RetractButton() {
     const { retracted, setRetracted } = useSidebarContext();
+    const { category } = useCategoryContext();
 
     const retractSidebar = () => setRetracted(!retracted);
 
     const displayRetractButton = () =>
         retracted ? (
-            <Button onClick={() => retractSidebar()}>...</Button>
+            <Button onClick={() => retractSidebar()} $category={category}>
+                <HamburgerIcon fillColor={category.lightColor} />
+            </Button>
         ) : (
-            <HiddenButton onClick={() => retractSidebar()}>...</HiddenButton>
+            <HiddenButton onClick={() => retractSidebar()} $category={category}>
+                <HamburgerIcon fillColor={category.lightColor} />
+            </HiddenButton>
         );
 
     return displayRetractButton();
