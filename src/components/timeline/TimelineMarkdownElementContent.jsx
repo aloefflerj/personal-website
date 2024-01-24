@@ -1,35 +1,48 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { useRequest } from '../../hooks/useRequest';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
 import emojiPlugin from 'remark-emoji';
 import { MarkdownImage } from '../markdownimage/MarkdownImage';
+import CodeBlock from '../codeblock/CodeBlock';
+import rehypeRaw from 'rehype-raw';
+import { MarkdownSection } from '../markdown/MarkdownSection';
+import { useCategoryContext } from '../../hooks/useCategoryContext';
 
-export function TimelineMarkdownElementContent({ link, hideTimelineSpinnerOnFinishLoading }) {
+export function TimelineMarkdownElementContent({
+    link,
+    hideTimelineSpinnerOnFinishLoading,
+}) {
     const { fetchUrl } = useRequest();
     const [content, setContent] = useState();
+    const { category } = useCategoryContext();
 
     useEffect(() => {
-        fetchUrl(link, {}, 'text').then((timelineRequestContent) => {
-            setContent(timelineRequestContent);
-        }).finally(() => {
-            hideTimelineSpinnerOnFinishLoading();
-        })
+        fetchUrl(link, {}, 'text')
+            .then((timelineRequestContent) => {
+                setContent(timelineRequestContent);
+            })
+            .finally(() => {
+                hideTimelineSpinnerOnFinishLoading();
+            });
     }, []);
 
-    return <div>
-        <ReactMarkdown
-            remarkPlugins={[emojiPlugin]}
-            linkTarget={'_blank'}
-            components={{ img: MarkdownImage }}
-        >
-            {content}
-        </ReactMarkdown>
-    </div>
+    return (
+        <div>
+            <MarkdownSection
+                remarkPlugins={[emojiPlugin]}
+                rehypePlugins={[rehypeRaw]}
+                linkTarget={'_blank'}
+                $category={category}
+                components={{ code: CodeBlock, img: MarkdownImage }}
+            >
+                {content}
+            </MarkdownSection>
+        </div>
+    );
 }
 
 TimelineMarkdownElementContent.propTypes = {
     link: PropTypes.string,
-    hideTimelineSpinnerOnFinishLoading: PropTypes.func
-}
+    hideTimelineSpinnerOnFinishLoading: PropTypes.func,
+};
