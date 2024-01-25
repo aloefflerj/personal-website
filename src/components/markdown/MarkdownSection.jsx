@@ -25,15 +25,20 @@ export const MarkdownSection = styled(ReactMarkdown)`
     }
 
     img {
-        border: 3px solid ${(props) => props.$category.lightColor};
+        /* border: 3px solid ${(props) => props.$category.lightColor}; */
         padding: 6px;
-        background-color: ${(props) => props.$category.darkerColor};
+        background-color: ${(props) => props.$category.bgColor};
         padding: 12px 12px;
     }
 
     ul {
         margin-left: 36px;
         list-style-type: square;
+    }
+    
+    li {
+        list-style-type: square;
+        margin-top: 12px;
     }
 
     hr {
