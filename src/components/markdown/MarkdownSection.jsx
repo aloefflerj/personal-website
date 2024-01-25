@@ -3,6 +3,9 @@ import ReactMarkdown from 'react-markdown';
 
 export const MarkdownSection = styled(ReactMarkdown)`
     padding: 30px 60px;
+    @media screen and (max-width: 640px) {
+        padding: 3px 6px;
+    }
 
     h1 {
         color: ${(props) => props.$category.darkerColor};
