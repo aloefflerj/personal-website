@@ -103,6 +103,7 @@ export function RoadmapPage({
                         onTimelineElementClick={() =>
                             showTimelineElementById(timelineItem.id)
                         }
+                        inFocus={visibleTimelineElement === timelineItem.id}
                     >
                         <TimelineMarkdownElementContentWrapper
                             $category={category}

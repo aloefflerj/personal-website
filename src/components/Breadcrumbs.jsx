@@ -14,6 +14,10 @@ const BreadcrumbWrapper = styled.div`
     a.active {
         color: ${(props) => props.$activeColor};
     }
+
+    @media screen and (max-width: 640px) {
+        overflow: scroll;
+    }
 `;
 
 export function Breadcrumbs({ category }) {
