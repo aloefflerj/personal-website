@@ -16,7 +16,7 @@ const InFocusCustomVerticalTimelineElement = styled(VerticalTimelineElement)`
 
         @media screen and (max-width: 640px) {
         .vertical-timeline-element-content {
-            margin: 0 7% 0 0;
+            margin: 0;
         }
 
         .vertical-timeline-element-icon {
