@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useSidebarContext } from '../../hooks/useSidebarContext';
 import { If } from '../../components/If';
 import { Option } from '../../style/Option';
-import { HamburgerIcon } from '../../icons/HamburgerIcon';
 import { BackArrowIcon } from '../../icons/BackArrowIcon';
 
 const Bar = styled.aside`
@@ -26,6 +25,7 @@ const Bar = styled.aside`
 
     @media screen and (max-width: 640px) {
         width: calc(100vw - 54px);
+        z-index: 1;
     }
 `;
 
