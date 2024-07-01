@@ -38,9 +38,19 @@ export const MarkdownSection = styled(ReactMarkdown)`
         margin-left: 36px;
         list-style-type: square;
     }
+
+    ol {
+        margin-left: 36px;
+        list-style-type: decimal;
+    }
     
-    li {
+    ul > li {
         list-style-type: square;
+        margin-top: 12px;
+    }
+
+    ol > li {
+        list-style-type: decimal;
         margin-top: 12px;
     }
 
