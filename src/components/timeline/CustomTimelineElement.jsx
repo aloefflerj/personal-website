@@ -14,18 +14,25 @@ const InFocusCustomVerticalTimelineElement = styled(VerticalTimelineElement)`
         display: none;
     }
 
-        @media screen and (max-width: 640px) {
-        .vertical-timeline-element-content {
-            margin: 0;
-        }
+    .vertical-timeline-element-content p {
+        font-weight: 300;
+    }
 
-        .vertical-timeline-element-icon {
-            display: none;
-        }
+    @media screen and (max-width: 640px) {
+    .vertical-timeline-element-content {
+        margin: 0;
+    }
 
-        .vertical-timeline-element-content-arrow {
-            display: none;
-        }
+    .vertical-timeline-element-icon {
+        display: none;
+    }
+
+    .vertical-timeline-element-content-arrow {
+        display: none;
+    }
+
+    .vertical-timeline-element-content p {
+        font-size: 30px;
     }
 `;
 
