@@ -20,5 +20,19 @@
                 "url-key": "what-is-http"
             }
         ]
+    }, {
+        "id": 2,
+        "title": "Computer Science",
+        "link": "computer-science",
+        "contentType": "folder",
+        "timeline": [
+            {
+                "id": 1,
+                "title": "Array",
+                "icon": "HomeIcon.jsx",
+                "link": "array.md",
+                "url-key": "array"
+            },
+        ]
     }
 ]
