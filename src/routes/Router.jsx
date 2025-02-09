@@ -243,8 +243,27 @@ export function Router() {
                             }
                         />
                     </Route>
+                    <Route
+                        path="projects"
+                        element={
+                            <SubcategoriesPage
+                                category={Worldbuilding}
+                                page="projects"
+                            />
+                        }
+                    >
+                        <Route
+                            path=":link"
+                            element={
+                                <ProjectPage
+                                    category={Worldbuilding}
+                                    markdownPathType={MarkdownPathType.internal}
+                                />
+                            }
+                        />
+                    </Route>
+                    <Route path="*" element={<h1>not found</h1>} />
                 </Route>
-                <Route path="*" element={<h1>not found</h1>} />
             </Route>
         </Routes>
     );
