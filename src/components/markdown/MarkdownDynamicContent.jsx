@@ -12,6 +12,7 @@ import rehypeRaw from 'rehype-raw';
 import _ from 'lodash';
 import { MarkdownImage } from '../markdownimage/MarkdownImage';
 import { MarkdownSection } from './MarkdownSection';
+import { LinkBlock } from '../linkBlock/LinkBlock';
 
 export function MarkdownDynamicContent({
     dbJsonData,
@@ -101,7 +102,7 @@ export function MarkdownDynamicContent({
                     remarkPlugins={[emojiPlugin]}
                     rehypePlugins={[rehypeRaw]}
                     $category={category}
-                    components={{ code: CodeBlock, img: MarkdownImage }}
+                    components={{ code: CodeBlock, img: MarkdownImage, a: LinkBlock }}
                     linkTarget={'_blank'}
                 >
                     {markdownContent}
