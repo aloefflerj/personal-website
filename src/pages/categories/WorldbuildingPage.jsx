@@ -8,10 +8,14 @@ import { PixelCharContent } from '../../components/pixel/PixelCharContent';
 
 import charImg from '/assets/img/guys/worldbuilding-guy.png';
 import { PixelCharImage } from '../../components/pixel/PixelCharImage';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useOutlet } from 'react-router-dom';
+import { FoldersLayout } from '../folders-layout/FoldersLayout';
+import { SubcategoriesList } from '../subcategories/SubcategoriesPage';
+import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem';
 
 export function WorldbuildingPage() {
     const { category, setCategory } = useCategoryContext();
+    const outlet = useOutlet();
 
     if (category === undefined || category === null || category === Blank) {
         setCategory(Worldbuilding);
@@ -31,7 +35,34 @@ export function WorldbuildingPage() {
                 </SidebarOption>
             </Sidebar>
             <CategoryContent category={Worldbuilding}>
-                <Outlet />
+            {outlet ?
+                    <Outlet /> :
+                    <FoldersLayout
+                        category={Worldbuilding}
+                        title={'Worldbuilding'}
+                    >
+                        <SubcategoriesList
+                            $bgColor={category.darkColor}
+                        >
+                            <SubcategoryItem
+                                id={1}
+                                to='projects'
+                                title='Projects'
+                                key={1}
+                                category={category}
+                                contentType='folder'
+                            />
+                            <SubcategoryItem
+                                id={2}
+                                to='roadmaps'
+                                title='Roadmaps'
+                                key={2}
+                                category={category}
+                                contentType='folder'
+                            />
+                        </SubcategoriesList>
+                    </FoldersLayout>
+                }
             </CategoryContent>
         </CategoryPage>
     );

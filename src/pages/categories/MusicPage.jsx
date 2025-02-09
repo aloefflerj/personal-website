@@ -8,10 +8,14 @@ import { PixelCharContent } from '../../components/pixel/PixelCharContent';
 
 import charImg from '/assets/img/guys/music-guy.png';
 import { PixelCharImage } from '../../components/pixel/PixelCharImage';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useOutlet } from 'react-router-dom';
+import { FoldersLayout } from '../folders-layout/FoldersLayout';
+import { SubcategoriesList } from '../subcategories/SubcategoriesPage';
+import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem';
 
 export function MusicPage() {
     const { category, setCategory } = useCategoryContext();
+    const outlet = useOutlet();
 
     if (category === undefined || category === null || category === Blank) {
         setCategory(Music);
@@ -40,7 +44,42 @@ export function MusicPage() {
                 </SidebarOption> */}
             </Sidebar>
             <CategoryContent category={Music}>
-                <Outlet />
+            {outlet ?
+                    <Outlet /> :
+                    <FoldersLayout
+                        category={Music}
+                        title={'Music'}
+                    >
+                        <SubcategoriesList
+                            $bgColor={category.darkColor}
+                        >
+                            <SubcategoryItem
+                                id={1}
+                                to='projects'
+                                title='Projects'
+                                key={1}
+                                category={category}
+                                contentType='folder'
+                            />
+                            <SubcategoryItem
+                                id={2}
+                                to='songs'
+                                title='Songs'
+                                key={2}
+                                category={category}
+                                contentType='folder'
+                            />
+                            <SubcategoryItem
+                                id={3}
+                                to='roadmaps'
+                                title='Roadmaps'
+                                key={3}
+                                category={category}
+                                contentType='folder'
+                            />
+                        </SubcategoriesList>
+                    </FoldersLayout>
+                }
             </CategoryContent>
         </CategoryPage>
     );

@@ -5,6 +5,14 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { SubcategoryContentType } from '../../common/SubcategoryContentType';
 import { If } from '../If';
+import { SingleTrackPlayer } from '../audioPlayer/SingleTrackPlayer';
+import { Track } from '../../model/Track';
+
+const SubcategoriesItemWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+`;
 
 const SubcategoryFolderWrapper = styled.div`
     display: flex;
@@ -27,6 +35,9 @@ const SubcategorySongWrapper = styled.div`
 `;
 
 const SubcategoryLink = styled(NavLink)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
         filter: brightness(150%);
     }
@@ -42,7 +53,15 @@ const Subtitle = styled.p`
 `;
 
 
-export function SubcategoryItem({ to, title, subtitle, category, contentType }) {
+export function SubcategoryItem({
+    id,
+    to,
+    title,
+    subtitle,
+    category,
+    contentType,
+    songPath = null 
+}) {
     const FolderItem = (
         <SubcategoryLink to={to}>
             <SubcategoryFolderWrapper>
@@ -51,7 +70,7 @@ export function SubcategoryItem({ to, title, subtitle, category, contentType }) 
             </SubcategoryFolderWrapper>
         </SubcategoryLink>
     );
-    
+
     const SongItem = (
         <SubcategoryLink to={to}>
             <SubcategorySongWrapper>
@@ -65,16 +84,39 @@ export function SubcategoryItem({ to, title, subtitle, category, contentType }) 
         </SubcategoryLink>
     );
 
+    let item;
     switch (contentType) {
         case SubcategoryContentType.folder:
-            return FolderItem;
+        default:
+            item = FolderItem;
+            break;
         case SubcategoryContentType.song:
-            return SongItem;
-        default: return FolderItem;
+            item = SongItem;
+            break;
     }
+
+    console.log(contentType);
+
+    return <SubcategoriesItemWrapper id={id}>
+        {item}
+        <If is={songPath !== null && songPath !== undefined}>
+            <SingleTrackPlayer
+                track={
+                    new Track(
+                        id,
+                        `/assets/audio/${songPath}`,
+                        title,
+                        subtitle?.artist,
+                        subtitle?.album
+                    )
+                }
+            />
+        </If>
+    </SubcategoriesItemWrapper>
 }
 
 SubcategoryItem.propTypes = {
+    id: PropTypes.number,
     to: PropTypes.string,
     title: PropTypes.string,
     subtitle: PropTypes.object,

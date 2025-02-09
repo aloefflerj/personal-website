@@ -8,10 +8,14 @@ import { PixelCharContent } from '../../components/pixel/PixelCharContent';
 
 import charImg from '/assets/img/guys/drawings-guy.png';
 import { PixelCharImage } from '../../components/pixel/PixelCharImage';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useOutlet } from 'react-router-dom';
+import { FoldersLayout } from '../folders-layout/FoldersLayout';
+import { SubcategoriesList } from '../subcategories/SubcategoriesPage';
+import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem';
 
 export function DrawingsPage() {
     const { category, setCategory } = useCategoryContext();
+    const outlet = useOutlet();
 
     if (category === undefined || category === null || category === Blank) {
         setCategory(Drawings);
@@ -34,7 +38,42 @@ export function DrawingsPage() {
                 </SidebarOption>
             </Sidebar>
             <CategoryContent category={Drawings}>
-                <Outlet />
+            {outlet ?
+                    <Outlet /> :
+                    <FoldersLayout
+                        category={Drawings}
+                        title={'Drawings'}
+                    >
+                        <SubcategoriesList
+                            $bgColor={category.darkColor}
+                        >
+                            <SubcategoryItem
+                                id={1}
+                                to='digital'
+                                title='Digital'
+                                key={1}
+                                category={category}
+                                contentType='folder'
+                            />
+                            <SubcategoryItem
+                                id={2}
+                                to='pixel'
+                                title='Pixel Art'
+                                key={2}
+                                category={category}
+                                contentType='folder'
+                            />
+                            <SubcategoryItem
+                                id={3}
+                                to='journal'
+                                title='Journal'
+                                key={3}
+                                category={category}
+                                contentType='folder'
+                            />
+                        </SubcategoriesList>
+                    </FoldersLayout>
+                }
             </CategoryContent>
         </CategoryPage>
     );

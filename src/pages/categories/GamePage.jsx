@@ -8,10 +8,14 @@ import { PixelCharContent } from '../../components/pixel/PixelCharContent';
 
 import charImg from '/assets/img/guys/game-guy.png';
 import { PixelCharImage } from '../../components/pixel/PixelCharImage';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useOutlet } from 'react-router-dom';
+import { FoldersLayout } from '../folders-layout/FoldersLayout';
+import { SubcategoriesList } from '../subcategories/SubcategoriesPage';
+import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem';
 
 export function GamePage() {
     const { category, setCategory } = useCategoryContext();
+    const outlet = useOutlet();
 
     if (category === undefined || category === null || category === Blank) {
         setCategory(Game);
@@ -31,7 +35,34 @@ export function GamePage() {
                 </SidebarOption>
             </Sidebar>
             <CategoryContent category={Game}>
-                <Outlet />
+                {outlet ?
+                    <Outlet /> :
+                    <FoldersLayout
+                        category={Game}
+                        title={'Game'}
+                    >
+                        <SubcategoriesList
+                            $bgColor={category.darkColor}
+                        >
+                            <SubcategoryItem
+                                id={1}
+                                to='projects'
+                                title='Projects'
+                                key={1}
+                                category={category}
+                                contentType='folder'
+                            />
+                            <SubcategoryItem
+                                id={2}
+                                to='games'
+                                title='Games'
+                                key={2}
+                                category={category}
+                                contentType='folder'
+                            />
+                        </SubcategoriesList>
+                    </FoldersLayout>
+                }
             </CategoryContent>
         </CategoryPage>
     );

@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { Blank, Code } from '../../categories/Categories';
 import { CategoryPage } from '../CategoryPage';
 import { CategoryContent } from '../../components/categories/CategoryContent';
@@ -8,10 +9,20 @@ import { PixelCharContent } from '../../components/pixel/PixelCharContent';
 
 import charImg from '/assets/img/guys/code-guy.png';
 import { PixelCharImage } from '../../components/pixel/PixelCharImage';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useOutlet } from 'react-router-dom';
+import { FoldersLayout } from '../folders-layout/FoldersLayout';
+import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem';
+import { SubcategoriesList } from '../subcategories/SubcategoriesPage';
+
+const SubcategoriesItemWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+`;
 
 export function CodePage() {
     const { category, setCategory } = useCategoryContext();
+    const outlet = useOutlet();
 
     if (category === undefined || category === null || category === Blank) {
         setCategory(Code);
@@ -30,9 +41,36 @@ export function CodePage() {
                     Roadmaps
                 </SidebarOption>
             </Sidebar>
-            <CategoryContent category={Code}>
-                <Outlet />
+            <CategoryContent category={category}>
+                {outlet ?
+                    <Outlet /> :
+                    <FoldersLayout
+                        category={Code}
+                        title={'Code'}
+                    >
+                        <SubcategoriesList
+                            $bgColor={category.darkColor}
+                        >
+                            <SubcategoryItem
+                                id={1}
+                                to='projects'
+                                title='Projects'
+                                key={1}
+                                category={category}
+                                contentType='folder'
+                            />
+                            <SubcategoryItem
+                                id={2}
+                                to='roadmaps'
+                                title='Roadmaps'
+                                key={2}
+                                category={category}
+                                contentType='folder'
+                            />
+                        </SubcategoriesList>
+                    </FoldersLayout>
+                }
             </CategoryContent>
-        </CategoryPage>
+        </CategoryPage >
     );
 }
