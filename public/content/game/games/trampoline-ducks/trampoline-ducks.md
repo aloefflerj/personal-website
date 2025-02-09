@@ -3,6 +3,7 @@
 Trampoline ducks is a game developed for the [ludum dare 56](https://ldjam.com/events/ludum-dare/56).
 
 [Link to the Ludum Dare](https://ldjam.com/events/ludum-dare/56/trampoline-ducks)
+
 [Link to the Game Page](https://aloeffler.itch.io/trampoline-ducks)
 
 - Art was done by [me](https://github.com/aloefflerj) :)
