@@ -14,6 +14,7 @@ export default function CodeBlock({ className, children, inline }) {
                 language={className ?? 'language-php'}
                 style={CategoryCodeBlockStyle(category, inline)}
             >
+                {children}
             </SyntaxHighlighter>
     );
 }
