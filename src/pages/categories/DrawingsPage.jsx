@@ -12,6 +12,7 @@ import { Outlet, useOutlet } from 'react-router-dom';
 import { FoldersLayout } from '../folders-layout/FoldersLayout';
 import { SubcategoriesList } from '../subcategories/SubcategoriesPage';
 import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem';
+import { useEffect } from 'react';
 
 export function DrawingsPage() {
     const { category, setCategory } = useCategoryContext();
@@ -20,6 +21,12 @@ export function DrawingsPage() {
     if (category === undefined || category === null || category === Blank) {
         setCategory(Drawings);
     }
+
+    useEffect(() => {
+        if (category === undefined || category === null || category === Blank) {
+            setCategory(Code);
+        }
+    }, [category, setCategory]);
 
     return (
         <CategoryPage>

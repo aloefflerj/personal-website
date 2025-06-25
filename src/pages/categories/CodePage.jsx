@@ -13,6 +13,7 @@ import { Outlet, useOutlet } from 'react-router-dom';
 import { FoldersLayout } from '../folders-layout/FoldersLayout';
 import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem';
 import { SubcategoriesList } from '../subcategories/SubcategoriesPage';
+import { useEffect } from 'react';
 
 const SubcategoriesItemWrapper = styled.div`
     display: flex;
@@ -24,9 +25,11 @@ export function CodePage() {
     const { category, setCategory } = useCategoryContext();
     const outlet = useOutlet();
 
-    if (category === undefined || category === null || category === Blank) {
-        setCategory(Code);
-    }
+    useEffect(() => {
+        if (category === undefined || category === null || category === Blank) {
+            setCategory(Code);
+        }
+    }, [category, setCategory]);
 
     return (
         <CategoryPage>
