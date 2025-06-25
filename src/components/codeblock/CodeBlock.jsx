@@ -6,12 +6,13 @@ import { Mermaid } from '../mermaid/Mermaid';
 
 export default function CodeBlock({ className, children, inline }) {
     const { category } = useCategoryContext();
+    const language = className?.replace('language-', '') ?? 'txt';
 
     return (
         className === 'language-mermaid' ?
             <Mermaid chart={children} /> :
             <SyntaxHighlighter
-                language={className ?? 'language-php'}
+                language={language}
                 style={CategoryCodeBlockStyle(category, inline)}
             >
                 {children}
@@ -21,6 +22,6 @@ export default function CodeBlock({ className, children, inline }) {
 
 CodeBlock.propTypes = {
     children: PropTypes.array.isRequired,
-    language: PropTypes.string,
+    className: PropTypes.string,
     inline: PropTypes.bool,
 };

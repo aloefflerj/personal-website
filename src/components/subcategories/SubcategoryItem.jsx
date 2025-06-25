@@ -95,8 +95,6 @@ export function SubcategoryItem({
             break;
     }
 
-    console.log(contentType);
-
     return <SubcategoriesItemWrapper id={id}>
         {item}
         <If is={songPath !== null && songPath !== undefined}>
