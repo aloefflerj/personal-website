@@ -46,7 +46,7 @@ export function CustomTimelineElement({
 }) {
     const elementProperties = {
         key: elementKey,
-        className: "vertical-timeline-element--work",
+        className: 'vertical-timeline-element--work',
         contentStyle: {
             background: category.bgColor,
             color: category.lightColor,
@@ -59,7 +59,7 @@ export function CustomTimelineElement({
         contentArrowStyle: {
             borderRight: `10px solid ${category.lightColor}`,
         },
-        dateClassName: "timeline-date",
+        dateClassName: 'timeline-date',
         iconStyle: {
             background: category.bgColor,
             color: category.lightColor,
@@ -73,18 +73,14 @@ export function CustomTimelineElement({
             alignItems: 'flex-start',
         },
         onTimelineElementClick: onTimelineElementClick,
-    }
+    };
 
     return inFocus ? (
-        <InFocusCustomVerticalTimelineElement
-            {...elementProperties}
-        >
+        <InFocusCustomVerticalTimelineElement {...elementProperties}>
             {children}
         </InFocusCustomVerticalTimelineElement>
     ) : (
-        <CustomVerticalTimelineElement
-            {...elementProperties}
-        >
+        <CustomVerticalTimelineElement {...elementProperties}>
             {children}
         </CustomVerticalTimelineElement>
     );

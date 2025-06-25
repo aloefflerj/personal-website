@@ -39,14 +39,14 @@ export function AudioPlayButton({
     );
 
     return global ? (
-        <GlobalPlayButton onClick={() => togglePlayPause()} $category={category}>
-            {icon}
-        </GlobalPlayButton>
-    ) : (
-        <LocalPlayButton
+        <GlobalPlayButton
             onClick={() => togglePlayPause()}
             $category={category}
         >
+            {icon}
+        </GlobalPlayButton>
+    ) : (
+        <LocalPlayButton onClick={() => togglePlayPause()} $category={category}>
             {icon}
         </LocalPlayButton>
     );

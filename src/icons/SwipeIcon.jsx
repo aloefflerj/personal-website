@@ -3,7 +3,7 @@ export function SwipeIcon({ fillColor, width = '24', heigth = '24' }) {
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 -0.5 24 24"
-            shape-rendering="crispEdges"
+            shapeRendering="crispEdges"
             width={width}
             heigth={heigth}
         >

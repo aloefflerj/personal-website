@@ -36,10 +36,14 @@ const LocalSpinner = styled.div`
 `;
 
 export function Spinner({ color, local = false }) {
-    return local ? <LocalSpinner $bgColor={color} /> : <GlobalSpinner $bgColor={color} />;
+    return local ? (
+        <LocalSpinner $bgColor={color} />
+    ) : (
+        <GlobalSpinner $bgColor={color} />
+    );
 }
 
 Spinner.propTypes = {
     color: PropTypes.string,
-    local: PropTypes.bool
+    local: PropTypes.bool,
 };

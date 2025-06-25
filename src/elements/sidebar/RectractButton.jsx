@@ -6,7 +6,7 @@ import { Option } from '../../style/Option';
 
 const Button = styled(Option)`
     display: block;
-    max-width: 40px ;
+    max-width: 40px;
     max-height: 40px;
     font-size: 0px;
     padding: 2px;

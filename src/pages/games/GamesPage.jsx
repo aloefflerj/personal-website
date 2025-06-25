@@ -27,7 +27,7 @@ export function GamesPage({ category, markdownPathType }) {
                 (gameData) => setGameJsonData(gameData)
             );
         }
-    }
+    };
 
     return (
         <GameContent $category={category}>

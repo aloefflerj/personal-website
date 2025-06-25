@@ -8,15 +8,15 @@ export default function CodeBlock({ className, children, inline }) {
     const { category } = useCategoryContext();
     const language = className?.replace('language-', '') ?? 'txt';
 
-    return (
-        className === 'language-mermaid' ?
-            <Mermaid chart={children} /> :
-            <SyntaxHighlighter
-                language={language}
-                style={CategoryCodeBlockStyle(category, inline)}
-            >
-                {children}
-            </SyntaxHighlighter>
+    return className === 'language-mermaid' ? (
+        <Mermaid chart={children} />
+    ) : (
+        <SyntaxHighlighter
+            language={language}
+            style={CategoryCodeBlockStyle(category, inline)}
+        >
+            {children}
+        </SyntaxHighlighter>
     );
 }
 

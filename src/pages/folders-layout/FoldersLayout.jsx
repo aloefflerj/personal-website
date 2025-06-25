@@ -11,17 +11,16 @@ const Title = styled.h2`
 export function FoldersLayout({ category, title, children }) {
     return (
         <>
-        <Title
-            $bgColor={category.lightColor}
-            $fontColor={category.darkerColor}
-        >
-            {title}
-        </Title>
-        {children}
+            <Title
+                $bgColor={category.lightColor}
+                $fontColor={category.darkerColor}
+            >
+                {title}
+            </Title>
+            {children}
         </>
     );
 }
-
 
 FoldersLayout.propTypes = {
     title: PropTypes.string,

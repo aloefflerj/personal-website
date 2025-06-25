@@ -1,12 +1,11 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 export const useRequest = () => {
     return {
         fetchUrl: async (url, config = {}, returnType = 'json') => {
             const response = await fetch(url, config);
-            if (returnType === 'text')
-                return await response.text();
-            
+            if (returnType === 'text') return await response.text();
+
             return await response.json();
         },
         fetchGithubEncryptedMarkdown: async (url, config) => {
@@ -16,6 +15,6 @@ export const useRequest = () => {
             if (!_.isEmpty(stringResponse)) {
                 return atob(stringResponse.content);
             }
-        }
+        },
     };
 };

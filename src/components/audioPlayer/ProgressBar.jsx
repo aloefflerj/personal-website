@@ -10,14 +10,13 @@ const Progress = styled.div`
 
     input[type='range'] {
         --range-progress: 0;
-
     }
 
     input[type='range']::before {
         width: var(--range-progress);
     }
 
-    input[type="range"] {
+    input[type='range'] {
         -webkit-appearance: none;
         appearance: none;
         /* background: transparent; */
@@ -25,32 +24,32 @@ const Progress = styled.div`
         width: 15rem;
     }
 
-    input[type="range"]::-webkit-slider-runnable-track {
+    input[type='range']::-webkit-slider-runnable-track {
         background: ${(props) => props.$category.lightColor};
         height: 24px;
     }
 
-    input[type="range"]::-moz-range-track {
+    input[type='range']::-moz-range-track {
         background: ${(props) => props.$category.lightColor};
         height: 24px;
     }
 
-    input[type="range"]::-webkit-slider-thumb {
+    input[type='range']::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
         margin: 3px;
         background-color: ${(props) => props.$category.darkColor};
         height: 18px;
-        width: 18px;    
+        width: 18px;
     }
 
-    input[type="range"]::-moz-range-thumb {
+    input[type='range']::-moz-range-thumb {
         border: none;
         border-radius: 0;
         margin: 3px;
         background-color: ${(props) => props.$category.darkColor};
         height: 18px;
-        width: 18px; 
+        width: 18px;
     }
 `;
 

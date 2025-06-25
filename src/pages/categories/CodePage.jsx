@@ -45,35 +45,31 @@ export function CodePage() {
                 </SidebarOption>
             </Sidebar>
             <CategoryContent category={category}>
-                {outlet ?
-                    <Outlet /> :
-                    <FoldersLayout
-                        category={Code}
-                        title={'Code'}
-                    >
-                        <SubcategoriesList
-                            $bgColor={category.darkColor}
-                        >
+                {outlet ? (
+                    <Outlet />
+                ) : (
+                    <FoldersLayout category={Code} title={'Code'}>
+                        <SubcategoriesList $bgColor={category.darkColor}>
                             <SubcategoryItem
                                 id={1}
-                                to='projects'
-                                title='Projects'
+                                to="projects"
+                                title="Projects"
                                 key={1}
                                 category={category}
-                                contentType='folder'
+                                contentType="folder"
                             />
                             <SubcategoryItem
                                 id={2}
-                                to='roadmaps'
-                                title='Roadmaps'
+                                to="roadmaps"
+                                title="Roadmaps"
                                 key={2}
                                 category={category}
-                                contentType='folder'
+                                contentType="folder"
                             />
                         </SubcategoriesList>
                     </FoldersLayout>
-                }
+                )}
             </CategoryContent>
-        </CategoryPage >
+        </CategoryPage>
     );
 }

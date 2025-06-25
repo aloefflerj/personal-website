@@ -102,7 +102,11 @@ export function MarkdownDynamicContent({
                     remarkPlugins={[emojiPlugin]}
                     rehypePlugins={[rehypeRaw]}
                     $category={category}
-                    components={{ code: CodeBlock, img: MarkdownImage, a: LinkBlock }}
+                    components={{
+                        code: CodeBlock,
+                        img: MarkdownImage,
+                        a: LinkBlock,
+                    }}
                     linkTarget={'_blank'}
                 >
                     {markdownContent}

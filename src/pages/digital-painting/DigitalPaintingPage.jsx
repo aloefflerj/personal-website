@@ -22,11 +22,14 @@ export function DigitalPaintingPage({ category, markdownPathType }) {
 
     const fetchDigitalPainting = () => {
         if (link !== undefined || link !== null) {
-            return fetchSubcategoryItemByLink(SubcategoryType.digital, link).then(
-                (digitalPaintingData) => setDigitalPaintingJsonData(digitalPaintingData)
+            return fetchSubcategoryItemByLink(
+                SubcategoryType.digital,
+                link
+            ).then((digitalPaintingData) =>
+                setDigitalPaintingJsonData(digitalPaintingData)
             );
         }
-    }
+    };
 
     return (
         <DigitalPaintingContent $category={category}>

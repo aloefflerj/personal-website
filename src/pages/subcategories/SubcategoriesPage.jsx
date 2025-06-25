@@ -69,13 +69,10 @@ export function SubcategoriesPage({ category, page }) {
     );
 
     return (
-        <FoldersLayout
-            title={formattedTitle}
-            category={category}
-        >
+        <FoldersLayout title={formattedTitle} category={category}>
             {wrappedContent}
         </FoldersLayout>
-    )
+    );
 }
 
 SubcategoriesPage.propTypes = {

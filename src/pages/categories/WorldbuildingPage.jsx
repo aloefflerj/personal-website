@@ -27,7 +27,7 @@ export function WorldbuildingPage() {
     return (
         <CategoryPage>
             <Sidebar category={category}>
-                <PixelCharContent >
+                <PixelCharContent>
                     <PixelCharImage src={charImg} />
                 </PixelCharContent>
                 <SidebarOption to="projects" category={Worldbuilding}>
@@ -38,34 +38,33 @@ export function WorldbuildingPage() {
                 </SidebarOption>
             </Sidebar>
             <CategoryContent category={Worldbuilding}>
-            {outlet ?
-                    <Outlet /> :
+                {outlet ? (
+                    <Outlet />
+                ) : (
                     <FoldersLayout
                         category={Worldbuilding}
                         title={'Worldbuilding'}
                     >
-                        <SubcategoriesList
-                            $bgColor={category.darkColor}
-                        >
+                        <SubcategoriesList $bgColor={category.darkColor}>
                             <SubcategoryItem
                                 id={1}
-                                to='projects'
-                                title='Projects'
+                                to="projects"
+                                title="Projects"
                                 key={1}
                                 category={category}
-                                contentType='folder'
+                                contentType="folder"
                             />
                             <SubcategoryItem
                                 id={2}
-                                to='roadmaps'
-                                title='Roadmaps'
+                                to="roadmaps"
+                                title="Roadmaps"
                                 key={2}
                                 category={category}
-                                contentType='folder'
+                                contentType="folder"
                             />
                         </SubcategoriesList>
                     </FoldersLayout>
-                }
+                )}
             </CategoryContent>
         </CategoryPage>
     );

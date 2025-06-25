@@ -22,13 +22,7 @@ const Content = styled.div`
 export function PixelCharContent({ children }) {
     const { category } = useCategoryContext();
 
-    return (
-        <Content
-            $category={category}
-        >
-            {children}
-        </Content>
-    );
+    return <Content $category={category}>{children}</Content>;
 }
 
 PixelCharContent.propTypes = {

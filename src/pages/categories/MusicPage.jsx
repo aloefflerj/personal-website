@@ -27,7 +27,7 @@ export function MusicPage() {
     return (
         <CategoryPage>
             <Sidebar category={category}>
-                <PixelCharContent >
+                <PixelCharContent>
                     <PixelCharImage src={charImg} />
                 </PixelCharContent>
                 <SidebarOption to="projects" category={Music}>
@@ -47,42 +47,38 @@ export function MusicPage() {
                 </SidebarOption> */}
             </Sidebar>
             <CategoryContent category={Music}>
-            {outlet ?
-                    <Outlet /> :
-                    <FoldersLayout
-                        category={Music}
-                        title={'Music'}
-                    >
-                        <SubcategoriesList
-                            $bgColor={category.darkColor}
-                        >
+                {outlet ? (
+                    <Outlet />
+                ) : (
+                    <FoldersLayout category={Music} title={'Music'}>
+                        <SubcategoriesList $bgColor={category.darkColor}>
                             <SubcategoryItem
                                 id={1}
-                                to='projects'
-                                title='Projects'
+                                to="projects"
+                                title="Projects"
                                 key={1}
                                 category={category}
-                                contentType='folder'
+                                contentType="folder"
                             />
                             <SubcategoryItem
                                 id={2}
-                                to='songs'
-                                title='Songs'
+                                to="songs"
+                                title="Songs"
                                 key={2}
                                 category={category}
-                                contentType='folder'
+                                contentType="folder"
                             />
                             <SubcategoryItem
                                 id={3}
-                                to='roadmaps'
-                                title='Roadmaps'
+                                to="roadmaps"
+                                title="Roadmaps"
                                 key={3}
                                 category={category}
-                                contentType='folder'
+                                contentType="folder"
                             />
                         </SubcategoriesList>
                     </FoldersLayout>
-                }
+                )}
             </CategoryContent>
         </CategoryPage>
     );

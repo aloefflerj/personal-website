@@ -10,10 +10,9 @@ const PlayerContent = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-`
+`;
 
 export function SingleTrackPlayer({ track }) {
-
     const [timeProgress, setTimeProgress] = useState(0);
     const [duration, setDuration] = useState(0);
     const [currentTrack, setCurrentTrack] = useState(0);

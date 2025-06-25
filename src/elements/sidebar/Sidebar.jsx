@@ -64,8 +64,15 @@ export function Sidebar({ children, category }) {
 
     const barContent = (
         <>
-            <ReatractSidebarButton onClick={() => setRetracted(!retracted)} $category={category}>
-                <BackArrowIcon fillColor={category.lightColor} width={24} height={24}/>
+            <ReatractSidebarButton
+                onClick={() => setRetracted(!retracted)}
+                $category={category}
+            >
+                <BackArrowIcon
+                    fillColor={category.lightColor}
+                    width={24}
+                    height={24}
+                />
             </ReatractSidebarButton>
             {children}
         </>

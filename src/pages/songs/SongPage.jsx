@@ -26,7 +26,7 @@ export function SongPage({ category, markdownPathType }) {
                 (songData) => setSongJsonData(songData)
             );
         }
-    }
+    };
 
     return (
         <SongContent $category={category}>

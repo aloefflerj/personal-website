@@ -43,7 +43,7 @@ export const MarkdownSection = styled(ReactMarkdown)`
         margin-left: 36px;
         list-style-type: decimal;
     }
-    
+
     ul > li {
         list-style-type: square;
         margin-top: 12px;

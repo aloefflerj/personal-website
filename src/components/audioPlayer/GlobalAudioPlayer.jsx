@@ -15,17 +15,15 @@ export function GlobalAudioPlayer() {
     }, []);
 
     const listSongs = () => {
-        return tracks.map(
-            ({ id, title, subtitle, songPath }) => {
-                return new Track(
-                    id,
-                    `/assets/audio/${songPath}`,
-                    title,
-                    subtitle.artist,
-                    subtitle.album
-                );
-            }
-        );
+        return tracks.map(({ id, title, subtitle, songPath }) => {
+            return new Track(
+                id,
+                `/assets/audio/${songPath}`,
+                title,
+                subtitle.artist,
+                subtitle.album
+            );
+        });
     };
 
     return <AudioPlayer tracks={listSongs()} />;

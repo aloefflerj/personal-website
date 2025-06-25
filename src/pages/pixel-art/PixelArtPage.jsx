@@ -26,7 +26,7 @@ export function PixelArtPage({ category, markdownPathType }) {
                 (pixelArtData) => setPixelArtJsonData(pixelArtData)
             );
         }
-    }
+    };
 
     return (
         <PixelArtContent $category={category}>

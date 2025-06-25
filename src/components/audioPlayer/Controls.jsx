@@ -6,9 +6,7 @@ import { useCategoryContext } from '../../hooks/useCategoryContext';
 import { AudioPlayButton } from './AudioPlayButton';
 import styled from 'styled-components';
 
-const PlayerController = styled.div`
-
-`;
+const PlayerController = styled.div``;
 
 export function Controls({
     audioRef,
@@ -43,14 +41,8 @@ export function Controls({
     }, [audioRef, duration, progressBarRef, setTimeProgress]);
 
     useEffect(() => {
-        progressBarRef.current.style.setProperty(
-            'background-color',
-            'red'
-        );
-        progressBarRef.current.style.setProperty(
-            'color',
-            'red'
-        );
+        progressBarRef.current.style.setProperty('background-color', 'red');
+        progressBarRef.current.style.setProperty('color', 'red');
         if (isPlaying) {
             audioRef.current.play();
         } else {

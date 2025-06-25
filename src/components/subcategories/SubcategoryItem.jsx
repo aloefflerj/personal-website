@@ -52,7 +52,6 @@ const Subtitle = styled.p`
     font-size: 18px;
 `;
 
-
 export function SubcategoryItem({
     id,
     to,
@@ -60,7 +59,7 @@ export function SubcategoryItem({
     subtitle,
     category,
     contentType,
-    songPath = null 
+    songPath = null,
 }) {
     const FolderItem = (
         <SubcategoryLink to={to}>
@@ -77,8 +76,12 @@ export function SubcategoryItem({
                 <MusicIcon fill={category.lightColor} />
                 <Title $fontColor={category.lightColor}>{title}</Title>
                 <If is={subtitle !== null || subtitle !== undefined}>
-                    <Subtitle $fontColor={category.mediumColor}>{subtitle?.artist}</Subtitle>
-                    <Subtitle $fontColor={category.mediumColor}>{subtitle?.album}</Subtitle>
+                    <Subtitle $fontColor={category.mediumColor}>
+                        {subtitle?.artist}
+                    </Subtitle>
+                    <Subtitle $fontColor={category.mediumColor}>
+                        {subtitle?.album}
+                    </Subtitle>
                 </If>
             </SubcategorySongWrapper>
         </SubcategoryLink>
@@ -95,22 +98,24 @@ export function SubcategoryItem({
             break;
     }
 
-    return <SubcategoriesItemWrapper id={id}>
-        {item}
-        <If is={songPath !== null && songPath !== undefined}>
-            <SingleTrackPlayer
-                track={
-                    new Track(
-                        id,
-                        `/assets/audio/${songPath}`,
-                        title,
-                        subtitle?.artist,
-                        subtitle?.album
-                    )
-                }
-            />
-        </If>
-    </SubcategoriesItemWrapper>
+    return (
+        <SubcategoriesItemWrapper id={id}>
+            {item}
+            <If is={songPath !== null && songPath !== undefined}>
+                <SingleTrackPlayer
+                    track={
+                        new Track(
+                            id,
+                            `/assets/audio/${songPath}`,
+                            title,
+                            subtitle?.artist,
+                            subtitle?.album
+                        )
+                    }
+                />
+            </If>
+        </SubcategoriesItemWrapper>
+    );
 }
 
 SubcategoryItem.propTypes = {

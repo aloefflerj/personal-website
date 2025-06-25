@@ -45,42 +45,38 @@ export function DrawingsPage() {
                 </SidebarOption>
             </Sidebar>
             <CategoryContent category={Drawings}>
-            {outlet ?
-                    <Outlet /> :
-                    <FoldersLayout
-                        category={Drawings}
-                        title={'Drawings'}
-                    >
-                        <SubcategoriesList
-                            $bgColor={category.darkColor}
-                        >
+                {outlet ? (
+                    <Outlet />
+                ) : (
+                    <FoldersLayout category={Drawings} title={'Drawings'}>
+                        <SubcategoriesList $bgColor={category.darkColor}>
                             <SubcategoryItem
                                 id={1}
-                                to='digital'
-                                title='Digital'
+                                to="digital"
+                                title="Digital"
                                 key={1}
                                 category={category}
-                                contentType='folder'
+                                contentType="folder"
                             />
                             <SubcategoryItem
                                 id={2}
-                                to='pixel'
-                                title='Pixel Art'
+                                to="pixel"
+                                title="Pixel Art"
                                 key={2}
                                 category={category}
-                                contentType='folder'
+                                contentType="folder"
                             />
                             <SubcategoryItem
                                 id={3}
-                                to='journal'
-                                title='Journal'
+                                to="journal"
+                                title="Journal"
                                 key={3}
                                 category={category}
-                                contentType='folder'
+                                contentType="folder"
                             />
                         </SubcategoriesList>
                     </FoldersLayout>
-                }
+                )}
             </CategoryContent>
         </CategoryPage>
     );
