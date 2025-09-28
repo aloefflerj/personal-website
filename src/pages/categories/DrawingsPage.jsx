@@ -24,7 +24,7 @@ export function DrawingsPage() {
 
     useEffect(() => {
         if (category === undefined || category === null || category === Blank) {
-            setCategory(Code);
+            setCategory(Drawings);
         }
     }, [category, setCategory]);
 

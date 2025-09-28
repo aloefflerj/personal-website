@@ -15,12 +15,6 @@ import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem'
 import { SubcategoriesList } from '../subcategories/SubcategoriesPage';
 import { useEffect } from 'react';
 
-const SubcategoriesItemWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-`;
-
 export function CodePage() {
     const { category, setCategory } = useCategoryContext();
     const outlet = useOutlet();

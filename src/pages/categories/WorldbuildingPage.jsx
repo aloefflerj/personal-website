@@ -20,7 +20,7 @@ export function WorldbuildingPage() {
 
     useEffect(() => {
         if (category === undefined || category === null || category === Blank) {
-            setCategory(Code);
+            setCategory(Worldbuilding);
         }
     }, [category, setCategory]);
 

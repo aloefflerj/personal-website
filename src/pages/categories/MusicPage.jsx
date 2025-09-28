@@ -20,7 +20,7 @@ export function MusicPage() {
 
     useEffect(() => {
         if (category === undefined || category === null || category === Blank) {
-            setCategory(Code);
+            setCategory(Music);
         }
     }, [category, setCategory]);
 

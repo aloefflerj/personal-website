@@ -20,7 +20,7 @@ export function GamePage() {
 
     useEffect(() => {
         if (category === undefined || category === null || category === Blank) {
-            setCategory(Code);
+            setCategory(Game);
         }
     }, [category, setCategory]);
 
