@@ -20,6 +20,7 @@ import { MarkdownPathType } from '../common/MarkdownPathType';
 import { SongPage } from '../pages/songs/SongPage';
 import { DigitalPaintingPage } from '../pages/digital-painting/DigitalPaintingPage';
 import { PixelArtPage } from '../pages/pixel-art/PixelArtPage';
+import { AnimationPage } from '../pages/animation/AnimationPage';
 
 export function Router() {
     return (
@@ -72,6 +73,25 @@ export function Router() {
                 </Route>
                 <Route path="drawings" element={<DrawingsPage />}>
                     <Route
+                        path="animation"
+                        element={
+                            <SubcategoriesPage
+                                category={Drawings}
+                                page="animation"
+                            />
+                        }
+                    >
+                        <Route
+                            path=":link"
+                            element={
+                                <AnimationPage
+                                    category={Drawings}
+                                    markdownPathType={MarkdownPathType.internal}
+                                />
+                            }
+                        />
+                    </Route>
+                    <Route
                         path="digital"
                         element={
                             <SubcategoriesPage
@@ -105,26 +125,6 @@ export function Router() {
                                 <PixelArtPage
                                     category={Drawings}
                                     markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                    <Route
-                        path="journal"
-                        element={
-                            <SubcategoriesPage
-                                category={Drawings}
-                                page="journal"
-                            />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <RoadmapPage
-                                    category={Drawings}
-                                    markdownPathType={MarkdownPathType.internal}
-                                    journalStyle={true}
                                 />
                             }
                         />

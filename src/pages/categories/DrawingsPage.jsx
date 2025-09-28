@@ -34,14 +34,14 @@ export function DrawingsPage() {
                 <PixelCharContent>
                     <PixelCharImage src={charImg} />
                 </PixelCharContent>
+                <SidebarOption to="animation" category={Drawings}>
+                    Animation
+                </SidebarOption>
                 <SidebarOption to="digital" category={Drawings}>
                     Digital
                 </SidebarOption>
                 <SidebarOption to="pixel" category={Drawings}>
                     Pixel Art
-                </SidebarOption>
-                <SidebarOption to="journal" category={Drawings}>
-                    Journal
                 </SidebarOption>
             </Sidebar>
             <CategoryContent category={Drawings}>
@@ -50,6 +50,14 @@ export function DrawingsPage() {
                 ) : (
                     <FoldersLayout category={Drawings} title={'Drawings'}>
                         <SubcategoriesList $bgColor={category.darkColor}>
+                            <SubcategoryItem
+                                id={3}
+                                to="animation"
+                                title="Animation"
+                                key={3}
+                                category={category}
+                                contentType="folder"
+                            />
                             <SubcategoryItem
                                 id={1}
                                 to="digital"
@@ -63,14 +71,6 @@ export function DrawingsPage() {
                                 to="pixel"
                                 title="Pixel Art"
                                 key={2}
-                                category={category}
-                                contentType="folder"
-                            />
-                            <SubcategoryItem
-                                id={3}
-                                to="journal"
-                                title="Journal"
-                                key={3}
                                 category={category}
                                 contentType="folder"
                             />
