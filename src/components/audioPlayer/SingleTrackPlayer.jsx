@@ -9,10 +9,10 @@ import styled from 'styled-components';
 const PlayerContent = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: ${(props) => props.$justify};
 `;
 
-export function SingleTrackPlayer({ track }) {
+export function SingleTrackPlayer({ track, justify = 'center' }) {
     const [timeProgress, setTimeProgress] = useState(0);
     const [duration, setDuration] = useState(0);
     const [currentTrack, setCurrentTrack] = useState(0);
@@ -22,7 +22,7 @@ export function SingleTrackPlayer({ track }) {
 
     return (
         <div>
-            <PlayerContent>
+            <PlayerContent $justify={justify}>
                 <DisplayTrack
                     currentTrack={track}
                     audioRef={audioRef}

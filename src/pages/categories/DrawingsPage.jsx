@@ -40,6 +40,9 @@ export function DrawingsPage() {
                 <SidebarOption to="digital" category={Drawings}>
                     Digital
                 </SidebarOption>
+                <SidebarOption to="ink" category={Drawings}>
+                    Ink
+                </SidebarOption>
                 <SidebarOption to="pixel" category={Drawings}>
                     Pixel Art
                 </SidebarOption>
@@ -63,6 +66,14 @@ export function DrawingsPage() {
                                 to="digital"
                                 title="Digital"
                                 key={1}
+                                category={category}
+                                contentType="folder"
+                            />
+                            <SubcategoryItem
+                                id={4}
+                                to="ink"
+                                title="Ink"
+                                key={4}
                                 category={category}
                                 contentType="folder"
                             />

@@ -1,5 +1,22 @@
+import { Track } from "../../model/Track";
+import { SingleTrackPlayer } from "../audioPlayer/SingleTrackPlayer";
+
 export function LinkBlock(props) {
     const { href } = props;
+
+    if (href.includes('/assets/audio')) {
+        return (
+            <SingleTrackPlayer
+                track={
+                    new Track(
+                        0,
+                        href,
+                    )
+                }
+                justify="start"
+            />
+        );
+    }
 
     if (href.includes('https://github.com/user-attachments/assets')) {
         return (

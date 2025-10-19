@@ -33,11 +33,8 @@ export function MusicPage() {
                 <SidebarOption to="projects" category={Music}>
                     Projects
                 </SidebarOption>
-                <SidebarOption to="songs" category={Music}>
-                    Songs
-                </SidebarOption>
-                <SidebarOption to="roadmaps" category={Music}>
-                    Roadmaps
+                <SidebarOption to="short" category={Music}>
+                    Short
                 </SidebarOption>
                 {/* <SidebarOption to="clips" category={Music}>
                     Clips
@@ -62,17 +59,9 @@ export function MusicPage() {
                             />
                             <SubcategoryItem
                                 id={2}
-                                to="songs"
-                                title="Songs"
+                                to="short"
+                                title="Short"
                                 key={2}
-                                category={category}
-                                contentType="folder"
-                            />
-                            <SubcategoryItem
-                                id={3}
-                                to="roadmaps"
-                                title="Roadmaps"
-                                key={3}
                                 category={category}
                                 contentType="folder"
                             />

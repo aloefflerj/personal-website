@@ -17,10 +17,10 @@ export function AnimationPage({ category, markdownPathType }) {
     const [animationJsonData, setAnimationJsonData] = useState({});
 
     useEffect(() => {
-        fetchDigitalPainting();
+        fetchAnimation();
     }, [link]);
 
-    const fetchDigitalPainting = () => {
+    const fetchAnimation = () => {
         if (link !== undefined || link !== null) {
             return fetchSubcategoryItemByLink(
                 SubcategoryType.animation,

@@ -36,6 +36,9 @@ export function GamePage() {
                 <SidebarOption to="games" category={Game}>
                     Games
                 </SidebarOption>
+                <SidebarOption to="jams" category={Game}>
+                    Jams
+                </SidebarOption>
             </Sidebar>
             <CategoryContent category={Game}>
                 {outlet ? (

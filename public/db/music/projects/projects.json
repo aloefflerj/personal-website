@@ -1,20 +1,13 @@
 [
     {
         "id": 1,
-        "title": "Vertex",
-        "link": "vertex",
-        "contentPath": "vertex.md",
-        "contentType": "folder"
-    },
-    {
-        "id": 2,
         "title": "Worm Paranoia",
         "link": "worm-paranoia",
         "contentPath": "worm-paranoia.md",
         "contentType": "folder"
     },
     {
-        "id": 3,
+        "id": 2,
         "title": "Personal Music",
         "link": "personal-music",
         "contentPath": "personal-music.md",

@@ -17,10 +17,12 @@ import { ProjectPage } from '../pages/projects/ProjectPage';
 import { RoadmapPage } from '../pages/roadmaps/RoadmapPage';
 import { GamesPage } from '../pages/games/GamesPage';
 import { MarkdownPathType } from '../common/MarkdownPathType';
-import { SongPage } from '../pages/songs/SongPage';
+import { ShortPage } from '../pages/short/ShortPage';
 import { DigitalPaintingPage } from '../pages/digital-painting/DigitalPaintingPage';
 import { PixelArtPage } from '../pages/pixel-art/PixelArtPage';
 import { AnimationPage } from '../pages/animation/AnimationPage';
+import { InkPage } from '../pages/ink/InkPage';
+import { JamsPage } from '../pages/jams/JamsPage';
 
 export function Router() {
     return (
@@ -111,6 +113,25 @@ export function Router() {
                         />
                     </Route>
                     <Route
+                        path="ink"
+                        element={
+                            <SubcategoriesPage
+                                category={Drawings}
+                                page="ink"
+                            />
+                        }
+                    >
+                        <Route
+                            path=":link"
+                            element={
+                                <InkPage
+                                    category={Drawings}
+                                    markdownPathType={MarkdownPathType.internal}
+                                />
+                            }
+                        />
+                    </Route>
+                    <Route
                         path="pixel"
                         element={
                             <SubcategoriesPage
@@ -166,6 +187,22 @@ export function Router() {
                             }
                         />
                     </Route>
+                    <Route
+                        path="jams"
+                        element={
+                            <SubcategoriesPage category={Game} page="jams" />
+                        }
+                    >
+                        <Route
+                            path=":link"
+                            element={
+                                <JamsPage
+                                    category={Game}
+                                    markdownPathType={MarkdownPathType.internal}
+                                />
+                            }
+                        />
+                    </Route>
                 </Route>
                 <Route path="music" element={<MusicPage />}>
                     <Route
@@ -188,15 +225,15 @@ export function Router() {
                         />
                     </Route>
                     <Route
-                        path="songs"
+                        path="short"
                         element={
-                            <SubcategoriesPage category={Music} page="songs" />
+                            <SubcategoriesPage category={Music} page="short" />
                         }
                     >
                         <Route
                             path=":link"
                             element={
-                                <SongPage
+                                <ShortPage
                                     category={Music}
                                     markdownPathType={MarkdownPathType.internal}
                                 />

@@ -1,0 +1,9 @@
+[
+    {
+        "id": 1,
+        "title": "Random",
+        "link": "random",
+        "contentPath": "random.md",
+        "contentType": "folder"
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Shop Song",
+        "link": "shop-song",
+        "subtitle": {
+            "artist": "Anderson",
+            "album": "Random tunes"
+        },
+        "songPath": "shop.m4a",
+        "contentPath": "shop-song.md",
+        "contentType": "song"
+    },
+    {
+        "id": 2,
+        "title": "Celtic Vibe",
+        "link": "celtic-vibe",
+        "subtitle": {
+            "artist": "Anderson",
+            "album": "Random tunes"
+        },
+        "songPath": "celtic.wav",
+        "contentPath": "celtic-vibe.md",
+        "contentType": "song"
+    },
+    {
+        "id": 3,
+        "title": "I'll Never Get There",
+        "link": "ill-never-get-there",
+        "subtitle": {
+            "artist": "Anderson",
+            "album": "Random songs"
+        },
+        "songPath": "ill-never-get-there.m4a",
+        "contentPath": "ill-never-get-there.md",
+        "contentType": "song"
+    }
+]
