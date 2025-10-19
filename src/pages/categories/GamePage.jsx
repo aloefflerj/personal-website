@@ -62,6 +62,14 @@ export function GamePage() {
                                 category={category}
                                 contentType="folder"
                             />
+                            <SubcategoryItem
+                                id={3}
+                                to="jams"
+                                title="Jams"
+                                key={3}
+                                category={category}
+                                contentType="folder"
+                            />
                         </SubcategoriesList>
                     </FoldersLayout>
                 )}
