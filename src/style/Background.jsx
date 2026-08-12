@@ -11,9 +11,9 @@ const fadeIn = keyframes`
 `;
 
 export const Background = styled.img`
-    object-fit: contain;
-    width: 100%;
-    height: auto;
-    border: 3px solid ${(props) => props.$border};
     animation: ${fadeIn} 0.2s linear;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 `;
