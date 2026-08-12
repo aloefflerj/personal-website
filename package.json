@@ -7,6 +7,7 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
+        "test": "echo 'No test runner configured yet. See TESTING.md' && exit 1",
         "lint": "eslint . --cache --ext js,jsx --report-unused-disable-directives --max-warnings 0",
         "lint:fix": "eslint . --cache --ext js,jsx --fix --report-unused-disable-directives --max-warnings 0",
         "prettier:check": "prettier --config .prettierrc 'src/**/*.js' 'src/**/*.jsx' --check",
