@@ -19,7 +19,6 @@ const Progress = styled.div`
     input[type='range'] {
         -webkit-appearance: none;
         appearance: none;
-        /* background: transparent; */
         cursor: pointer;
         width: 15rem;
     }
@@ -53,46 +52,33 @@ const Progress = styled.div`
     }
 `;
 
-export function ProgressBar({
-    progressBarRef,
-    audioRef,
-    timeProgress,
-    duration,
-}) {
+export function ProgressBar({ progress = 0, duration = 0, onSeek }) {
     const { category } = useCategoryContext();
 
-    const handleProgressChange = () => {
-        audioRef.current.currentTime = progressBarRef.current.value;
-    };
+    const progressPercent = duration > 0 ? (progress / duration) * 100 : 0;
 
-    const formatTime = (time) => {
-        if (time && !isNaN(time)) {
-            const minutes = Math.floor(time / 60);
-            const formatMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-            const seconds = Math.floor(time % 60);
-            const formatSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-            return `${formatMinutes}:${formatSeconds}`;
-        }
-        return '00:00';
+    const handleChange = (event) => {
+        onSeek(Number(event.target.value));
     };
 
     return (
-        <Progress $category={category}>
+        <Progress
+            $category={category}
+            style={{ '--range-progress': `${progressPercent}%` }}
+        >
             <input
                 type="range"
-                ref={progressBarRef}
-                defaultValue={0}
-                onChange={handleProgressChange}
+                min={0}
+                max={duration || 0}
+                value={progress}
+                onChange={handleChange}
             />
-            {/* <span className="time current">{formatTime(timeProgress)}</span> */}
-            {/* <span className="time">{formatTime(duration)}</span> */}
         </Progress>
     );
 }
 
-ProgressBar.proptype = {
-    progressBarRef: PropTypes.element,
-    audioRef: PropTypes.element,
-    timeProgress: PropTypes.number,
+ProgressBar.propTypes = {
+    progress: PropTypes.number,
     duration: PropTypes.number,
+    onSeek: PropTypes.func,
 };
