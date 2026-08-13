@@ -1,21 +1,12 @@
-import { Track } from "../../model/Track";
-import { SingleTrackPlayer } from "../audioPlayer/SingleTrackPlayer";
+import { Track } from '../../model/Track';
+import { TrackPlayButton } from '../audioPlayer/TrackPlayButton';
 
 export function LinkBlock(props) {
     const { href } = props;
 
     if (href.includes('/assets/audio')) {
-        return (
-            <SingleTrackPlayer
-                track={
-                    new Track(
-                        0,
-                        href,
-                    )
-                }
-                justify="start"
-            />
-        );
+        const track = new Track(0, href, href, '', '');
+        return <TrackPlayButton track={track} queue={[track]} index={0} />;
     }
 
     if (href.includes('https://github.com/user-attachments/assets')) {
@@ -32,16 +23,17 @@ export function LinkBlock(props) {
         );
 
         const videoId = match ? match[1] : null;
-        
-        return <iframe
-            width="800"
-            height="600"
-            src={`https://www.youtube.com/embed/${videoId}`}
-            title="YouTube Video"
-            frameBorder="0"
-            allowFullScreen
-        ></iframe>
 
+        return (
+            <iframe
+                width="800"
+                height="600"
+                src={`https://www.youtube.com/embed/${videoId}`}
+                title="YouTube Video"
+                frameBorder="0"
+                allowFullScreen
+            ></iframe>
+        );
     }
 
     return <a {...props} />;

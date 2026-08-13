@@ -1,15 +1,12 @@
 import { styled } from 'styled-components';
+import PropTypes from 'prop-types';
 import { PauseIcon } from '../../icons/PauseIcon';
 import { PlayIcon } from '../../icons/PlayIcon';
 import { useCategoryContext } from '../../hooks/useCategoryContext';
 import { PixelButton } from '../../elements/buttons/PixelButton';
-import PropTypes from 'prop-types';
 
 const GlobalPlayButton = styled(PixelButton)`
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
+    position: relative;
 `;
 
 const LocalPlayButton = styled(PixelButton)`
@@ -22,7 +19,6 @@ export function AudioPlayButton({
     playing,
     global = false,
     miniplayer = true,
-    songId = null,
 }) {
     const { category } = useCategoryContext();
 
@@ -53,6 +49,8 @@ export function AudioPlayButton({
 }
 
 AudioPlayButton.propTypes = {
-    togglePlay: PropTypes.func,
+    togglePlayPause: PropTypes.func,
     playing: PropTypes.bool,
+    global: PropTypes.bool,
+    miniplayer: PropTypes.bool,
 };
