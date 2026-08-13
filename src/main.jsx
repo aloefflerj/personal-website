@@ -5,14 +5,17 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { CategoryProvider } from './contexts/CategoryContext.jsx';
 import { SidebarProvider } from './contexts/SidebarContext.jsx';
+import { PlayerProvider } from './contexts/PlayerContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <CategoryProvider>
             <SidebarProvider>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
+                <PlayerProvider>
+                    <BrowserRouter>
+                        <App />
+                    </BrowserRouter>
+                </PlayerProvider>
             </SidebarProvider>
         </CategoryProvider>
     </React.StrictMode>
