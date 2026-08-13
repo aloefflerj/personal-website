@@ -4,9 +4,11 @@ import { useCategoryDB } from '../../hooks/useCategoryDB.jsx';
 import { useEffect, useState } from 'react';
 import { useOutlet, useParams } from 'react-router-dom';
 import { SubcategoryType } from '../../common/SubcategoryType.js';
+import { SubcategoryContentType } from '../../common/SubcategoryContentType.js';
 import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem.jsx';
 import { useStringHelper } from '../../hooks/useStringHelper.jsx';
 import { FoldersLayout } from '../folders-layout/FoldersLayout.jsx';
+import { Track } from '../../model/Track.js';
 
 export const SubcategoriesList = styled.div`
     padding: 32px;
@@ -35,9 +37,32 @@ export function SubcategoriesPage({ category, page }) {
         });
     }, [outletParam]);
 
+    const buildSongQueue = () => {
+        return subcategoriesItems
+            .filter((item) => item.contentType === SubcategoryContentType.song)
+            .map(
+                ({ id, title, subtitle, songPath }) =>
+                    new Track(
+                        id,
+                        `/assets/audio/${songPath}`,
+                        title,
+                        subtitle?.artist,
+                        subtitle?.album
+                    )
+            );
+    };
+
     const listFolders = () => {
+        const songQueue = buildSongQueue();
+
         return subcategoriesItems.map(
             ({ id, title, subtitle, link, songPath = null, contentType }) => {
+                const songIndex = songPath
+                    ? songQueue.findIndex(
+                          (track) => track.src === `/assets/audio/${songPath}`
+                      )
+                    : -1;
+
                 return (
                     <SubcategoryItem
                         id={id}
@@ -48,6 +73,8 @@ export function SubcategoriesPage({ category, page }) {
                         category={category}
                         contentType={contentType}
                         songPath={songPath}
+                        songQueue={songQueue}
+                        songIndex={songIndex}
                     />
                 );
             }

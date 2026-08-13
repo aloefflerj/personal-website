@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { SubcategoryContentType } from '../../common/SubcategoryContentType';
 import { If } from '../If';
-import { SingleTrackPlayer } from '../audioPlayer/SingleTrackPlayer';
+import { TrackPlayButton } from '../audioPlayer/TrackPlayButton';
 import { Track } from '../../model/Track';
 
 const SubcategoriesItemWrapper = styled.div`
@@ -60,6 +60,8 @@ export function SubcategoryItem({
     category,
     contentType,
     songPath = null,
+    songQueue = [],
+    songIndex = -1,
 }) {
     const FolderItem = (
         <SubcategoryLink to={to}>
@@ -102,7 +104,7 @@ export function SubcategoryItem({
         <SubcategoriesItemWrapper id={id}>
             {item}
             <If is={songPath !== null && songPath !== undefined}>
-                <SingleTrackPlayer
+                <TrackPlayButton
                     track={
                         new Track(
                             id,
@@ -112,6 +114,8 @@ export function SubcategoryItem({
                             subtitle?.album
                         )
                     }
+                    queue={songQueue}
+                    index={songIndex}
                 />
             </If>
         </SubcategoriesItemWrapper>
@@ -125,4 +129,7 @@ SubcategoryItem.propTypes = {
     subtitle: PropTypes.object,
     category: PropTypes.object,
     contentType: PropTypes.string,
+    songPath: PropTypes.string,
+    songQueue: PropTypes.arrayOf(PropTypes.instanceOf(Track)),
+    songIndex: PropTypes.number,
 };
