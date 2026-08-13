@@ -5,8 +5,6 @@ import { useCategoryContext } from '../../hooks/useCategoryContext';
 const Progress = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
-    max-width: 50%;
 
     input[type='range'] {
         --range-progress: 0;
@@ -20,7 +18,7 @@ const Progress = styled.div`
         -webkit-appearance: none;
         appearance: none;
         cursor: pointer;
-        width: 15rem;
+        width: 14rem;
     }
 
     input[type='range']::-webkit-slider-runnable-track {

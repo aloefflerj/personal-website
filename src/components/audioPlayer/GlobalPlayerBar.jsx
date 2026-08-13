@@ -3,10 +3,12 @@ import { useAudioPlayer } from '../../hooks/useAudioPlayer';
 import { useCategoryContext } from '../../hooks/useCategoryContext';
 import { AudioPlayButton } from './AudioPlayButton';
 import { StopButton } from './StopButton';
+import { PreviousButton } from './PreviousButton';
+import { NextButton } from './NextButton';
 import { VolumeButton } from './VolumeButton';
 import { ProgressBar } from './ProgressBar';
 
-export const PLAYER_BAR_HEIGHT = '64px';
+export const PLAYER_BAR_HEIGHT = '44px';
 
 const Bar = styled.div`
     position: fixed;
@@ -18,24 +20,31 @@ const Bar = styled.div`
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 0 20px;
+    gap: 2px;
+    padding: 0 2px;
     background-color: ${(props) => props.$category.darkColor};
 `;
 
 const TrackInfo = styled.div`
+    width: 160px;
     color: ${(props) => props.$category.lightColor};
-    min-width: 160px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 `;
 
-const ControlsGroup = styled.div`
+const CenterGroup = styled.div`
+    flex: 1;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 2px;
+`;
+
+const SkipGroup = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 2px;
 `;
 
 export function GlobalPlayerBar() {
@@ -43,13 +52,16 @@ export function GlobalPlayerBar() {
     const {
         currentTrack,
         isPlaying,
-        muted,
+        volume,
         progress,
         duration,
         togglePlayPause,
         playRandom,
+        playNext,
+        playPrevious,
         stop,
         toggleMute,
+        setVolume,
         seek,
     } = useAudioPlayer();
 
@@ -68,20 +80,27 @@ export function GlobalPlayerBar() {
                     ? `${currentTrack.title} — ${currentTrack.author}`
                     : 'Nothing playing'}
             </TrackInfo>
-            <ControlsGroup>
+            <CenterGroup>
                 <AudioPlayButton
                     togglePlayPause={handlePlayClick}
                     playing={isPlaying}
                     global={true}
-                    miniplayer={false}
                 />
-                <StopButton onClick={stop} />
-                <VolumeButton muted={muted} onClick={toggleMute} />
-            </ControlsGroup>
-            <ProgressBar
-                progress={progress}
-                duration={duration}
-                onSeek={seek}
+                <ProgressBar
+                    progress={progress}
+                    duration={duration}
+                    onSeek={seek}
+                />
+                <SkipGroup>
+                    <PreviousButton onClick={playPrevious} />
+                    <StopButton onClick={stop} />
+                    <NextButton onClick={playNext} />
+                </SkipGroup>
+            </CenterGroup>
+            <VolumeButton
+                volume={volume}
+                onToggleMute={toggleMute}
+                onChangeVolume={setVolume}
             />
         </Bar>
     );

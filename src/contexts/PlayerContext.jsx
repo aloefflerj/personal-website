@@ -27,7 +27,7 @@ export const PlayerProvider = ({ children }) => {
 
     const [currentTrack, setCurrentTrack] = useState(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [muted, setMuted] = useState(false);
+    const [volume, setVolumeState] = useState(1);
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
     const [queue, setQueue] = useState([]);
@@ -36,7 +36,8 @@ export const PlayerProvider = ({ children }) => {
 
     const currentTrackRef = useRef(null);
     const isPlayingRef = useRef(false);
-    const mutedRef = useRef(false);
+    const volumeRef = useRef(1);
+    const lastVolumeRef = useRef(1);
     const queueRef = useRef([]);
     const queueIndexRef = useRef(0);
     const modeRef = useRef('random');
@@ -48,7 +49,7 @@ export const PlayerProvider = ({ children }) => {
             queue: queueRef.current,
             queueIndex: queueIndexRef.current,
             mode: modeRef.current,
-            muted: mutedRef.current,
+            volume: volumeRef.current,
             isPlaying: isPlayingRef.current,
             progress: audioRef.current.currentTime,
         };
@@ -106,6 +107,20 @@ export const PlayerProvider = ({ children }) => {
         loadAndPlay(tracks[index], tracks, index);
     };
 
+    const playNext = () => {
+        const q = queueRef.current;
+        if (q.length === 0) return;
+        const nextIndex = (queueIndexRef.current + 1) % q.length;
+        loadAndPlay(q[nextIndex], q, nextIndex);
+    };
+
+    const playPrevious = () => {
+        const q = queueRef.current;
+        if (q.length === 0) return;
+        const prevIndex = (queueIndexRef.current - 1 + q.length) % q.length;
+        loadAndPlay(q[prevIndex], q, prevIndex);
+    };
+
     const togglePlayPause = () => {
         const audio = audioRef.current;
         if (!currentTrackRef.current) return;
@@ -151,14 +166,22 @@ export const PlayerProvider = ({ children }) => {
         setProgress(time);
     };
 
+    const setVolume = (value) => {
+        const clamped = Math.min(1, Math.max(0, value));
+        audioRef.current.volume = clamped;
+        setVolumeState(clamped);
+        volumeRef.current = clamped;
+        if (clamped > 0) lastVolumeRef.current = clamped;
+        persist();
+    };
+
     const toggleMute = () => {
-        setMuted((prev) => {
-            const next = !prev;
-            audioRef.current.volume = next ? 0 : 1;
-            mutedRef.current = next;
-            persist();
-            return next;
-        });
+        if (volumeRef.current > 0) {
+            lastVolumeRef.current = volumeRef.current;
+            setVolume(0);
+        } else {
+            setVolume(lastVolumeRef.current || 1);
+        }
     };
 
     const handleEnded = () => {
@@ -201,9 +224,11 @@ export const PlayerProvider = ({ children }) => {
         queueRef.current = queueFromStorage;
         setQueueIndex(parsed.queueIndex ?? 0);
         queueIndexRef.current = parsed.queueIndex ?? 0;
-        setMuted(parsed.muted ?? false);
-        mutedRef.current = parsed.muted ?? false;
-        audio.volume = parsed.muted ? 0 : 1;
+        const restoredVolume = parsed.volume ?? 1;
+        setVolumeState(restoredVolume);
+        volumeRef.current = restoredVolume;
+        lastVolumeRef.current = restoredVolume > 0 ? restoredVolume : 1;
+        audio.volume = restoredVolume;
 
         if (!track) return;
 
@@ -265,7 +290,7 @@ export const PlayerProvider = ({ children }) => {
             value={{
                 currentTrack,
                 isPlaying,
-                muted,
+                volume,
                 progress,
                 duration,
                 queue,
@@ -273,9 +298,12 @@ export const PlayerProvider = ({ children }) => {
                 mode,
                 playRandom,
                 playFromList,
+                playNext,
+                playPrevious,
                 togglePlayPause,
                 stop,
                 seek,
+                setVolume,
                 toggleMute,
             }}
         >
