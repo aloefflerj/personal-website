@@ -20,13 +20,15 @@ const Bar = styled.div`
     box-sizing: border-box;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 2px;
-    padding: 0 2px;
+    padding: 0 20px;
     background-color: ${(props) => props.$category.darkColor};
 `;
 
 const TrackInfo = styled.div`
-    width: 160px;
+    width: 440px;
+    flex-shrink: 0;
     color: ${(props) => props.$category.lightColor};
     white-space: nowrap;
     overflow: hidden;
@@ -34,7 +36,10 @@ const TrackInfo = styled.div`
 `;
 
 const CenterGroup = styled.div`
-    flex: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     justify-content: center;
