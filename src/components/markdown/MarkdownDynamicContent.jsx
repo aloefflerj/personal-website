@@ -13,6 +13,7 @@ import _ from 'lodash';
 import { MarkdownImage } from '../markdownimage/MarkdownImage';
 import { MarkdownSection } from './MarkdownSection';
 import { LinkBlock } from '../linkBlock/LinkBlock';
+import { useWikiLinks } from '../../hooks/useWikiLinks';
 
 const ASSET_PATH_RE = /(?:\.\.\/)+assets\/(img|video)\/categories\//g;
 
@@ -25,9 +26,11 @@ export function MarkdownDynamicContent({
     dir,
     segments,
     markdownPathType,
+    wiki,
 }) {
     const { fetchUrl, fetchGithubEncryptedMarkdown } = useRequest();
     const { getExternalGithubPath, getInternalPath } = useMarkdownPath();
+    const { linkWikiPages } = useWikiLinks();
     const [markdownContent, setMarkdownContent] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -35,6 +38,13 @@ export function MarkdownDynamicContent({
         fetchMarkdownContent();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dbJsonData]);
+
+    const transformMarkdown = (markdown) => {
+        const normalized = normalizeAssetPaths(markdown);
+        if (!wiki) return normalized;
+
+        return linkWikiPages(normalized, wiki.basePath, wiki.items);
+    };
 
     const fetchMarkdownContent = async () => {
         setLoading(true);
@@ -45,7 +55,7 @@ export function MarkdownDynamicContent({
             const markdownContent = await fetchByMethod(contentPath);
 
             if (markdownContent !== undefined) {
-                setMarkdownContent(normalizeAssetPaths(markdownContent));
+                setMarkdownContent(transformMarkdown(markdownContent));
             }
         }
         setLoading(false);
@@ -123,4 +133,8 @@ MarkdownDynamicContent.propTypes = {
     segments: PropTypes.arrayOf(PropTypes.string),
     category: PropTypes.object,
     markdownPathType: PropTypes.string,
+    wiki: PropTypes.shape({
+        basePath: PropTypes.string,
+        items: PropTypes.array,
+    }),
 };
