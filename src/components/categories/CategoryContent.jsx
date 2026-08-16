@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { RetractButton } from '../../elements/sidebar/RectractButton';
+import { useCategoryContext } from '../../hooks/useCategoryContext';
 
 const Content = styled.main`
     grid-area: main;
@@ -24,11 +25,13 @@ const Header = styled.header`
 `;
 
 export function CategoryContent({ category, children }) {
+    const { breadcrumbTrail } = useCategoryContext();
+
     return (
         <Content $bgColor={category.bgColor}>
             <Header>
                 <RetractButton />
-                <Breadcrumbs category={category} />
+                <Breadcrumbs category={category} trail={breadcrumbTrail} />
             </Header>
             {children}
         </Content>
