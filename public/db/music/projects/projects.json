@@ -4,7 +4,17 @@
         "title": "Worm Paranoia",
         "link": "worm-paranoia",
         "contentPath": "worm-paranoia.md",
-        "contentType": "folder"
+        "contentType": "folder",
+        "children": [
+            {
+                "id": 1,
+                "title": "Act I",
+                "link": "act-i",
+                "contentPath": "act-i.md",
+                "contentType": "folder",
+                "children": []
+            }
+        ]
     },
     {
         "id": 2,
