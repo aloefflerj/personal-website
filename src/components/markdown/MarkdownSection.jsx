@@ -27,6 +27,11 @@ export const MarkdownSection = styled(ReactMarkdown)`
         text-decoration: underline;
     }
 
+    .wiki-missing {
+        color: ${(props) => props.$category.mediumColor};
+        text-decoration: underline dotted;
+    }
+
     img {
         /* border: 3px solid ${(props) => props.$category.lightColor}; */
         padding: 6px;
