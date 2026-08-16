@@ -73,16 +73,21 @@ function FolderWikiView({
     markdownPathType,
     wiki,
 }) {
+    // A subcategory wiki has no markdown of its own; an item wiki does.
+    const hasLanding = Boolean(node?.contentPath);
+
     return (
         <FolderContent $category={category}>
-            <MarkdownDynamicContent
-                dbJsonData={node}
-                category={category}
-                dir={dir}
-                segments={segments}
-                markdownPathType={markdownPathType}
-                wiki={wiki}
-            />
+            <If is={hasLanding}>
+                <MarkdownDynamicContent
+                    dbJsonData={node}
+                    category={category}
+                    dir={dir}
+                    segments={segments}
+                    markdownPathType={markdownPathType}
+                    wiki={wiki}
+                />
+            </If>
             <WikiIndex
                 items={wiki.items}
                 basePath={wiki.basePath}
@@ -151,7 +156,11 @@ const FOLDER_VIEWS = {
 };
 
 function resolveFolderViewType(segments, record, node) {
-    if (segments.length === 0) return FolderViewType.list;
+    if (segments.length === 0) {
+        return record?.view === SubcategoryView.wiki
+            ? FolderViewType.wiki
+            : FolderViewType.list;
+    }
 
     if (record?.view === SubcategoryView.timeline && segments.length === 1) {
         return FolderViewType.timeline;
@@ -179,21 +188,35 @@ function resolveBasePath(category, subcategoryLink, segments) {
     return `/${[category.categoryKey, subcategoryLink, ...segments].join('/')}`;
 }
 
-// The wiki is an item, not a subcategory, so its scope comes from the trail:
-// the nearest ancestor (or the node itself) marked `view: "wiki"`. Links always
-// resolve from that node, never from the page currently being viewed.
-function resolveWikiScope(category, subcategoryLink, segments, trail) {
+// A wiki can be the subcategory itself or an item nested under one. The
+// subcategory case is checked first: when it holds the `wiki` view, every
+// descendant resolves links against the subcategory's own root items, and no
+// trail entry will carry the marker.
+function resolveWikiScope(
+    category,
+    subcategoryLink,
+    segments,
+    trail,
+    record,
+    items
+) {
+    const subcategoryPath = `/${[category.categoryKey, subcategoryLink].join(
+        '/'
+    )}`;
+
+    if (record?.view === SubcategoryView.wiki) {
+        return { basePath: subcategoryPath, items };
+    }
+
     const index = trail.findIndex(
         (entry) => entry.view === SubcategoryView.wiki
     );
     if (index === -1) return null;
 
     return {
-        basePath: `/${[
-            category.categoryKey,
-            subcategoryLink,
-            ...segments.slice(0, index + 1),
-        ].join('/')}`,
+        basePath: `${subcategoryPath}/${segments
+            .slice(0, index + 1)
+            .join('/')}`,
         items: childrenOf(trail[index]),
     };
 }
@@ -247,7 +270,14 @@ export function FolderPage({ category }) {
     }, [record, dir]);
 
     const { node, trail } = findNodeByPath(items, segments);
-    const wiki = resolveWikiScope(category, subcategoryLink, segments, trail);
+    const wiki = resolveWikiScope(
+        category,
+        subcategoryLink,
+        segments,
+        trail,
+        record,
+        items
+    );
     const View = FOLDER_VIEWS[resolveFolderViewType(segments, record, node)];
 
     const segmentsKey = segments.join('/');
