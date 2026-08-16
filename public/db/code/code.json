@@ -9,7 +9,6 @@
         "id": 2,
         "title": "Roadmaps",
         "link": "roadmaps",
-        "view": "timeline",
-        "markdownPathType": "githubRaw"
+        "view": "timeline"
     }
 ]
