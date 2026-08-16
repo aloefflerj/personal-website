@@ -1,0 +1,11 @@
+[
+    { "id": 1, "title": "Animation", "link": "animation" },
+    {
+        "id": 2,
+        "title": "Digital Painting",
+        "link": "digital",
+        "dir": "digital-painting"
+    },
+    { "id": 3, "title": "Ink", "link": "ink" },
+    { "id": 4, "title": "Pixel Art", "link": "pixel", "dir": "pixel-art" }
+]
