@@ -1,0 +1,4 @@
+# Story
+
+[[Draft]]
+[[Characters]]
