@@ -75,14 +75,29 @@ step.
    - New: `gh issue create --title "<task>" --body "<short scope>"`.
 
    Never guess or auto-pick an issue.
-2. **Branch.** `git checkout -b issue/<number>` off `main`, or check out the existing branch
+2. **Cross-repo change.** If the task needs code changes in both this repo and
+   `personal-website-admin`, open an issue in **each** repo and link them: the issue for
+   the main change is the parent, the other one is its sub-issue. Never leave the two
+   issues unlinked.
+
+   ```sh
+   # database id of the sub-issue (not its issue number)
+   gh api repos/aloefflerj/<child-repo>/issues/<child-number> --jq .id
+   # attach it under the parent
+   gh api repos/aloefflerj/<parent-repo>/issues/<parent-number>/sub_issues \
+       -F sub_issue_id=<child-id>
+   ```
+
+   The main change is the one the task is really about; ask the user which side it is
+   when that is not obvious. Each repo still gets its own branch, commits, and PR.
+3. **Branch.** `git checkout -b issue/<number>` off `main`, or check out the existing branch
    when resuming.
-3. **Work.** Edit, then lint and build.
-4. **Task finishes. Ask before committing.** On approval:
+4. **Work.** Edit, then lint and build.
+5. **Task finishes. Ask before committing.** On approval:
    `<gitmoji> <type>: <description> #<number>`
    e.g. `:sparkles: feat: adds sidebar hover animation #123`
-5. **All tasks finish. Ask before** `git push origin issue/<number>`.
-6. **After the push.** `gh pr create --base main --head issue/<number> --title "<task>"
+6. **All tasks finish. Ask before** `git push origin issue/<number>`.
+7. **After the push.** `gh pr create --base main --head issue/<number> --title "<task>"
    --body "Closes #<number>"`, then give the user the PR URL. Do not merge; that is the
    user's call.
 
