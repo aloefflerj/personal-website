@@ -17,13 +17,14 @@ export async function fetchAllSongs() {
         .flat()
         .filter((item) => item.contentType === SubcategoryContentType.song)
         .map(
-            ({ id, title, subtitle, songPath }) =>
+            ({ id, title, subtitle, songPath, image }) =>
                 new Track(
                     id,
                     `/assets/audio/${songPath}`,
                     title,
                     subtitle?.artist,
-                    subtitle?.album
+                    subtitle?.album,
+                    image ? `/assets/img/songs/${image}` : null
                 )
         );
 }

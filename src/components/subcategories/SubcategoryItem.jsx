@@ -34,6 +34,12 @@ const SubcategorySongWrapper = styled.div`
     }
 `;
 
+const SongImage = styled.img`
+    image-rendering: pixelated;
+    width: 64px;
+    height: 64px;
+`;
+
 const SubcategoryLink = styled(NavLink)`
     display: flex;
     align-items: center;
@@ -60,6 +66,7 @@ export function SubcategoryItem({
     category,
     contentType,
     songPath = null,
+    image = null,
     songQueue = [],
     songIndex = -1,
 }) {
@@ -75,7 +82,12 @@ export function SubcategoryItem({
     const SongItem = (
         <SubcategoryLink to={to}>
             <SubcategorySongWrapper>
-                <MusicIcon fill={category.lightColor} />
+                <If is={image !== null}>
+                    <SongImage src={`/assets/img/songs/${image}`} alt={title} />
+                </If>
+                <If is={image === null}>
+                    <MusicIcon fill={category.lightColor} />
+                </If>
                 <Title $fontColor={category.lightColor}>{title}</Title>
                 <If is={subtitle !== null || subtitle !== undefined}>
                     <Subtitle $fontColor={category.mediumColor}>
@@ -111,7 +123,8 @@ export function SubcategoryItem({
                             `/assets/audio/${songPath}`,
                             title,
                             subtitle?.artist,
-                            subtitle?.album
+                            subtitle?.album,
+                            image ? `/assets/img/songs/${image}` : null
                         )
                     }
                     queue={songQueue}
@@ -130,6 +143,7 @@ SubcategoryItem.propTypes = {
     category: PropTypes.object,
     contentType: PropTypes.string,
     songPath: PropTypes.string,
+    image: PropTypes.string,
     songQueue: PropTypes.arrayOf(PropTypes.instanceOf(Track)),
     songIndex: PropTypes.number,
 };

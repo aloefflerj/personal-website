@@ -15,7 +15,8 @@ function trackFromPlain(plain) {
         plain.src,
         plain.title,
         plain.author,
-        plain.album
+        plain.album,
+        plain.image
     );
 }
 

@@ -17,13 +17,14 @@ export function FolderGrid({ items, category, basePath }) {
     const songQueue = items
         .filter((item) => item.contentType === SubcategoryContentType.song)
         .map(
-            ({ id, title, subtitle, songPath }) =>
+            ({ id, title, subtitle, songPath, image }) =>
                 new Track(
                     id,
                     `/assets/audio/${songPath}`,
                     title,
                     subtitle?.artist,
-                    subtitle?.album
+                    subtitle?.album,
+                    image ? `/assets/img/songs/${image}` : null
                 )
         );
 
@@ -36,6 +37,7 @@ export function FolderGrid({ items, category, basePath }) {
                     subtitle,
                     link,
                     songPath = null,
+                    image = null,
                     contentType,
                 }) => (
                     <SubcategoryItem
@@ -47,6 +49,7 @@ export function FolderGrid({ items, category, basePath }) {
                         category={category}
                         contentType={contentType}
                         songPath={songPath}
+                        image={image}
                         songQueue={songQueue}
                         songIndex={
                             songPath
