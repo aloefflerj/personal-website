@@ -46,7 +46,11 @@ export function CodePage() {
                     <Outlet />
                 ) : (
                     <FoldersLayout category={Code} title={'Code'}>
-                        <FolderGrid items={subcategories} category={category} />
+                        <FolderGrid
+                            items={subcategories}
+                            category={category}
+                            basePath={`/${Code.categoryKey}`}
+                        />
                     </FoldersLayout>
                 )}
             </CategoryContent>

@@ -50,7 +50,11 @@ export function DrawingsPage() {
                     <Outlet />
                 ) : (
                     <FoldersLayout category={Drawings} title={'Drawings'}>
-                        <FolderGrid items={subcategories} category={category} />
+                        <FolderGrid
+                            items={subcategories}
+                            category={category}
+                            basePath={`/${Drawings.categoryKey}`}
+                        />
                     </FoldersLayout>
                 )}
             </CategoryContent>

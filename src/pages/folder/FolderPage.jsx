@@ -27,13 +27,14 @@ const FolderViewType = {
     content: 'content',
 };
 
-function FolderListView({ category, items }) {
-    return <FolderGrid items={items} category={category} />;
+function FolderListView({ category, items, basePath }) {
+    return <FolderGrid items={items} category={category} basePath={basePath} />;
 }
 
 FolderListView.propTypes = {
     category: PropTypes.object,
     items: PropTypes.array,
+    basePath: PropTypes.string,
 };
 
 function FolderTimelineView({
@@ -68,6 +69,7 @@ function FolderContentView({
     dir,
     segments,
     markdownPathType,
+    basePath,
 }) {
     const children = childrenOf(node);
 
@@ -81,7 +83,11 @@ function FolderContentView({
                 markdownPathType={markdownPathType}
             />
             <If is={children.length > 0}>
-                <FolderGrid items={children} category={category} />
+                <FolderGrid
+                    items={children}
+                    category={category}
+                    basePath={basePath}
+                />
             </If>
         </FolderContent>
     );
@@ -93,6 +99,7 @@ FolderContentView.propTypes = {
     dir: PropTypes.string,
     segments: PropTypes.arrayOf(PropTypes.string),
     markdownPathType: PropTypes.string,
+    basePath: PropTypes.string,
 };
 
 const FOLDER_VIEWS = {
@@ -122,6 +129,10 @@ function resolveDirectory(record, subcategoryLink) {
     if (!record) return subcategoryLink;
 
     return record.dir || record.link;
+}
+
+function resolveBasePath(category, subcategoryLink, segments) {
+    return `/${[category.categoryKey, subcategoryLink, ...segments].join('/')}`;
 }
 
 function buildBreadcrumbTrail(
@@ -210,6 +221,7 @@ export function FolderPage({ category }) {
                 markdownPathType={
                     record?.markdownPathType || MarkdownPathType.internal
                 }
+                basePath={resolveBasePath(category, subcategoryLink, segments)}
             />
         </FoldersLayout>
     );

@@ -46,7 +46,11 @@ export function GamePage() {
                     <Outlet />
                 ) : (
                     <FoldersLayout category={Game} title={'Game'}>
-                        <FolderGrid items={subcategories} category={category} />
+                        <FolderGrid
+                            items={subcategories}
+                            category={category}
+                            basePath={`/${Game.categoryKey}`}
+                        />
                     </FoldersLayout>
                 )}
             </CategoryContent>

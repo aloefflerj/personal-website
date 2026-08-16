@@ -46,7 +46,11 @@ export function MusicPage() {
                     <Outlet />
                 ) : (
                     <FoldersLayout category={Music} title={'Music'}>
-                        <FolderGrid items={subcategories} category={category} />
+                        <FolderGrid
+                            items={subcategories}
+                            category={category}
+                            basePath={`/${Music.categoryKey}`}
+                        />
                     </FoldersLayout>
                 )}
             </CategoryContent>

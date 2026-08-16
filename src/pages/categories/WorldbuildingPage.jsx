@@ -49,7 +49,11 @@ export function WorldbuildingPage() {
                         category={Worldbuilding}
                         title={'Worldbuilding'}
                     >
-                        <FolderGrid items={subcategories} category={category} />
+                        <FolderGrid
+                            items={subcategories}
+                            category={category}
+                            basePath={`/${Worldbuilding.categoryKey}`}
+                        />
                     </FoldersLayout>
                 )}
             </CategoryContent>

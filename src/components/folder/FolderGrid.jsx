@@ -13,7 +13,7 @@ export const SubcategoriesList = styled.div`
     background-color: ${(props) => props.$bgColor};
 `;
 
-export function FolderGrid({ items, category }) {
+export function FolderGrid({ items, category, basePath }) {
     const songQueue = items
         .filter((item) => item.contentType === SubcategoryContentType.song)
         .map(
@@ -40,7 +40,7 @@ export function FolderGrid({ items, category }) {
                 }) => (
                     <SubcategoryItem
                         id={id}
-                        to={link}
+                        to={`${basePath}/${link}`}
                         title={title}
                         subtitle={subtitle}
                         key={`folder-${category.categoryKey}-${link}`}
@@ -67,4 +67,5 @@ export function FolderGrid({ items, category }) {
 FolderGrid.propTypes = {
     items: PropTypes.array,
     category: PropTypes.object,
+    basePath: PropTypes.string,
 };
