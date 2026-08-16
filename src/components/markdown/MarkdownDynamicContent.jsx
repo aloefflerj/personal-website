@@ -14,19 +14,26 @@ import { MarkdownImage } from '../markdownimage/MarkdownImage';
 import { MarkdownSection } from './MarkdownSection';
 import { LinkBlock } from '../linkBlock/LinkBlock';
 
+const ASSET_PATH_RE = /(?:\.\.\/)+assets\/(img|video)\/categories\//g;
+
+const normalizeAssetPaths = (markdown) =>
+    markdown.replace(ASSET_PATH_RE, '/assets/$1/categories/');
+
 export function MarkdownDynamicContent({
     dbJsonData,
     category,
-    subcategory,
-    link,
+    dir,
+    segments,
     markdownPathType,
 }) {
     const { fetchUrl, fetchGithubEncryptedMarkdown } = useRequest();
+    const { getExternalGithubPath, getInternalPath } = useMarkdownPath();
     const [markdownContent, setMarkdownContent] = useState('');
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         fetchMarkdownContent();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dbJsonData]);
 
     const fetchMarkdownContent = async () => {
@@ -38,30 +45,25 @@ export function MarkdownDynamicContent({
             const markdownContent = await fetchByMethod(contentPath);
 
             if (markdownContent !== undefined) {
-                setMarkdownContent(markdownContent);
+                setMarkdownContent(normalizeAssetPaths(markdownContent));
             }
         }
         setLoading(false);
     };
 
     const getMarkdownContentPath = (subcategoryItemContentLink) => {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { getExternalGithubPath, getInternalPath } = useMarkdownPath();
-
-        const subcategoryItem = link;
-
         switch (markdownPathType) {
             case MarkdownPathType.internal:
                 return getInternalPath(
                     category.categoryKey,
-                    subcategory,
-                    subcategoryItem,
+                    dir,
+                    segments,
                     subcategoryItemContentLink
                 );
             case MarkdownPathType.githubRaw:
                 return getExternalGithubPath(
-                    subcategory,
-                    subcategoryItem,
+                    dir,
+                    segments,
                     subcategoryItemContentLink
                 );
             case MarkdownPathType.githubApi:
@@ -69,22 +71,18 @@ export function MarkdownDynamicContent({
             default:
                 return getInternalPath(
                     category.categoryKey,
-                    subcategory,
-                    subcategoryItem,
+                    dir,
+                    segments,
                     subcategoryItemContentLink
                 );
         }
     };
 
     const fetchByMethod = async (contentPath) => {
-        switch (markdownPathType) {
-            case MarkdownPathType.internal | MarkdownPathType.githubRaw:
-                return await fetchUrl(contentPath, {}, 'text');
-            case MarkdownPathType.githubApi:
-                return await fetchGithubEncryptedMarkdown(contentPath);
-            default:
-                return await fetchUrl(contentPath, {}, 'text');
+        if (markdownPathType === MarkdownPathType.githubApi) {
+            return await fetchGithubEncryptedMarkdown(contentPath);
         }
+        return await fetchUrl(contentPath, {}, 'text');
     };
 
     const validDbJsonData = (dbJsonData) => {
@@ -121,8 +119,8 @@ export function MarkdownDynamicContent({
 
 MarkdownDynamicContent.propTypes = {
     dbJsonData: PropTypes.object,
-    subcategory: PropTypes.string,
+    dir: PropTypes.string,
+    segments: PropTypes.arrayOf(PropTypes.string),
     category: PropTypes.object,
-    link: PropTypes.string,
     markdownPathType: PropTypes.string,
 };

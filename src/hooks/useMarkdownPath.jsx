@@ -1,19 +1,15 @@
 export const useMarkdownPath = () => {
     return {
-        getInternalPath: (
-            category,
-            subcategory,
-            subcategoryItem,
-            subcategoryItemContentLink
-        ) => {
-            return `/content/${category}/${subcategory}/${subcategoryItem}/${subcategoryItemContentLink}`;
+        getInternalPath: (categoryKey, dir, segments, contentPath) => {
+            return `/content/${[
+                categoryKey,
+                dir,
+                ...segments,
+                contentPath,
+            ].join('/')}`;
         },
-        getExternalGithubPath: (
-            subcategory,
-            subcategoryItem,
-            subcategoryItemContentLink
-        ) => {
-            return `https://raw.githubusercontent.com/aloefflerj/${subcategory}/main/${subcategoryItem}/steps/${subcategoryItemContentLink}`;
+        getExternalGithubPath: (dir, segments, contentPath) => {
+            return `https://raw.githubusercontent.com/aloefflerj/${dir}/main/${segments[0]}/steps/${contentPath}`;
         },
     };
 };

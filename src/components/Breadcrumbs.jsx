@@ -20,8 +20,15 @@ const BreadcrumbWrapper = styled.div`
     }
 `;
 
-export function Breadcrumbs({ category }) {
+export function Breadcrumbs({ category, trail = null }) {
     const breadcrumbs = useBreadcrumbs();
+
+    const renderTrail = () =>
+        trail.map(({ title, path }) => (
+            <NavLink key={path} to={path}>
+                &nbsp;{title}&nbsp;/
+            </NavLink>
+        ));
 
     const renderBreadcrumbs = () => {
         return breadcrumbs.map(({ match, breadcrumb }) => (
@@ -39,11 +46,12 @@ export function Breadcrumbs({ category }) {
 
     return (
         <BreadcrumbWrapper $activeColor={category.lightColor}>
-            {renderBreadcrumbs()}
+            {trail ? renderTrail() : renderBreadcrumbs()}
         </BreadcrumbWrapper>
     );
 }
 
 Breadcrumbs.propTypes = {
     category: PropTypes.object,
+    trail: PropTypes.array,
 };

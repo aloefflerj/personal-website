@@ -5,7 +5,7 @@ import { GamePage } from '../pages/categories/GamePage';
 import { MusicPage } from '../pages/categories/MusicPage';
 import { WorldbuildingPage } from '../pages/categories/WorldbuildingPage';
 import { Home } from '../pages/Home';
-import { SubcategoriesPage } from '../pages/subcategories/SubcategoriesPage';
+import { FolderPage } from '../pages/folder/FolderPage';
 import {
     Code,
     Drawings,
@@ -13,294 +13,33 @@ import {
     Music,
     Worldbuilding,
 } from '../categories/Categories';
-import { ProjectPage } from '../pages/projects/ProjectPage';
-import { RoadmapPage } from '../pages/roadmaps/RoadmapPage';
-import { GamesPage } from '../pages/games/GamesPage';
-import { MarkdownPathType } from '../common/MarkdownPathType';
-import { ShortPage } from '../pages/short/ShortPage';
-import { DigitalPaintingPage } from '../pages/digital-painting/DigitalPaintingPage';
-import { PixelArtPage } from '../pages/pixel-art/PixelArtPage';
-import { AnimationPage } from '../pages/animation/AnimationPage';
-import { InkPage } from '../pages/ink/InkPage';
-import { JamsPage } from '../pages/jams/JamsPage';
+
+const categoryRoutes = [
+    { path: 'code', element: <CodePage />, category: Code },
+    { path: 'drawings', element: <DrawingsPage />, category: Drawings },
+    { path: 'game', element: <GamePage />, category: Game },
+    { path: 'music', element: <MusicPage />, category: Music },
+    {
+        path: 'worldbuilding',
+        element: <WorldbuildingPage />,
+        category: Worldbuilding,
+    },
+];
 
 export function Router() {
     return (
         <Routes>
             <Route path="/">
                 <Route path="" element={<Home />} />
-                <Route path="code" element={<CodePage />}>
-                    <Route
-                        path="projects"
-                        element={
-                            <SubcategoriesPage
-                                category={Code}
-                                page="projects"
-                            />
-                        }
-                    >
+                {categoryRoutes.map(({ path, element, category }) => (
+                    <Route key={path} path={path} element={element}>
                         <Route
-                            path=":link"
-                            element={
-                                <ProjectPage
-                                    category={Code}
-                                    markdownPathType={
-                                        MarkdownPathType.githubApi
-                                    }
-                                />
-                            }
+                            path=":subcategory/*"
+                            element={<FolderPage category={category} />}
                         />
                     </Route>
-                    <Route
-                        path="roadmaps"
-                        element={
-                            <SubcategoriesPage
-                                category={Code}
-                                page="roadmaps"
-                            />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <RoadmapPage
-                                    category={Code}
-                                    markdownPathType={
-                                        MarkdownPathType.githubRaw
-                                    }
-                                />
-                            }
-                        />
-                    </Route>
-                </Route>
-                <Route path="drawings" element={<DrawingsPage />}>
-                    <Route
-                        path="animation"
-                        element={
-                            <SubcategoriesPage
-                                category={Drawings}
-                                page="animation"
-                            />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <AnimationPage
-                                    category={Drawings}
-                                    markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                    <Route
-                        path="digital"
-                        element={
-                            <SubcategoriesPage
-                                category={Drawings}
-                                page="digital"
-                            />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <DigitalPaintingPage
-                                    category={Drawings}
-                                    markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                    <Route
-                        path="ink"
-                        element={
-                            <SubcategoriesPage
-                                category={Drawings}
-                                page="ink"
-                            />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <InkPage
-                                    category={Drawings}
-                                    markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                    <Route
-                        path="pixel"
-                        element={
-                            <SubcategoriesPage
-                                category={Drawings}
-                                page="pixel"
-                            />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <PixelArtPage
-                                    category={Drawings}
-                                    markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                </Route>
-                <Route path="game" element={<GamePage />}>
-                    <Route
-                        path="projects"
-                        element={
-                            <SubcategoriesPage
-                                category={Game}
-                                page="projects"
-                            />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <ProjectPage
-                                    category={Game}
-                                    markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                    <Route
-                        path="games"
-                        element={
-                            <SubcategoriesPage category={Game} page="games" />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <GamesPage
-                                    category={Game}
-                                    markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                    <Route
-                        path="jams"
-                        element={
-                            <SubcategoriesPage category={Game} page="jams" />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <JamsPage
-                                    category={Game}
-                                    markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                </Route>
-                <Route path="music" element={<MusicPage />}>
-                    <Route
-                        path="projects"
-                        element={
-                            <SubcategoriesPage
-                                category={Music}
-                                page="projects"
-                            />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <ProjectPage
-                                    category={Music}
-                                    markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                    <Route
-                        path="short"
-                        element={
-                            <SubcategoriesPage category={Music} page="short" />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <ShortPage
-                                    category={Music}
-                                    markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                    <Route
-                        path="roadmaps"
-                        element={
-                            <SubcategoriesPage
-                                category={Music}
-                                page="roadmaps"
-                            />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <RoadmapPage
-                                    category={Music}
-                                    markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                </Route>
-                <Route path="worldbuilding" element={<WorldbuildingPage />}>
-                    <Route
-                        path="roadmaps"
-                        element={
-                            <SubcategoriesPage
-                                category={Worldbuilding}
-                                page="roadmaps"
-                            />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <RoadmapPage
-                                    category={Worldbuilding}
-                                    markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                    <Route
-                        path="projects"
-                        element={
-                            <SubcategoriesPage
-                                category={Worldbuilding}
-                                page="projects"
-                            />
-                        }
-                    >
-                        <Route
-                            path=":link"
-                            element={
-                                <ProjectPage
-                                    category={Worldbuilding}
-                                    markdownPathType={MarkdownPathType.internal}
-                                />
-                            }
-                        />
-                    </Route>
-                    <Route path="*" element={<h1>not found</h1>} />
-                </Route>
+                ))}
+                <Route path="*" element={<h1>not found</h1>} />
             </Route>
         </Routes>
     );

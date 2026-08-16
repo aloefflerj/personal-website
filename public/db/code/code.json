@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1,
+        "title": "Projects",
+        "link": "projects",
+        "markdownPathType": "githubApi"
+    },
+    {
+        "id": 2,
+        "title": "Roadmaps",
+        "link": "roadmaps",
+        "view": "timeline",
+        "markdownPathType": "githubRaw"
+    }
+]
