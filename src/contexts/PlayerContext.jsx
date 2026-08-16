@@ -77,7 +77,9 @@ export const PlayerProvider = ({ children }) => {
                 isPlayingRef.current = true;
                 persist();
             })
-            .catch(() => {
+            .catch((err) => {
+                // eslint-disable-next-line no-console -- otherwise a failed track is silently unplayable
+                console.warn(`Failed to play track: ${track.src}`, err);
                 setIsPlaying(false);
                 isPlayingRef.current = false;
                 persist();
@@ -134,7 +136,12 @@ export const PlayerProvider = ({ children }) => {
                     isPlayingRef.current = true;
                     persist();
                 })
-                .catch(() => {
+                .catch((err) => {
+                    // eslint-disable-next-line no-console -- otherwise a failed track is silently unplayable
+                    console.warn(
+                        `Failed to play track: ${currentTrackRef.current.src}`,
+                        err
+                    );
                     setIsPlaying(false);
                     isPlayingRef.current = false;
                     persist();
@@ -248,7 +255,9 @@ export const PlayerProvider = ({ children }) => {
                         setIsPlaying(true);
                         isPlayingRef.current = true;
                     })
-                    .catch(() => {
+                    .catch((err) => {
+                        // eslint-disable-next-line no-console -- otherwise a failed track is silently unplayable
+                        console.warn(`Failed to play track: ${track.src}`, err);
                         setIsPlaying(false);
                         isPlayingRef.current = false;
                     });
