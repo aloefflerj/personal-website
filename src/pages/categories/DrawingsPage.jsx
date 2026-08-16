@@ -10,13 +10,14 @@ import charImg from '/assets/img/guys/drawings-guy.png';
 import { PixelCharImage } from '../../components/pixel/PixelCharImage';
 import { Outlet, useOutlet } from 'react-router-dom';
 import { FoldersLayout } from '../folders-layout/FoldersLayout';
-import { SubcategoriesList } from '../subcategories/SubcategoriesPage';
-import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem';
+import { FolderGrid } from '../../components/folder/FolderGrid';
+import { useSubcategories } from '../../hooks/useSubcategories';
 import { useEffect } from 'react';
 
 export function DrawingsPage() {
     const { category, setCategory } = useCategoryContext();
     const outlet = useOutlet();
+    const { subcategories } = useSubcategories(Drawings);
 
     if (category === undefined || category === null || category === Blank) {
         setCategory(Drawings);
@@ -34,58 +35,22 @@ export function DrawingsPage() {
                 <PixelCharContent>
                     <PixelCharImage src={charImg} />
                 </PixelCharContent>
-                <SidebarOption to="animation" category={Drawings}>
-                    Animation
-                </SidebarOption>
-                <SidebarOption to="digital" category={Drawings}>
-                    Digital
-                </SidebarOption>
-                <SidebarOption to="ink" category={Drawings}>
-                    Ink
-                </SidebarOption>
-                <SidebarOption to="pixel" category={Drawings}>
-                    Pixel Art
-                </SidebarOption>
+                {subcategories.map((record) => (
+                    <SidebarOption
+                        key={record.link}
+                        to={record.link}
+                        category={Drawings}
+                    >
+                        {record.title}
+                    </SidebarOption>
+                ))}
             </Sidebar>
             <CategoryContent category={Drawings}>
                 {outlet ? (
                     <Outlet />
                 ) : (
                     <FoldersLayout category={Drawings} title={'Drawings'}>
-                        <SubcategoriesList $bgColor={category.darkColor}>
-                            <SubcategoryItem
-                                id={3}
-                                to="animation"
-                                title="Animation"
-                                key={3}
-                                category={category}
-                                contentType="folder"
-                            />
-                            <SubcategoryItem
-                                id={1}
-                                to="digital"
-                                title="Digital"
-                                key={1}
-                                category={category}
-                                contentType="folder"
-                            />
-                            <SubcategoryItem
-                                id={4}
-                                to="ink"
-                                title="Ink"
-                                key={4}
-                                category={category}
-                                contentType="folder"
-                            />
-                            <SubcategoryItem
-                                id={2}
-                                to="pixel"
-                                title="Pixel Art"
-                                key={2}
-                                category={category}
-                                contentType="folder"
-                            />
-                        </SubcategoriesList>
+                        <FolderGrid items={subcategories} category={category} />
                     </FoldersLayout>
                 )}
             </CategoryContent>

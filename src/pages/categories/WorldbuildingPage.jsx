@@ -10,13 +10,14 @@ import charImg from '/assets/img/guys/worldbuilding-guy.png';
 import { PixelCharImage } from '../../components/pixel/PixelCharImage';
 import { Outlet, useOutlet } from 'react-router-dom';
 import { FoldersLayout } from '../folders-layout/FoldersLayout';
-import { SubcategoriesList } from '../subcategories/SubcategoriesPage';
-import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem';
+import { FolderGrid } from '../../components/folder/FolderGrid';
+import { useSubcategories } from '../../hooks/useSubcategories';
 import { useEffect } from 'react';
 
 export function WorldbuildingPage() {
     const { category, setCategory } = useCategoryContext();
     const outlet = useOutlet();
+    const { subcategories } = useSubcategories(Worldbuilding);
 
     useEffect(() => {
         if (category === undefined || category === null || category === Blank) {
@@ -30,12 +31,15 @@ export function WorldbuildingPage() {
                 <PixelCharContent>
                     <PixelCharImage src={charImg} />
                 </PixelCharContent>
-                <SidebarOption to="projects" category={Worldbuilding}>
-                    Projects
-                </SidebarOption>
-                <SidebarOption to="roadmaps" category={Worldbuilding}>
-                    Roadmaps
-                </SidebarOption>
+                {subcategories.map((record) => (
+                    <SidebarOption
+                        key={record.link}
+                        to={record.link}
+                        category={Worldbuilding}
+                    >
+                        {record.title}
+                    </SidebarOption>
+                ))}
             </Sidebar>
             <CategoryContent category={Worldbuilding}>
                 {outlet ? (
@@ -45,24 +49,7 @@ export function WorldbuildingPage() {
                         category={Worldbuilding}
                         title={'Worldbuilding'}
                     >
-                        <SubcategoriesList $bgColor={category.darkColor}>
-                            <SubcategoryItem
-                                id={1}
-                                to="projects"
-                                title="Projects"
-                                key={1}
-                                category={category}
-                                contentType="folder"
-                            />
-                            <SubcategoryItem
-                                id={2}
-                                to="roadmaps"
-                                title="Roadmaps"
-                                key={2}
-                                category={category}
-                                contentType="folder"
-                            />
-                        </SubcategoriesList>
+                        <FolderGrid items={subcategories} category={category} />
                     </FoldersLayout>
                 )}
             </CategoryContent>

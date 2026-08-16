@@ -10,13 +10,14 @@ import charImg from '/assets/img/guys/game-guy.png';
 import { PixelCharImage } from '../../components/pixel/PixelCharImage';
 import { Outlet, useOutlet } from 'react-router-dom';
 import { FoldersLayout } from '../folders-layout/FoldersLayout';
-import { SubcategoriesList } from '../subcategories/SubcategoriesPage';
-import { SubcategoryItem } from '../../components/subcategories/SubcategoryItem';
+import { FolderGrid } from '../../components/folder/FolderGrid';
+import { useSubcategories } from '../../hooks/useSubcategories';
 import { useEffect } from 'react';
 
 export function GamePage() {
     const { category, setCategory } = useCategoryContext();
     const outlet = useOutlet();
+    const { subcategories } = useSubcategories(Game);
 
     useEffect(() => {
         if (category === undefined || category === null || category === Blank) {
@@ -30,47 +31,22 @@ export function GamePage() {
                 <PixelCharContent>
                     <PixelCharImage src={charImg} />
                 </PixelCharContent>
-                <SidebarOption to="projects" category={Game}>
-                    Projects
-                </SidebarOption>
-                <SidebarOption to="games" category={Game}>
-                    Games
-                </SidebarOption>
-                <SidebarOption to="jams" category={Game}>
-                    Jams
-                </SidebarOption>
+                {subcategories.map((record) => (
+                    <SidebarOption
+                        key={record.link}
+                        to={record.link}
+                        category={Game}
+                    >
+                        {record.title}
+                    </SidebarOption>
+                ))}
             </Sidebar>
             <CategoryContent category={Game}>
                 {outlet ? (
                     <Outlet />
                 ) : (
                     <FoldersLayout category={Game} title={'Game'}>
-                        <SubcategoriesList $bgColor={category.darkColor}>
-                            <SubcategoryItem
-                                id={1}
-                                to="projects"
-                                title="Projects"
-                                key={1}
-                                category={category}
-                                contentType="folder"
-                            />
-                            <SubcategoryItem
-                                id={2}
-                                to="games"
-                                title="Games"
-                                key={2}
-                                category={category}
-                                contentType="folder"
-                            />
-                            <SubcategoryItem
-                                id={3}
-                                to="jams"
-                                title="Jams"
-                                key={3}
-                                category={category}
-                                contentType="folder"
-                            />
-                        </SubcategoriesList>
+                        <FolderGrid items={subcategories} category={category} />
                     </FoldersLayout>
                 )}
             </CategoryContent>
