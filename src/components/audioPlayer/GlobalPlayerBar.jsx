@@ -7,6 +7,7 @@ import { PreviousButton } from './PreviousButton';
 import { NextButton } from './NextButton';
 import { VolumeButton } from './VolumeButton';
 import { ProgressBar } from './ProgressBar';
+import { If } from '../If';
 
 export const PLAYER_BAR_HEIGHT = '44px';
 
@@ -27,12 +28,22 @@ const Bar = styled.div`
 `;
 
 const TrackInfo = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 8px;
     width: 440px;
     flex-shrink: 0;
     color: ${(props) => props.$category.lightColor};
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+`;
+
+const TrackImage = styled.img`
+    image-rendering: pixelated;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
 `;
 
 const CenterGroup = styled.div`
@@ -81,6 +92,9 @@ export function GlobalPlayerBar() {
     return (
         <Bar $category={category}>
             <TrackInfo $category={category}>
+                <If is={!!currentTrack?.image}>
+                    <TrackImage src={currentTrack?.image} alt="" />
+                </If>
                 {currentTrack
                     ? `${currentTrack.title} — ${currentTrack.author}`
                     : 'Nothing playing'}
