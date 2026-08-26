@@ -14,6 +14,7 @@ import { RoadmapPage } from '../roadmaps/RoadmapPage';
 import { SubcategoryView } from '../../common/SubcategoryView';
 import { MarkdownPathType } from '../../common/MarkdownPathType';
 import { If } from '../../components/If';
+import { WikiIndex } from '../../components/wiki/WikiIndex';
 
 const FolderContent = styled.div`
     color: ${(props) => props.$category.lightColor};
@@ -25,6 +26,7 @@ const FolderViewType = {
     list: 'list',
     timeline: 'timeline',
     content: 'content',
+    wiki: 'wiki',
 };
 
 function FolderListView({ category, items, basePath }) {
@@ -63,6 +65,47 @@ FolderTimelineView.propTypes = {
     markdownPathType: PropTypes.string,
 };
 
+function FolderWikiView({
+    category,
+    node,
+    dir,
+    segments,
+    markdownPathType,
+    wiki,
+}) {
+    // A subcategory wiki has no markdown of its own; an item wiki does.
+    const hasLanding = Boolean(node?.contentPath);
+
+    return (
+        <FolderContent $category={category}>
+            <If is={hasLanding}>
+                <MarkdownDynamicContent
+                    dbJsonData={node}
+                    category={category}
+                    dir={dir}
+                    segments={segments}
+                    markdownPathType={markdownPathType}
+                    wiki={wiki}
+                />
+            </If>
+            <WikiIndex
+                items={wiki.items}
+                basePath={wiki.basePath}
+                category={category}
+            />
+        </FolderContent>
+    );
+}
+
+FolderWikiView.propTypes = {
+    category: PropTypes.object,
+    node: PropTypes.object,
+    dir: PropTypes.string,
+    segments: PropTypes.arrayOf(PropTypes.string),
+    markdownPathType: PropTypes.string,
+    wiki: PropTypes.object,
+};
+
 function FolderContentView({
     category,
     node,
@@ -70,6 +113,7 @@ function FolderContentView({
     segments,
     markdownPathType,
     basePath,
+    wiki,
 }) {
     const children = childrenOf(node);
 
@@ -81,6 +125,7 @@ function FolderContentView({
                 dir={dir}
                 segments={segments}
                 markdownPathType={markdownPathType}
+                wiki={wiki}
             />
             <If is={children.length > 0}>
                 <FolderGrid
@@ -100,20 +145,28 @@ FolderContentView.propTypes = {
     segments: PropTypes.arrayOf(PropTypes.string),
     markdownPathType: PropTypes.string,
     basePath: PropTypes.string,
+    wiki: PropTypes.object,
 };
 
 const FOLDER_VIEWS = {
     [FolderViewType.list]: FolderListView,
     [FolderViewType.timeline]: FolderTimelineView,
     [FolderViewType.content]: FolderContentView,
+    [FolderViewType.wiki]: FolderWikiView,
 };
 
-function resolveFolderViewType(segments, record) {
-    if (segments.length === 0) return FolderViewType.list;
+function resolveFolderViewType(segments, record, node) {
+    if (segments.length === 0) {
+        return record?.view === SubcategoryView.wiki
+            ? FolderViewType.wiki
+            : FolderViewType.list;
+    }
 
     if (record?.view === SubcategoryView.timeline && segments.length === 1) {
         return FolderViewType.timeline;
     }
+
+    if (node?.view === SubcategoryView.wiki) return FolderViewType.wiki;
 
     return FolderViewType.content;
 }
@@ -133,6 +186,39 @@ function resolveDirectory(record, subcategoryLink) {
 
 function resolveBasePath(category, subcategoryLink, segments) {
     return `/${[category.categoryKey, subcategoryLink, ...segments].join('/')}`;
+}
+
+// A wiki can be the subcategory itself or an item nested under one. The
+// subcategory case is checked first: when it holds the `wiki` view, every
+// descendant resolves links against the subcategory's own root items, and no
+// trail entry will carry the marker.
+function resolveWikiScope(
+    category,
+    subcategoryLink,
+    segments,
+    trail,
+    record,
+    items
+) {
+    const subcategoryPath = `/${[category.categoryKey, subcategoryLink].join(
+        '/'
+    )}`;
+
+    if (record?.view === SubcategoryView.wiki) {
+        return { basePath: subcategoryPath, items };
+    }
+
+    const index = trail.findIndex(
+        (entry) => entry.view === SubcategoryView.wiki
+    );
+    if (index === -1) return null;
+
+    return {
+        basePath: `${subcategoryPath}/${segments
+            .slice(0, index + 1)
+            .join('/')}`,
+        items: childrenOf(trail[index]),
+    };
 }
 
 function buildBreadcrumbTrail(
@@ -184,7 +270,15 @@ export function FolderPage({ category }) {
     }, [record, dir]);
 
     const { node, trail } = findNodeByPath(items, segments);
-    const View = FOLDER_VIEWS[resolveFolderViewType(segments, record)];
+    const wiki = resolveWikiScope(
+        category,
+        subcategoryLink,
+        segments,
+        trail,
+        record,
+        items
+    );
+    const View = FOLDER_VIEWS[resolveFolderViewType(segments, record, node)];
 
     const segmentsKey = segments.join('/');
     const trailKey = trail.map((trailNode) => trailNode.link).join('/');
@@ -222,6 +316,7 @@ export function FolderPage({ category }) {
                     record?.markdownPathType || MarkdownPathType.internal
                 }
                 basePath={resolveBasePath(category, subcategoryLink, segments)}
+                wiki={wiki}
             />
         </FoldersLayout>
     );

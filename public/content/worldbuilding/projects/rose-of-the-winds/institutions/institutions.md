@@ -1,0 +1,3 @@
+# Institutions
+
+[[Academy]] - Educational Institution

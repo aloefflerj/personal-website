@@ -1,0 +1,3 @@
+# Calliope
+
+Calliope works, in some way, as a computer. It is often found with [[Balloons]], as it works as a navigating [[Algorythm]]. You can insert [[Punch Cards]] and it will make the process known as [[Wind Calling]] to move the baloon around. It is common to find [[Punch Cards]] with algorithms titled 'route to...', as it can work to call the wind to a preset route with the winds through the mountains.

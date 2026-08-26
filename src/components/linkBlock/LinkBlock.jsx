@@ -1,8 +1,10 @@
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Track } from '../../model/Track';
 import { TrackPlayButton } from '../audioPlayer/TrackPlayButton';
 
 export function LinkBlock(props) {
-    const { href } = props;
+    const { href, children, title } = props;
 
     if (href.includes('/assets/audio')) {
         const track = new Track(0, href, href, '', '');
@@ -36,5 +38,21 @@ export function LinkBlock(props) {
         );
     }
 
+    // Internal routes must not go through <a target="_blank"> — that would
+    // reload the whole SPA. /assets/* is left alone: real files, not routes.
+    if (href.startsWith('/') && !href.startsWith('/assets')) {
+        return (
+            <Link to={href} title={title}>
+                {children}
+            </Link>
+        );
+    }
+
     return <a {...props} />;
 }
+
+LinkBlock.propTypes = {
+    href: PropTypes.string,
+    children: PropTypes.node,
+    title: PropTypes.string,
+};
