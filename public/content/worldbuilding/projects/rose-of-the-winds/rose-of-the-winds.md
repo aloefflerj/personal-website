@@ -1,6 +1,5 @@
 # Rose of The Winds
 
-[[Worldbuilding]]
-[[Story]]
-[[Brainstorming]]
-
+## [[Worldbuilding]]
+## [[Story]]
+## [[Brainstorming]]

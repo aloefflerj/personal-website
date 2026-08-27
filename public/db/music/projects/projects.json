@@ -8,11 +8,99 @@
         "children": [
             {
                 "id": 1,
-                "title": "Act I",
-                "link": "act-i",
-                "contentPath": "act-i.md",
+                "title": "The Last Days",
+                "link": "the-last-days",
+                "contentPath": "the-last-days.md",
                 "contentType": "folder",
-                "children": []
+                "children": [
+                    {
+                        "id": 1,
+                        "title": "Burn Me Down",
+                        "link": "burn-me-down",
+                        "contentPath": "burn-me-down.md",
+                        "contentType": "song",
+                        "subtitle": {
+                            "artist": "Worm Paranoia",
+                            "album": "The Last Days"
+                        },
+                        "songPath": "burn_me_down.wav",
+                        "image": "cover.png"
+                    },
+                    {
+                        "id": 2,
+                        "title": "Insidious",
+                        "link": "insidious",
+                        "contentPath": "insidious.md",
+                        "contentType": "song",
+                        "subtitle": {
+                            "artist": "Worm Paranoia",
+                            "album": "The Last Days"
+                        },
+                        "songPath": "insidious.wav",
+                        "image": "cover.png"
+                    },
+                    {
+                        "id": 3,
+                        "title": "I've Given Up a Long Time Ago",
+                        "link": "i-ve-given-up-a-long-time-ago",
+                        "contentPath": "i-ve-given-up-a-long-time-ago.md",
+                        "contentType": "song",
+                        "subtitle": {
+                            "artist": "Worm Paranoia",
+                            "album": "The Last Days"
+                        },
+                        "songPath": "i_ve_given_up_a_long_time_ago.wav",
+                        "image": "cover.png"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "title": "Random Songs",
+                "link": "random-songs",
+                "contentPath": "random-songs.md",
+                "contentType": "folder",
+                "children": [
+                    {
+                        "id": 1,
+                        "title": "Hesitate",
+                        "link": "hesitate",
+                        "contentPath": "hesitate.md",
+                        "contentType": "song",
+                        "subtitle": {
+                            "artist": "Worm Paranoia",
+                            "album": "Random Songs"
+                        },
+                        "songPath": "hesitate-spatial.wav",
+                        "image": "album_cover_3.jpg"
+                    },
+                    {
+                        "id": 2,
+                        "title": "I Turned Out to Be a Mess",
+                        "link": "i-turned-out-to-be-a-mess",
+                        "contentPath": "i-turned-out-to-be-a-mess.md",
+                        "contentType": "song",
+                        "subtitle": {
+                            "artist": "Worm Paranoia",
+                            "album": "Random Songs"
+                        },
+                        "songPath": "i_turned_out_to_be_a_mess2.wav",
+                        "image": "album_cover.jpg"
+                    },
+                    {
+                        "id": 3,
+                        "title": "Bombs Will Fall",
+                        "link": "bombs-will-fall",
+                        "contentPath": "bombs-will-fall.md",
+                        "contentType": "song",
+                        "subtitle": {
+                            "artist": "Worm Paranoia",
+                            "album": "Random Songs"
+                        },
+                        "songPath": "bombs_will_fall.wav",
+                        "image": "album_cover_2.jpg"
+                    }
+                ]
             }
         ]
     },
@@ -21,6 +109,20 @@
         "title": "Personal Music",
         "link": "personal-music",
         "contentPath": "personal-music.md",
-        "contentType": "folder"
+        "contentType": "folder",
+        "children": [
+            {
+                "id": 1,
+                "title": "Take me",
+                "link": "take-me",
+                "contentPath": "take-me.md",
+                "contentType": "song",
+                "subtitle": {
+                    "artist": "Anderson",
+                    "album": "Random"
+                },
+                "songPath": "Take_me.wav"
+            }
+        ]
     }
 ]
