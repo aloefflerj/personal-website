@@ -11,6 +11,7 @@ import { MarkdownDynamicContent } from '../../components/markdown/MarkdownDynami
 import { FolderGrid } from '../../components/folder/FolderGrid';
 import { FoldersLayout } from '../folders-layout/FoldersLayout';
 import { RoadmapPage } from '../roadmaps/RoadmapPage';
+import { BlogPage } from '../blog/BlogPage';
 import { SubcategoryView } from '../../common/SubcategoryView';
 import { MarkdownPathType } from '../../common/MarkdownPathType';
 import { If } from '../../components/If';
@@ -27,6 +28,7 @@ const FolderViewType = {
     timeline: 'timeline',
     content: 'content',
     wiki: 'wiki',
+    blog: 'blog',
 };
 
 function FolderListView({ category, items, basePath }) {
@@ -60,6 +62,26 @@ function FolderTimelineView({
 FolderTimelineView.propTypes = {
     category: PropTypes.object,
     node: PropTypes.object,
+    dir: PropTypes.string,
+    segments: PropTypes.arrayOf(PropTypes.string),
+    markdownPathType: PropTypes.string,
+};
+
+function FolderBlogView({ category, items, dir, segments, markdownPathType }) {
+    return (
+        <BlogPage
+            category={category}
+            items={items}
+            dir={dir}
+            segments={segments}
+            markdownPathType={markdownPathType}
+        />
+    );
+}
+
+FolderBlogView.propTypes = {
+    category: PropTypes.object,
+    items: PropTypes.array,
     dir: PropTypes.string,
     segments: PropTypes.arrayOf(PropTypes.string),
     markdownPathType: PropTypes.string,
@@ -153,13 +175,14 @@ const FOLDER_VIEWS = {
     [FolderViewType.timeline]: FolderTimelineView,
     [FolderViewType.content]: FolderContentView,
     [FolderViewType.wiki]: FolderWikiView,
+    [FolderViewType.blog]: FolderBlogView,
 };
 
 function resolveFolderViewType(segments, record, node) {
     if (segments.length === 0) {
-        return record?.view === SubcategoryView.wiki
-            ? FolderViewType.wiki
-            : FolderViewType.list;
+        if (record?.view === SubcategoryView.wiki) return FolderViewType.wiki;
+        if (record?.view === SubcategoryView.blog) return FolderViewType.blog;
+        return FolderViewType.list;
     }
 
     if (record?.view === SubcategoryView.timeline && segments.length === 1) {
