@@ -1,0 +1,1 @@
+![cover.png](/assets/img/categories/music/projects/worm-paranoia/the-last-days/cover.png)
