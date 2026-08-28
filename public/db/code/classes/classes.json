@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "title": "Software management and quality",
+        "link": "software-management-and-quality",
+        "contentPath": "software-management-and-quality.md",
+        "contentType": "folder",
+        "view": "blog",
+        "children": [
+            {
+                "id": 1,
+                "title": "Software Management and Quality",
+                "link": "software-management-and-quality",
+                "contentPath": "software-management-and-quality.md",
+                "contentType": "folder",
+                "date": "2026-08-26"
+            },
+            {
+                "id": 2,
+                "title": "Software Testing",
+                "link": "software-testing",
+                "contentPath": "software-testing.md",
+                "contentType": "folder",
+                "date": "2026-08-27",
+                "view": "blog"
+            }
+        ]
+    }
+]

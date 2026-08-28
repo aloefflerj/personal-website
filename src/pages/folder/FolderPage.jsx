@@ -67,11 +67,22 @@ FolderTimelineView.propTypes = {
     markdownPathType: PropTypes.string,
 };
 
-function FolderBlogView({ category, items, dir, segments, markdownPathType }) {
+function FolderBlogView({
+    category,
+    items,
+    node,
+    dir,
+    segments,
+    markdownPathType,
+}) {
+    // At the subcategory root the posts are the fetched items; nested under a
+    // folder node they are that node's children.
+    const posts = segments.length > 0 ? childrenOf(node) : items;
+
     return (
         <BlogPage
             category={category}
-            items={items}
+            items={posts}
             dir={dir}
             segments={segments}
             markdownPathType={markdownPathType}
@@ -82,6 +93,7 @@ function FolderBlogView({ category, items, dir, segments, markdownPathType }) {
 FolderBlogView.propTypes = {
     category: PropTypes.object,
     items: PropTypes.array,
+    node: PropTypes.object,
     dir: PropTypes.string,
     segments: PropTypes.arrayOf(PropTypes.string),
     markdownPathType: PropTypes.string,
@@ -190,6 +202,7 @@ function resolveFolderViewType(segments, record, node) {
     }
 
     if (node?.view === SubcategoryView.wiki) return FolderViewType.wiki;
+    if (node?.view === SubcategoryView.blog) return FolderViewType.blog;
 
     return FolderViewType.content;
 }
