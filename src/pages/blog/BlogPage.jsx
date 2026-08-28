@@ -24,8 +24,13 @@ const BlogMarkdownElementContentWrapper = styled.span`
     }
 `;
 
+function dateValue(post) {
+    const time = new Date(post.date).getTime();
+    return Number.isNaN(time) ? -Infinity : time;
+}
+
 function sortByDateDescending(posts) {
-    return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+    return [...posts].sort((a, b) => dateValue(b) - dateValue(a));
 }
 
 export function BlogPage({ category, items, dir, segments, markdownPathType }) {
@@ -70,7 +75,9 @@ export function BlogPage({ category, items, dir, segments, markdownPathType }) {
                     >
                         <BlogMarkdownElementContentWrapper $category={category}>
                             <If is={visiblePostId !== post.id}>
-                                <time>{post.date}</time>
+                                <If is={Boolean(post.date)}>
+                                    <time>{post.date}</time>
+                                </If>
                                 <h2>{post.title}</h2>
                             </If>
                             <If is={loadingPostId === post.id}>
