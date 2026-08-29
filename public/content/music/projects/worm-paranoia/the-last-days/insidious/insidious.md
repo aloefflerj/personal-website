@@ -1,4 +1,6 @@
 # Insidious
+![insidious.png](/assets/img/categories/music/projects/worm-paranoia/the-last-days/insidious/insidious.png)
+
 ## Lyrics
 ```
 Insidious, all my life
