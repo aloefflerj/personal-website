@@ -23,18 +23,24 @@ const VolumeSlider = styled.input`
 
     &::-webkit-slider-runnable-track {
         background: ${(props) => props.$category.lightColor};
+        background-clip: border-box;
         height: 24px;
+        border-left: 4px solid transparent;
+        border-right: 3px solid transparent;
     }
 
     &::-moz-range-track {
         background: ${(props) => props.$category.lightColor};
+        background-clip: border-box;
         height: 24px;
+        border-left: 4px solid transparent;
+        border-right: 3px solid transparent;
     }
 
     &::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
-        margin: 3px;
+        margin: 3px 0;
         background-color: ${(props) => props.$category.darkColor};
         height: 18px;
         width: 18px;
@@ -43,7 +49,7 @@ const VolumeSlider = styled.input`
     &::-moz-range-thumb {
         border: none;
         border-radius: 0;
-        margin: 3px;
+        margin: 3px 0;
         background-color: ${(props) => props.$category.darkColor};
         height: 18px;
         width: 18px;

@@ -7,7 +7,7 @@ import {
 import { Router } from './routes/Router';
 
 const Content = styled.div`
-    padding-top: ${(props) => (props.$isHome ? '0' : PLAYER_BAR_HEIGHT)};
+    padding-bottom: ${(props) => (props.$isHome ? '0' : PLAYER_BAR_HEIGHT)};
 `;
 
 function App() {
