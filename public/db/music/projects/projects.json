@@ -24,7 +24,7 @@
                             "album": "The Last Days"
                         },
                         "songPath": "burn_me_down.wav",
-                        "image": "cover.png"
+                        "image": "cover3.png"
                     },
                     {
                         "id": 2,
@@ -37,7 +37,7 @@
                             "album": "The Last Days"
                         },
                         "songPath": "insidious.wav",
-                        "image": "cover.png"
+                        "image": "insidious.png"
                     },
                     {
                         "id": 3,
@@ -50,7 +50,7 @@
                             "album": "The Last Days"
                         },
                         "songPath": "i_ve_given_up_a_long_time_ago.wav",
-                        "image": "cover.png"
+                        "image": "cover3.png"
                     }
                 ]
             },
