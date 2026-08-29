@@ -7,13 +7,14 @@ import { PreviousButton } from './PreviousButton';
 import { NextButton } from './NextButton';
 import { VolumeButton } from './VolumeButton';
 import { ProgressBar } from './ProgressBar';
+import { MarqueeText } from './MarqueeText';
 import { If } from '../If';
 
 export const PLAYER_BAR_HEIGHT = '44px';
 
 const Bar = styled.div`
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: ${PLAYER_BAR_HEIGHT};
@@ -34,9 +35,7 @@ const TrackInfo = styled.div`
     width: 440px;
     flex-shrink: 0;
     color: ${(props) => props.$category.lightColor};
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
 `;
 
 const TrackImage = styled.img`
@@ -95,9 +94,11 @@ export function GlobalPlayerBar() {
                 <If is={!!currentTrack?.image}>
                     <TrackImage src={currentTrack?.image} alt="" />
                 </If>
-                {currentTrack
-                    ? `${currentTrack.title} — ${currentTrack.author}`
-                    : 'Nothing playing'}
+                <MarqueeText>
+                    {currentTrack
+                        ? `${currentTrack.title} — ${currentTrack.author}`
+                        : 'Nothing playing'}
+                </MarqueeText>
             </TrackInfo>
             <CenterGroup>
                 <AudioPlayButton

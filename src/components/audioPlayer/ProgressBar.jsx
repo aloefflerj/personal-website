@@ -2,76 +2,67 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useCategoryContext } from '../../hooks/useCategoryContext';
 
-const Progress = styled.div`
-    display: flex;
-    align-items: center;
+const THUMB_SIZE = 18;
+// Space kept between the thumb and each end of the track. Tune to taste.
+const EDGE_GAP_LEFT = 3;
+const EDGE_GAP_RIGHT = -1;
 
-    input[type='range'] {
-        --range-progress: 0;
-    }
+const Track = styled.div`
+    position: relative;
+    box-sizing: border-box;
+    width: 14rem;
+    height: 24px;
+    background-color: ${(props) => props.$category.lightColor};
+    cursor: pointer;
+`;
 
-    input[type='range']::before {
-        width: var(--range-progress);
-    }
+const Thumb = styled.div`
+    position: absolute;
+    top: 3px;
+    left: calc(
+        ${EDGE_GAP_LEFT}px + (100% - ${EDGE_GAP_LEFT + EDGE_GAP_RIGHT}px) *
+            ${(props) => props.$pct} / 100
+    );
+    width: ${THUMB_SIZE}px;
+    height: ${THUMB_SIZE}px;
+    transform: translateX(-${(props) => props.$pct}%);
+    background-color: ${(props) => props.$category.darkColor};
+    pointer-events: none;
+`;
 
-    input[type='range'] {
-        -webkit-appearance: none;
-        appearance: none;
-        cursor: pointer;
-        width: 14rem;
-    }
-
-    input[type='range']::-webkit-slider-runnable-track {
-        background: ${(props) => props.$category.lightColor};
-        height: 24px;
-    }
-
-    input[type='range']::-moz-range-track {
-        background: ${(props) => props.$category.lightColor};
-        height: 24px;
-    }
-
-    input[type='range']::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        margin: 3px;
-        background-color: ${(props) => props.$category.darkColor};
-        height: 18px;
-        width: 18px;
-    }
-
-    input[type='range']::-moz-range-thumb {
-        border: none;
-        border-radius: 0;
-        margin: 3px;
-        background-color: ${(props) => props.$category.darkColor};
-        height: 18px;
-        width: 18px;
-    }
+const Range = styled.input`
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
 `;
 
 export function ProgressBar({ progress = 0, duration = 0, onSeek }) {
     const { category } = useCategoryContext();
 
-    const progressPercent = duration > 0 ? (progress / duration) * 100 : 0;
+    const pct =
+        duration > 0
+            ? Math.min(100, Math.max(0, (progress / duration) * 100))
+            : 0;
 
     const handleChange = (event) => {
         onSeek(Number(event.target.value));
     };
 
     return (
-        <Progress
-            $category={category}
-            style={{ '--range-progress': `${progressPercent}%` }}
-        >
-            <input
+        <Track $category={category}>
+            <Thumb $category={category} $pct={pct} />
+            <Range
                 type="range"
                 min={0}
                 max={duration || 0}
                 value={progress}
                 onChange={handleChange}
             />
-        </Progress>
+        </Track>
     );
 }
 
