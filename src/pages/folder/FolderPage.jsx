@@ -9,11 +9,14 @@ import { useStringHelper } from '../../hooks/useStringHelper';
 import { useCategoryContext } from '../../hooks/useCategoryContext';
 import { MarkdownDynamicContent } from '../../components/markdown/MarkdownDynamicContent';
 import { FolderGrid } from '../../components/folder/FolderGrid';
+import { SongCard } from '../../components/audioPlayer/SongCard';
 import { FoldersLayout } from '../folders-layout/FoldersLayout';
 import { RoadmapPage } from '../roadmaps/RoadmapPage';
 import { BlogPage } from '../blog/BlogPage';
 import { SubcategoryView } from '../../common/SubcategoryView';
 import { MarkdownPathType } from '../../common/MarkdownPathType';
+import { SubcategoryContentType } from '../../common/SubcategoryContentType';
+import { buildSongQueue, songIndexInQueue } from '../../model/songQueue';
 import { If } from '../../components/If';
 import { WikiIndex } from '../../components/wiki/WikiIndex';
 
@@ -140,6 +143,28 @@ FolderWikiView.propTypes = {
     wiki: PropTypes.object,
 };
 
+function FolderSongCard({ category, node, siblings }) {
+    const songQueue = buildSongQueue(siblings);
+    const songIndex = songIndexInQueue(songQueue, node.songPath);
+
+    if (songIndex < 0) return null;
+
+    return (
+        <SongCard
+            track={songQueue[songIndex]}
+            queue={songQueue}
+            index={songIndex}
+            category={category}
+        />
+    );
+}
+
+FolderSongCard.propTypes = {
+    category: PropTypes.object,
+    node: PropTypes.object,
+    siblings: PropTypes.array,
+};
+
 function FolderContentView({
     category,
     node,
@@ -148,11 +173,20 @@ function FolderContentView({
     markdownPathType,
     basePath,
     wiki,
+    siblings,
 }) {
     const children = childrenOf(node);
+    const isSong = node.contentType === SubcategoryContentType.song;
 
     return (
         <FolderContent $category={category}>
+            <If is={isSong}>
+                <FolderSongCard
+                    category={category}
+                    node={node}
+                    siblings={siblings}
+                />
+            </If>
             <MarkdownDynamicContent
                 dbJsonData={node}
                 category={category}
@@ -180,6 +214,7 @@ FolderContentView.propTypes = {
     markdownPathType: PropTypes.string,
     basePath: PropTypes.string,
     wiki: PropTypes.object,
+    siblings: PropTypes.array,
 };
 
 const FOLDER_VIEWS = {
@@ -316,6 +351,11 @@ export function FolderPage({ category }) {
     );
     const View = FOLDER_VIEWS[resolveFolderViewType(segments, record, node)];
 
+    // The songs a single song page can queue up: the items sitting alongside it
+    // in the same folder.
+    const siblings =
+        trail.length > 1 ? childrenOf(trail[trail.length - 2]) : items;
+
     const segmentsKey = segments.join('/');
     const trailKey = trail.map((trailNode) => trailNode.link).join('/');
 
@@ -353,6 +393,7 @@ export function FolderPage({ category }) {
                 }
                 basePath={resolveBasePath(category, subcategoryLink, segments)}
                 wiki={wiki}
+                siblings={siblings}
             />
         </FoldersLayout>
     );

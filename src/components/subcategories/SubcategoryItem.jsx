@@ -117,16 +117,7 @@ export function SubcategoryItem({
             {item}
             <If is={songPath !== null && songPath !== undefined}>
                 <TrackPlayButton
-                    track={
-                        new Track(
-                            id,
-                            `/assets/audio/${songPath}`,
-                            title,
-                            subtitle?.artist,
-                            subtitle?.album,
-                            image ? `/assets/img/songs/${image}` : null
-                        )
-                    }
+                    track={songQueue[songIndex]}
                     queue={songQueue}
                     index={songIndex}
                 />

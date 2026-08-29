@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { SubcategoryItem } from '../subcategories/SubcategoryItem';
-import { SubcategoryContentType } from '../../common/SubcategoryContentType';
-import { Track } from '../../model/Track';
+import { buildSongQueue, songIndexInQueue } from '../../model/songQueue';
 
 export const SubcategoriesList = styled.div`
     padding: 32px;
@@ -14,19 +13,7 @@ export const SubcategoriesList = styled.div`
 `;
 
 export function FolderGrid({ items, category, basePath }) {
-    const songQueue = items
-        .filter((item) => item.contentType === SubcategoryContentType.song)
-        .map(
-            ({ id, title, subtitle, songPath, image }) =>
-                new Track(
-                    id,
-                    `/assets/audio/${songPath}`,
-                    title,
-                    subtitle?.artist,
-                    subtitle?.album,
-                    image ? `/assets/img/songs/${image}` : null
-                )
-        );
+    const songQueue = buildSongQueue(items);
 
     return (
         <SubcategoriesList $bgColor={category.darkColor}>
@@ -51,15 +38,7 @@ export function FolderGrid({ items, category, basePath }) {
                         songPath={songPath}
                         image={image}
                         songQueue={songQueue}
-                        songIndex={
-                            songPath
-                                ? songQueue.findIndex(
-                                      (track) =>
-                                          track.src ===
-                                          `/assets/audio/${songPath}`
-                                  )
-                                : -1
-                        }
+                        songIndex={songIndexInQueue(songQueue, songPath)}
                     />
                 )
             )}
