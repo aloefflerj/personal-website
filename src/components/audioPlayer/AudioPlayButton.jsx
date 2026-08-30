@@ -12,6 +12,7 @@ const GlobalPlayButton = styled(PixelButton)`
 const LocalPlayButton = styled(PixelButton)`
     position: relative;
     z-index: 1000;
+    padding: ${(props) => (props.$large ? '16px 20px' : '9px 44px')};
 `;
 
 export function AudioPlayButton({
@@ -19,10 +20,11 @@ export function AudioPlayButton({
     playing,
     global = false,
     miniplayer = true,
+    large = false,
 }) {
     const { category } = useCategoryContext();
 
-    const mini = miniplayer ? '12' : '24';
+    const mini = miniplayer && !large ? '12' : '24';
 
     const icon = playing ? (
         <PauseIcon
@@ -42,7 +44,11 @@ export function AudioPlayButton({
             {icon}
         </GlobalPlayButton>
     ) : (
-        <LocalPlayButton onClick={() => togglePlayPause()} $category={category}>
+        <LocalPlayButton
+            onClick={() => togglePlayPause()}
+            $category={category}
+            $large={large}
+        >
             {icon}
         </LocalPlayButton>
     );
@@ -53,4 +59,5 @@ AudioPlayButton.propTypes = {
     playing: PropTypes.bool,
     global: PropTypes.bool,
     miniplayer: PropTypes.bool,
+    large: PropTypes.bool,
 };

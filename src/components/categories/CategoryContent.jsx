@@ -9,6 +9,10 @@ const Content = styled.main`
     width: 100%;
     height: auto;
     background-color: ${(props) => props.$bgColor};
+
+    @media screen and (max-width: 640px) {
+        overflow-x: hidden;
+    }
 `;
 
 const Header = styled.header`
@@ -17,10 +21,8 @@ const Header = styled.header`
     align-items: center;
 
     @media screen and (max-width: 640px) {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr;
-        grid-template-areas: 'main';
         gap: 0px;
+        min-width: 0;
     }
 `;
 
