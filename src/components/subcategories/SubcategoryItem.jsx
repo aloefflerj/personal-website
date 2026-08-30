@@ -37,8 +37,8 @@ const SubcategorySongWrapper = styled.div`
 
 const SongImage = styled.img`
     image-rendering: pixelated;
-    width: 64px;
-    height: 64px;
+    width: 230px;
+    height: 230px;
 `;
 
 const SubcategoryLink = styled(NavLink)`
