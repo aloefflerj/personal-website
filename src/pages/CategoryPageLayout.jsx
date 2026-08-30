@@ -3,6 +3,10 @@ import { useSidebarContext } from '../hooks/useSidebarContext';
 import { useCategoryContext } from '../hooks/useCategoryContext';
 import PropTypes from 'prop-types';
 import { If } from '../components/If';
+import {
+    PLAYER_BAR_HEIGHT,
+    MOBILE_PLAYER_BAR_HEIGHT,
+} from '../components/audioPlayer/GlobalPlayerBar';
 
 const Page = styled.div`
     display: grid;
@@ -14,12 +18,16 @@ const Page = styled.div`
     width: 100%;
     height: 100%;
     min-height: 100vh;
+    min-height: var(--app-height, 100dvh);
+    box-sizing: border-box;
+    padding-bottom: ${PLAYER_BAR_HEIGHT};
     background-color: ${(props) => props.$bgColor};
 
     @media screen and (max-width: 640px) {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
         grid-template-areas: 'sidebar';
+        padding-bottom: ${MOBILE_PLAYER_BAR_HEIGHT};
     }
 `;
 
@@ -33,12 +41,16 @@ const RetractedSidebarPage = styled.div`
     width: 100%;
     height: 100%;
     min-height: 100vh;
+    min-height: var(--app-height, 100dvh);
+    box-sizing: border-box;
+    padding-bottom: ${PLAYER_BAR_HEIGHT};
     background-color: ${(props) => props.$bgColor};
 
     @media screen and (max-width: 640px) {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
         grid-template-areas: 'main';
+        padding-bottom: ${MOBILE_PLAYER_BAR_HEIGHT};
     }
 `;
 

@@ -25,6 +25,10 @@ const Track = styled.div`
     width: max-content;
     max-width: 100%;
 
+    @media screen and (max-width: 640px) {
+        margin-inline: auto;
+    }
+
     ${(props) =>
         props.$scroll &&
         css`
