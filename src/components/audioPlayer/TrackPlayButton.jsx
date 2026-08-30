@@ -3,7 +3,7 @@ import { Track } from '../../model/Track';
 import { useAudioPlayer } from '../../hooks/useAudioPlayer';
 import { AudioPlayButton } from './AudioPlayButton';
 
-export function TrackPlayButton({ track, queue, index }) {
+export function TrackPlayButton({ track, queue, index, large = false }) {
     const { currentTrack, isPlaying, playFromList, togglePlayPause } =
         useAudioPlayer();
 
@@ -23,6 +23,7 @@ export function TrackPlayButton({ track, queue, index }) {
             togglePlayPause={handleClick}
             playing={isThisPlaying}
             global={false}
+            large={large}
         />
     );
 }
@@ -31,4 +32,5 @@ TrackPlayButton.propTypes = {
     track: PropTypes.instanceOf(Track).isRequired,
     queue: PropTypes.arrayOf(PropTypes.instanceOf(Track)).isRequired,
     index: PropTypes.number.isRequired,
+    large: PropTypes.bool,
 };

@@ -13,6 +13,9 @@ const Card = styled.div`
     justify-content: center;
     gap: 16px;
     padding: 32px;
+    margin: 0 auto;
+    max-width: 100%;
+    box-sizing: border-box;
     text-align: center;
     background-color: ${(props) =>
         props.$category.darkColor ?? Blank.darkColor};
@@ -20,12 +23,21 @@ const Card = styled.div`
     p {
         margin: 0;
     }
+
+    @media screen and (max-width: 640px) {
+        padding: 24px 16px;
+    }
 `;
 
 const Cover = styled.img`
     image-rendering: pixelated;
     width: 192px;
     height: 192px;
+
+    @media screen and (max-width: 640px) {
+        width: 224px;
+        height: 224px;
+    }
 `;
 
 const CardTitle = styled.p`
@@ -53,7 +65,7 @@ export function SongCard({ track, queue, index, category }) {
             <If is={Boolean(track.album)}>
                 <CardSubtitle $category={category}>{track.album}</CardSubtitle>
             </If>
-            <TrackPlayButton track={track} queue={queue} index={index} />
+            <TrackPlayButton track={track} queue={queue} index={index} large />
         </Card>
     );
 }

@@ -16,7 +16,16 @@ const BreadcrumbWrapper = styled.div`
     }
 
     @media screen and (max-width: 640px) {
-        overflow: scroll;
+        min-width: 0;
+        flex: 1;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        a {
+            flex-shrink: 0;
+        }
     }
 `;
 
