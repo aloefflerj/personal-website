@@ -10,6 +10,7 @@ import { If } from '../If';
 import { useStringHelper } from '../../hooks/useStringHelper';
 import { SwipeIcon } from '../../icons/SwipeIcon';
 import { CategoryNavLinkItem } from '../categories/CategoryNavLinkItem';
+import { MOBILE_PLAYER_BAR_HEIGHT } from '../audioPlayer/GlobalPlayerBar';
 
 const SlideTip = styled.span`
     position: absolute;
@@ -33,9 +34,11 @@ const SlideImage = styled.img`
     width: 100%;
 `;
 
+// Pinned a small margin above the global player bar so Safari's dynamic
+// bottom toolbar pushes the button and the player up together.
 const SlideButton = styled(PixelButton)`
-    position: absolute;
-    bottom: 120px;
+    position: fixed;
+    bottom: calc(${MOBILE_PLAYER_BAR_HEIGHT} + 16px);
     left: calc(50% - 64px);
     width: 128px;
     height: 64px;
@@ -66,6 +69,24 @@ export function BackgroundSwiper({ imageFolderPath }) {
                 src={`${imageFolderPath}/${key}-environment.png`}
                 alt={`vertical-${key}-environment`}
             />
+        </SwiperSlide>
+    ));
+
+    return (
+        <>
+            <Swiper
+                loop
+                onRealIndexChange={({ realIndex }) =>
+                    updateCategoryContext(reindexedCategoriesKeys[realIndex])
+                }
+                spaceBetween={0}
+                slidesPerView={1}
+                initialSlide={reindexedCategoriesKeys.indexOf(
+                    category.categoryKey
+                )}
+            >
+                {listCategoriesImages}
+            </Swiper>
             <If is={category.categoryKey !== CategoriesKeys.blank}>
                 <CategoryNavLinkItem
                     category={category}
@@ -76,21 +97,7 @@ export function BackgroundSwiper({ imageFolderPath }) {
                     }
                 />
             </If>
-        </SwiperSlide>
-    ));
-
-    return (
-        <Swiper
-            loop
-            onRealIndexChange={({ realIndex }) =>
-                updateCategoryContext(reindexedCategoriesKeys[realIndex])
-            }
-            spaceBetween={0}
-            slidesPerView={1}
-            initialSlide={reindexedCategoriesKeys.indexOf(category.categoryKey)}
-        >
-            {listCategoriesImages}
-        </Swiper>
+        </>
     );
 }
 
