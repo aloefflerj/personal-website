@@ -13,7 +13,8 @@ export const useSubcategories = (category) => {
         fetchSubcategories()
             .then((records) => {
                 if (!active) return;
-                setSubcategories(Array.isArray(records) ? records : []);
+                const list = Array.isArray(records) ? records : [];
+                setSubcategories(list.filter((record) => !record.draft));
             })
             .catch(() => {
                 if (active) setSubcategories([]);

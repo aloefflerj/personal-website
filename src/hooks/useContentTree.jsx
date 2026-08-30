@@ -1,6 +1,17 @@
 export const childrenOf = (node) =>
     Array.isArray(node.children) ? node.children : [];
 
+// Drops every node flagged `draft: true` (and, recursively, its children) so
+// draft content never reaches a grid, timeline or wiki index on the live site.
+export const pruneDrafts = (items) =>
+    (Array.isArray(items) ? items : [])
+        .filter((item) => !item.draft)
+        .map((item) =>
+            Array.isArray(item.children)
+                ? { ...item, children: pruneDrafts(item.children) }
+                : item
+        );
+
 export const useContentTree = () => {
     return {
         findNodeByPath: (items, segments) => {

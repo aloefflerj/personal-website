@@ -6,6 +6,7 @@
         "contentPath": "rose-of-the-winds.md",
         "contentType": "folder",
         "view": "wiki",
+        "draft": true,
         "children": [
             {
                 "id": 1,
