@@ -14,6 +14,12 @@ const Track = styled.div`
     height: 24px;
     background-color: ${(props) => props.$category.lightColor};
     cursor: pointer;
+
+    @media screen and (max-width: 640px) {
+        width: auto;
+        flex: 1;
+        min-width: 0;
+    }
 `;
 
 const Thumb = styled.div`

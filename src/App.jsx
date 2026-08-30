@@ -1,25 +1,28 @@
-import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
-import {
-    GlobalPlayerBar,
-    PLAYER_BAR_HEIGHT,
-} from './components/audioPlayer/GlobalPlayerBar';
+import { useEffect } from 'react';
+import { GlobalPlayerBar } from './components/audioPlayer/GlobalPlayerBar';
 import { Router } from './routes/Router';
 
-const Content = styled.div`
-    padding-bottom: ${(props) => (props.$isHome ? '0' : PLAYER_BAR_HEIGHT)};
-`;
-
 function App() {
-    const location = useLocation();
-    const isHome = location.pathname === '/';
+    // Viewport units (vh/dvh) don't always match window.innerHeight - the gap
+    // between the two shows as unpainted space under a fixed-positioned bar.
+    // Publish the measured height so layouts can size against the real viewport.
+    useEffect(() => {
+        const setAppHeight = () => {
+            document.documentElement.style.setProperty(
+                '--app-height',
+                `${window.innerHeight}px`
+            );
+        };
+
+        setAppHeight();
+        window.addEventListener('resize', setAppHeight);
+        return () => window.removeEventListener('resize', setAppHeight);
+    }, []);
 
     return (
         <>
             <GlobalPlayerBar />
-            <Content $isHome={isHome}>
-                <Router />
-            </Content>
+            <Router />
         </>
     );
 }

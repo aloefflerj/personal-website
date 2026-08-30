@@ -12,7 +12,7 @@ const Bar = styled.aside`
     flex-direction: column;
     margin: 3px 0 0 3px;
     position: fixed;
-    height: calc(100vh - 6px);
+    height: calc(var(--app-height, 100vh) - 6px);
     background-color: ${(props) => props.$category.darkColor};
     box-shadow:
         inset 3px -3px ${(props) => props.$category.mediumColor},
@@ -36,7 +36,7 @@ const RetractedBar = styled.aside`
     flex-direction: column;
     margin: 3px 0 0 3px;
     position: fixed;
-    height: calc(100vh - 6px);
+    height: calc(var(--app-height, 100vh) - 6px);
     background-color: ${(props) => props.$category.darkColor};
     box-shadow:
         inset 3px -3px ${(props) => props.$category.mediumColor},

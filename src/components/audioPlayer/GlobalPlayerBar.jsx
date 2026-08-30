@@ -11,6 +11,7 @@ import { MarqueeText } from './MarqueeText';
 import { If } from '../If';
 
 export const PLAYER_BAR_HEIGHT = '44px';
+export const MOBILE_PLAYER_BAR_HEIGHT = '68px';
 
 const Bar = styled.div`
     position: fixed;
@@ -26,6 +27,18 @@ const Bar = styled.div`
     gap: 2px;
     padding: 0 20px;
     background-color: ${(props) => props.$category.darkColor};
+
+    @media screen and (max-width: 640px) {
+        height: ${MOBILE_PLAYER_BAR_HEIGHT};
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            'title title'
+            'controls volume';
+        align-items: center;
+        gap: 2px 4px;
+        padding: 4px 10px;
+    }
 `;
 
 const TrackInfo = styled.div`
@@ -36,6 +49,13 @@ const TrackInfo = styled.div`
     flex-shrink: 0;
     color: ${(props) => props.$category.lightColor};
     overflow: hidden;
+
+    @media screen and (max-width: 640px) {
+        grid-area: title;
+        width: 100%;
+        justify-content: center;
+        gap: 0;
+    }
 `;
 
 const TrackImage = styled.img`
@@ -43,6 +63,10 @@ const TrackImage = styled.img`
     width: 32px;
     height: 32px;
     flex-shrink: 0;
+
+    @media screen and (max-width: 640px) {
+        display: none;
+    }
 `;
 
 const CenterGroup = styled.div`
@@ -54,12 +78,29 @@ const CenterGroup = styled.div`
     align-items: center;
     justify-content: center;
     gap: 2px;
+
+    @media screen and (max-width: 640px) {
+        position: static;
+        transform: none;
+        grid-area: controls;
+        width: 100%;
+        gap: 4px;
+    }
 `;
 
 const SkipGroup = styled.div`
     display: flex;
     align-items: center;
     gap: 2px;
+`;
+
+const VolumeSlot = styled.div`
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 640px) {
+        grid-area: volume;
+    }
 `;
 
 export function GlobalPlayerBar() {
@@ -117,11 +158,13 @@ export function GlobalPlayerBar() {
                     <NextButton onClick={playNext} />
                 </SkipGroup>
             </CenterGroup>
-            <VolumeButton
-                volume={volume}
-                onToggleMute={toggleMute}
-                onChangeVolume={setVolume}
-            />
+            <VolumeSlot>
+                <VolumeButton
+                    volume={volume}
+                    onToggleMute={toggleMute}
+                    onChangeVolume={setVolume}
+                />
+            </VolumeSlot>
         </Bar>
     );
 }
