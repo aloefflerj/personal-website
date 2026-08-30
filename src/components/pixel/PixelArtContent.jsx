@@ -1,27 +1,20 @@
 import { styled } from 'styled-components';
 import { useCategoryContext } from '../../hooks/useCategoryContext';
-import { BackgroundLazyLoad } from '../BackgroundLazyLoad';
-import { Spinner } from '../Spinner';
 import PropTypes from 'prop-types';
 import { BackgroundSwiper } from '../swiper/BackgroundSwiper';
+import { EnvironmentScene } from './EnvironmentScene';
 
-const imgFolderPath = '/assets/img/environments';
 const phoneImgFolderPath = '/assets/img/environments/phone';
 
 const PixelArtMain = styled.main`
-    image-rendering: pixelated;
     position: relative;
+    width: 100vw;
+    height: var(--app-height, 100vh);
+    overflow: hidden;
 
     @media screen and (max-width: 640px) {
         display: none;
     }
-
-    aspect-ratio: 16 / 9;
-    width: min(100vw, calc(100vh * 16 / 9));
-    height: min(100vh, calc(100vw * 9 / 16));
-    display: flex;
-    justify-content: center;
-    align-items: center;
 `;
 
 const PixelArtPhone = styled.main`
@@ -42,11 +35,7 @@ export function PixelArtContent({ children }) {
     return (
         <>
             <PixelArtMain>
-                <BackgroundLazyLoad
-                    src={`${imgFolderPath}/${category.img}`}
-                    border={category.darkerColor}
-                    loadingComponent={<Spinner color={category.darkerColor} />}
-                />
+                <EnvironmentScene category={category} />
                 {children}
             </PixelArtMain>
             <PixelArtPhone>
