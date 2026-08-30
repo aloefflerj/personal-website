@@ -3,7 +3,11 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useCategoryDB } from '../../hooks/useCategoryDB';
-import { childrenOf, useContentTree } from '../../hooks/useContentTree';
+import {
+    childrenOf,
+    pruneDrafts,
+    useContentTree,
+} from '../../hooks/useContentTree';
 import { useSubcategories } from '../../hooks/useSubcategories';
 import { useStringHelper } from '../../hooks/useStringHelper';
 import { useCategoryContext } from '../../hooks/useCategoryContext';
@@ -21,6 +25,11 @@ import { If } from '../../components/If';
 import { WikiIndex } from '../../components/wiki/WikiIndex';
 
 const FolderContent = styled.div`
+    color: ${(props) => props.$category.lightColor};
+`;
+
+const NotFoundMessage = styled.p`
+    padding: 32px;
     color: ${(props) => props.$category.lightColor};
 `;
 
@@ -319,12 +328,14 @@ export function FolderPage({ category }) {
     const subcategoryLink = params.subcategory;
     const segments = (params['*'] || '').split('/').filter(Boolean);
 
-    const { subcategories } = useSubcategories(category);
+    const { subcategories, loading: subcategoriesLoading } =
+        useSubcategories(category);
     const { fetchSubcategory } = useCategoryDB(category);
     const { findNodeByPath } = useContentTree();
     const { capitalizeFirstLetter } = useStringHelper();
     const { setBreadcrumbTrail } = useCategoryContext();
     const [items, setItems] = useState([]);
+    const [itemsLoaded, setItemsLoaded] = useState(false);
 
     const record = subcategories.find(
         (entry) => entry.link === subcategoryLink
@@ -334,9 +345,11 @@ export function FolderPage({ category }) {
     useEffect(() => {
         if (!record) return;
 
-        fetchSubcategory(dir).then((fetched) =>
-            setItems(Array.isArray(fetched) ? fetched : [])
-        );
+        setItemsLoaded(false);
+        fetchSubcategory(dir).then((fetched) => {
+            setItems(pruneDrafts(Array.isArray(fetched) ? fetched : []));
+            setItemsLoaded(true);
+        });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [record, dir]);
 
@@ -373,6 +386,22 @@ export function FolderPage({ category }) {
         return () => setBreadcrumbTrail(null);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [category, subcategoryLink, record, segmentsKey, trailKey]);
+
+    // A missing subcategory (unknown or draft-hidden), or a path that runs
+    // through a draft-hidden / non-existent folder, resolves to nothing.
+    const notFound =
+        (!subcategoriesLoading && !record) ||
+        Boolean(record && itemsLoaded && segments.length > 0 && !node);
+
+    if (notFound) {
+        return (
+            <FoldersLayout title="Not found" category={category}>
+                <NotFoundMessage $category={category}>
+                    This page doesn&rsquo;t exist.
+                </NotFoundMessage>
+            </FoldersLayout>
+        );
+    }
 
     return (
         <FoldersLayout
