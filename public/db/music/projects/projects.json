@@ -51,6 +51,32 @@
                         },
                         "songPath": "i_ve_given_up_a_long_time_ago.wav",
                         "image": "cover3.png"
+                    },
+                    {
+                        "id": 4,
+                        "title": "Disrememberance",
+                        "link": "disrememberance",
+                        "contentPath": "disrememberance.md",
+                        "contentType": "song",
+                        "subtitle": {
+                            "artist": "Worm Paranoia",
+                            "album": "The Last Days"
+                        },
+                        "songPath": "disrememberance.wav",
+                        "image": "cover3.png"
+                    },
+                    {
+                        "id": 5,
+                        "title": "I wont do that",
+                        "link": "i-wont-do-that",
+                        "contentPath": "i-wont-do-that.md",
+                        "contentType": "song",
+                        "subtitle": {
+                            "artist": "Worm Paranoia",
+                            "album": "The Last Days"
+                        },
+                        "songPath": "i_wont_do_that.wav",
+                        "image": "cover3.png"
                     }
                 ]
             },
